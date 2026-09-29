@@ -7,3 +7,9 @@ dependencies {
     api project(':SPD-classes')
     implementation project(':services')
 }
+
+tasks.register('kiezSmokeTest', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'com.shatteredpixel.shatteredpixeldungeon.actors.mobs.KiezSmokeTest'
+}

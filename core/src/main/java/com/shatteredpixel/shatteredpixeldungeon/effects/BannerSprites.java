@@ -36,7 +36,9 @@ public class BannerSprites {
 	}
 
 	public static Image get( Type type ) {
-		Image icon = new Image( Assets.Interfaces.BANNERS );
+		boolean title = type == Type.TITLE_PORT || type == Type.TITLE_GLOW_PORT
+				|| type == Type.TITLE_LAND || type == Type.TITLE_GLOW_LAND;
+		Image icon = new Image( title ? "interfaces/neukoelln-title.png" : Assets.Interfaces.BANNERS );
 		switch (type) {
 			case TITLE_PORT:
 				icon.frame( icon.texture.uvRect( 0, 0, 139, 100 ) );

@@ -192,7 +192,7 @@ public class HeroSelectScene extends PixelScene {
 		infoButton.setSize(20, 21);
 		add(infoButton);
 
-		for (HeroClass cl : HeroClass.values()){
+		for (HeroClass cl : HeroClass.kiezClasses()){
 			HeroBtn button = new HeroBtn(cl);
 			add(button);
 			heroBtns.add(button);
@@ -412,6 +412,7 @@ public class HeroSelectScene extends PixelScene {
 	}
 
 	private void setSelectedHero(HeroClass cl){
+		if (cl == HeroClass.DUELIST || cl == HeroClass.CLERIC) cl = HeroClass.WARRIOR;
 		GamesInProgress.selectedClass = cl;
 		GamesInProgress.randomizedClass = false;
 
@@ -822,7 +823,7 @@ public class HeroSelectScene extends PixelScene {
 			buttons.add(challengeButton);
 
 			int unlockedCount = 0;
-			for (HeroClass cls : HeroClass.values()){
+			for (HeroClass cls : HeroClass.kiezClasses()){
 				if (cls.isUnlocked()) unlockedCount++;
 			}
 
@@ -837,7 +838,7 @@ public class HeroSelectScene extends PixelScene {
 
 							HeroClass randomCls;
 							do {
-								randomCls = Random.oneOf(HeroClass.values());
+								randomCls = Random.oneOf(HeroClass.kiezClasses());
 							} while (!randomCls.isUnlocked());
 							setSelectedHero(randomCls);
 							GamesInProgress.randomizedClass = true;
@@ -937,7 +938,7 @@ public class HeroSelectScene extends PixelScene {
 						if (chkHero.checked()){
 							HeroClass randomCls;
 							do {
-								randomCls = Random.oneOf(HeroClass.values());
+								randomCls = Random.oneOf(HeroClass.kiezClasses());
 							} while (!randomCls.isUnlocked());
 							setSelectedHero(randomCls);
 							GamesInProgress.randomizedClass = true;

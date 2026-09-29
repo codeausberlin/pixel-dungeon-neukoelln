@@ -126,12 +126,9 @@ public class DesktopLauncher {
 			Game.versionCode = Integer.parseInt(System.getProperty("Implementation-Version"));
 		}
 
-		if (UpdateImpl.supportsUpdates()){
-			Updates.service = UpdateImpl.getUpdateService();
-		}
-		if (NewsImpl.supportsNews()){
-			News.service = NewsImpl.getNewsService();
-		}
+		// This independent prototype has no news feed or update endpoint yet.
+		Updates.service = null;
+		News.service = null;
 		
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
 		

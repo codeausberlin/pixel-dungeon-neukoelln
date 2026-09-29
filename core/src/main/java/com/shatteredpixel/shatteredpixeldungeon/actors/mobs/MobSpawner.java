@@ -78,20 +78,20 @@ public class MobSpawner extends Actor {
 						Rat.class, Rat.class, Rat.class,
 						Snake.class));
 			case 2:
-				//2x rat, 1x snake, 2x gnoll
+				//2x rat, 1x snake, 1x gnoll, 1x gas alchemist
 				return new ArrayList<>(Arrays.asList(Rat.class, Rat.class,
 						Snake.class,
-						Gnoll.class, Gnoll.class));
+						Gnoll.class, GasAlchemist.class));
 			case 3:
-				//1x rat, 1x snake, 3x gnoll, 1x swarm, 1x crab
+				//1x rat, 1x snake, 2x gnoll, 1x gas alchemist, 1x swarm, 1x crab
 				return new ArrayList<>(Arrays.asList(Rat.class,
 						Snake.class,
-						Gnoll.class, Gnoll.class, Gnoll.class,
+						Gnoll.class, Gnoll.class, GasAlchemist.class,
 						Swarm.class,
 						Crab.class));
 			case 4: case 5:
-				//1x gnoll, 1x swarm, 2x crab, 2x slime
-				return new ArrayList<>(Arrays.asList(Gnoll.class,
+				//1x gas alchemist, 1x swarm, 2x crab, 2x slime
+				return new ArrayList<>(Arrays.asList(GasAlchemist.class,
 						Swarm.class,
 						Crab.class, Crab.class,
 						Slime.class, Slime.class));

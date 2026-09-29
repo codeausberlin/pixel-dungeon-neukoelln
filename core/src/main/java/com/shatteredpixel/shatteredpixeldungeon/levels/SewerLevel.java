@@ -34,6 +34,10 @@ import com.shatteredpixel.shatteredpixeldungeon.items.Amulet;
 import com.shatteredpixel.shatteredpixeldungeon.levels.features.LevelTransition;
 import com.shatteredpixel.shatteredpixeldungeon.levels.painters.Painter;
 import com.shatteredpixel.shatteredpixeldungeon.levels.painters.SewerPainter;
+import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.Room;
+import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.standard.EmptyRoom;
+import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.standard.HinterhofRoom;
+import java.util.ArrayList;
 import com.shatteredpixel.shatteredpixeldungeon.levels.traps.AlarmTrap;
 import com.shatteredpixel.shatteredpixeldungeon.levels.traps.ChillingTrap;
 import com.shatteredpixel.shatteredpixeldungeon.levels.traps.ConfusionTrap;
@@ -84,6 +88,20 @@ public class SewerLevel extends RegularLevel {
 		}
 	}
 	
+	@Override
+	protected ArrayList<Room> initRooms() {
+		ArrayList<Room> rooms = super.initRooms();
+		for (int i = 0; i < rooms.size(); i++) {
+			if (rooms.get(i).getClass() == EmptyRoom.class) {
+				HinterhofRoom courtyard = new HinterhofRoom();
+				courtyard.sizeCat = ((EmptyRoom) rooms.get(i)).sizeCat;
+				rooms.set(i, courtyard);
+				break;
+			}
+		}
+		return rooms;
+	}
+
 	@Override
 	protected int standardRooms(boolean forceMax) {
 		if (forceMax) return 6;
