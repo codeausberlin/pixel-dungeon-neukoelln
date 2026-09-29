@@ -76,6 +76,7 @@ function tuebbing(x, y) {
   return hash(x, y, 7) < 5 ? K.segDark : K.seg;
 }
 for (const base of [T.RAISED_WALL, T.RAISED_WALL_DECO, T.RAISED_WALL_ALT, T.RAISED_WALL_DECO_ALT]) A.face(base, tuebbing);
+A.addNoticeCells(); // new cells 104-107 (RAISED_WALL_NOTICE), see tools/lib/tileset-kit.cjs
 
 // alt faces: survey spray mark (+0), yellow/black edge protection at open wall ends
 // +0: a wild-posted techno poster for the parody club "BÄRG" (no real club names/logos)
@@ -87,6 +88,10 @@ for (const base of [T.RAISED_WALL, T.RAISED_WALL_DECO, T.RAISED_WALL_ALT, T.RAIS
 }
 function hazard(t, x0) { for (let y = 5; y < 16; y++) for (let x = x0; x < x0 + 2; x++) if (y !== 6 && y !== 7) A.solid(t, x, y, ((x + y) >> 1) % 2 ? K.yellow : K.black); }
 hazard(T.RAISED_WALL_ALT + 1, 13); hazard(T.RAISED_WALL_ALT + 2, 1); hazard(T.RAISED_WALL_ALT + 3, 1); hazard(T.RAISED_WALL_ALT + 3, 13);
+// Round 4 wall motifs (texts: levels.walldeco.*): a crossed-out tower-crane stencil on the
+// +2 wall end, and a tear-off flat-hunt note (all tabs still there) on RAISED_WALL_NOTICE
+kit.wallMotif(A.endPaint(T.RAISED_WALL_ALT + 2), T.RAISED_WALL_ALT + 2, 'graffiti_kran');
+for (let v = 0; v < 4; v++) kit.wallMotif(A.endPaint(T.RAISED_WALL_NOTICE + v), T.RAISED_WALL_NOTICE + v, 'gesuch_3');
 
 // WALL_DECO: the "gold vein" is a burst bundle of copper cable (CavesLevel's Vein sparkles
 // now read as glinting copper, matching wall_deco_desc)
@@ -127,4 +132,6 @@ for (const t of [T.REGION_DECO_OVERHANG, T.REGION_DECO_ALT_OVERHANG]) A.mapTile(
 // ladders ("Bauleiter"): aluminium instead of wood
 for (const t of [T.ENTRANCE, T.EXIT, T.ENTRANCE_SP]) A.mapTile(t, (k, x, y, c) => isWood(k, c) ? R.alu(k.L) : null);
 
+// Abgruende: nie fertig gebaute A100-Abschnitte (shared, tools/lib/tileset-kit.cjs)
+kit.a100Chasm(A);
 A.finish({stage: 2, water: path.join(kit.ROOT, 'core/src/main/assets/environment/water2.png')});

@@ -101,7 +101,7 @@ public class EscapeCrystal extends Item {
 					//1,000 for exploring up to 80% of the level
 					score += (int) (1000 * Dungeon.level.levelExplorePercent(Dungeon.depth));
 
-					//1,000 for collecting tokens (100 each), plus a 250 bonus for opening the door
+					//1,000 for collecting tokens (1000/7 each, Neukoelln has exactly 7), plus a 250 bonus for opening the door
 					boolean doorOpened = true;
 					for (Char ch : Dungeon.level.mobs){
 						if (ch instanceof VaultTokenDoor){
@@ -114,7 +114,7 @@ public class EscapeCrystal extends Item {
 					} else {
 						Item tokens = hero.belongings.getItem(DwarfToken.class);
 						if (tokens != null){
-							score += Math.min(1000, 100*tokens.quantity());
+							score += Math.min(1000, (1000*tokens.quantity())/DwarfToken.VAULT_REQUIRED);
 						}
 					}
 

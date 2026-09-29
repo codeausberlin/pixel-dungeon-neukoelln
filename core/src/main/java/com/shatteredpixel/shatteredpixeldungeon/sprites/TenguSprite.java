@@ -111,6 +111,12 @@ public class TenguSprite extends MobSprite {
 		}
 	}
 	
+	//Neukoelln: the boss is an SUV, it leaks motor oil instead of blood
+	@Override
+	public int blood() {
+		return 0xFF2B2B30;
+	}
+
 	@Override
 	public void onComplete( Animation anim ) {
 		if (anim == run) {
@@ -127,7 +133,7 @@ public class TenguSprite extends MobSprite {
 	
 	public static class TenguShuriken extends Item {
 		{
-			image = ItemSpriteSheet.SHURIKEN;
+			image = ItemSpriteSheet.KIT; //Neukoelln: parking ticket thrown by the SUV boss
 		}
 	}
 }

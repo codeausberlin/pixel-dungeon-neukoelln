@@ -151,7 +151,7 @@ changes, so wall stitching, overhangs, water edges and shadows still line up.
 | raised wall face | red-brown clinker with dark grout; the original shading is kept through a luminance ramp |
 | wall rims, internal walls, overhangs, flat walls | pale, dusty clinker cap with grey-green lichen |
 | RAISED_WALL_ALT | brick with a chipped Putz remnant; wall ends (+1/+2) also carry an abstract, letter-free pink/teal tag |
-| WALL_DECO / _ALT | barred Kellerfenster with a dripping sill / zinc Fallrohr ending at the drip point (SewerLevel's Sink emitter stays valid) |
+| WALL_DECO / _ALT | Barbershop window (barber pole, mirror, chair) with a dripping sill / zinc Fallrohr ending at the drip point (SewerLevel's Sink emitter stays valid); see docs/NEUKOELLN-ART-TILES.md |
 | doors | green Altbau-Hoftür; locked door is grey with a brass padlock; crystal vault doors unchanged |
 | ENTRANCE / EXIT | concrete Kellertreppe; the down-stair pit has a brick edge |
 | REGION_DECO / _ALT (barrels) | grey ribbed Mülltonne with black lid / yellow lid, redrawn inside the barrel silhouette |
@@ -502,7 +502,7 @@ Which tile function shows which motif:
 | Hinterhof 1-5 (`generate-hinterhof-tiles.cjs`) | RAISED_WALL_ALT +1 (wall end, open right) | Torn grey-blue election poster "MÄRZ" with a pale-blue bar, a moustache drawn on it and a green spring-flower sticker (standing in for "Frühling kommt trotzdem"; not readable at this size) |
 | Hinterhof 1-5 | RAISED_WALL_ALT +2 (wall end, open left) | Red crossed-out "M" on the render, black "RAUS" sprayed on the clinker |
 | Hinterhof 1-5 | RAISED_WALL_ALT +3 (single pillar, rare) | Club flyer wall: pink "BÄRG" flyer over three small colourful flyers |
-| Hinterhof 1-5 | RAISED_WALL_ALT +0, WALL_DECO/_ALT | unchanged: chipped render, Kellerfenster, Fallrohr |
+| Hinterhof 1-5 | RAISED_WALL_ALT +0, WALL_DECO_ALT | unchanged: chipped render, Fallrohr (WALL_DECO and RAISED_WALL +1/+2/+3 are Sonnenallee shopfronts, see docs/NEUKOELLN-ART-TILES.md) |
 | Amt 6-10 (`generate-amt-tiles.cjs`) | RAISED_WALL_ALT +2 | Pinned election poster "MÄRZ" with a red pin, a moustache and a torn corner (replaces the exit sign) |
 | Amt 6-10 | RAISED_WALL_ALT +3 | The exit sign moved here (it used to be a scuff) |
 | Amt 6-10 | RAISED_WALL_DECO_ALT (all 4) | Crossed-out red "M" graffiti next to the LED display; lamp and Torch emitter unchanged |

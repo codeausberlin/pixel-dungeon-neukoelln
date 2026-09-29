@@ -114,7 +114,7 @@ public class WndInfoCell extends Window {
 		if (customTile != null && customTile.name(x, y) != null){
 			return customTile.name(x, y);
 		} else {
-			return Dungeon.level.tileName(Dungeon.level.map[cell]);
+			return Dungeon.level.cellName(cell);
 		}
 	}
 	
@@ -164,7 +164,7 @@ public class WndInfoCell extends Window {
 
 		} else {
 
-			desc += Dungeon.level.tileDesc(Dungeon.level.map[cell]);
+			desc += Dungeon.level.cellDesc(cell);
 		}
 		titlebar.setRect(0, 0, WIDTH, 0);
 		add(titlebar);

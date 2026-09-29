@@ -81,12 +81,17 @@ function facade(x, y) {
   return hash(x, y, 4) < 20 ? K.brickL : K.brick;
 }
 for (const base of [T.RAISED_WALL, T.RAISED_WALL_DECO, T.RAISED_WALL_ALT, T.RAISED_WALL_DECO_ALT]) A.face(base, facade);
+A.addNoticeCells(); // new cells 104-107 (RAISED_WALL_NOTICE), see tools/lib/tileset-kit.cjs
 
 // alt +0: fair-faced concrete panel with tie holes; +1: CCTV camera; +2: brass plaque (no text)
 for (let y = 5; y <= 9; y++) for (let x = 0; x < 16; x++)
   A.solid(T.RAISED_WALL_ALT, x, y, x === 7 ? K.creteD : ((x === 3 || x === 11) && y === 7) ? K.tie : y === 5 ? K.slabEdge : K.crete);
 A.stamp(T.RAISED_WALL_ALT + 1, 8, 5, ['.bcccc', '.bcccL', 'bb....'], {b: K.camD, c: K.cam, L: K.lens});
 A.stamp(T.RAISED_WALL_ALT + 2, 5, 12, ['dddddd', 'dppppd', 'dddddd'], {d: K.plaqueD, p: K.plaque});
+// Round 4 wall motifs (texts: levels.walldeco.*): a realtor board "zu vermieten" with a
+// sprayed black X on the single pillar (+3), a pink "KIEZ" tag on RAISED_WALL_NOTICE
+kit.wallMotif(A.endPaint(T.RAISED_WALL_ALT + 3), T.RAISED_WALL_ALT + 3, 'graffiti_vermieten');
+for (let v = 0; v < 4; v++) kit.wallMotif(A.endPaint(T.RAISED_WALL_NOTICE + v), T.RAISED_WALL_NOTICE + v, 'graffiti_kiez');
 
 // WALL_DECO keeps CityLevel's Smoke emitter: a louvred stainless exhaust vent
 const VENT = ['kkkkkkkk', 'kvvvvvvk', 'kddddddk', 'kvvvvvvk', 'kddddddk', 'kvvvvvvk', 'kkkkkkkk'];
@@ -126,4 +131,6 @@ for (const t of [T.FLAT_BARRICADE, T.RAISED_BARRICADE, T.BARRICADE_OVERHANG]) A.
 // ramps / stairs: fair-faced concrete
 for (const t of [T.ENTRANCE, T.EXIT, T.ENTRANCE_SP]) A.mapTile(t, (k, x, y, c) => isStone(k) && k.kind !== 'floor' && !spColours.has(kit.hex(c)) ? R.concrete(k.L) : null);
 
+// Abgruende: nie fertig gebaute A100-Abschnitte (shared, tools/lib/tileset-kit.cjs)
+kit.a100Chasm(A);
 A.finish({stage: 3, water: path.join(kit.ROOT, 'core/src/main/assets/environment/water3.png')});

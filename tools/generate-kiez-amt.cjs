@@ -3,7 +3,7 @@
 // Shattered Pixel Dungeon v4.0.0 PNGs stored in git. Pure Node (zlib only), no npm packages.
 //
 //   node tools/generate-kiez-amt.cjs                        write all sheets
-//   node tools/generate-kiez-amt.cjs --only guard,tengu     write only these sheets
+//   node tools/generate-kiez-amt.cjs --only guard,thief     write only these sheets
 //   node tools/generate-kiez-amt.cjs --preview DIR          also write before/after previews
 //
 // Contract (checked, the script aborts otherwise): every sheet keeps its size, frame grid,
@@ -28,7 +28,6 @@ const SHEETS = {
   dm100:        {blob: 'c5f08c8a1e186e98a1cef235ea951da26ffa46ab', out: 'sprites/dm100.png'},
   guard:        {blob: '6ccabf25005541019a7c22a0fb8d9fd1b7412e96', out: 'sprites/guard.png'},
   necromancer:  {blob: 'f17b14abf23292d49527fabf2112aba29b0ebce5', out: 'sprites/necromancer.png'},
-  tengu:        {blob: '0856250282233216b31dc198653cb11ce2d51c75', out: 'sprites/tengu.png'},
   prison_quest: {blob: '5b16a10a0d96ae1681a86a423bd83e2e38e9e172', out: 'environment/custom_tiles/prison_quest.png'},
   prison_exit:  {blob: '8f445ccc8a97c6176f48f62a7ef5103fa1cd08e1', out: 'environment/custom_tiles/prison_exit.png'},
 };
@@ -325,40 +324,8 @@ PAINT.necromancer = S => {
   });
 };
 
-// ---------------------------------------------------------------- tengu: Schalterspringer (boss)
-// A Sachbearbeiter whose mask has grown into his face: the pale mask is a printed form
-// (paper white, the black eye slit reads as an empty form field) with a red stamp, the grey
-// robe is a pale-blue office shirt over brown trousers, the black arms are his Ärmelschoner,
-// the pale knee wraps are his Kniebandagen. Teleport smoke becomes a puff of loose forms.
-PAINT.tengu = S => {
-  const V = frames(S, 14, 16);
-  const MASK = {dae6e6: 'f4f0e2', c2cccc: 'd9d3c0', '94a3a3': 'a39d88', '919999': 'b8b2a0'};
-  const shirt = ramp([[60, '4a5a70'], [100, '6f86a4'], [125, '8ea6c4'], [150, 'b0c4dc']]);
-  const trousers = ramp([[40, '1e1e26'], [70, '34343f'], [100, '4c4e5c'], [130, '666878']]);
-  const SMOKE = {'989696': 'b4b0a4', b2ada7: 'd6d2c4', ccc5b8: 'ece8da'};
-  for (let f = 0; f <= 10; f++) {
-    const top = V.top(f);
-    const belt = V.find(f, '424242');
-    const beltY = belt.length ? Math.min(...belt.map(p => p[1])) : top + 9;
-    V.each([f], (ff, x, y, c) => {
-      if (MASK[c]) { V.set(f, x, y, MASK[c]); return; }
-      if (SMOKE[c]) {
-        const h = hash(x, y, f);
-        V.set(f, x, y, h < 8 ? '8a8f98' : (h < 10 ? C.stamp : SMOKE[c])); // form lines, stamp specks
-        return;
-      }
-      if (c === '7f7f7f' || c === '6c6c6c' || c === '696969') V.set(f, x, y, y < beltY ? shirt(c) : trousers(c));
-      else if (c === '424242') V.set(f, x, y, '5a3e24');               // brown belt
-      else if (c === '362f2d') V.set(f, x, y, '2e2a33');                // hair, dark
-    });
-    // red stamp on the lower mask: the first mask pixel under the eye slit
-    const slit = V.find(f, '000000').filter(([x, y]) => y < top + 5);
-    if (slit.length) {
-      const sy = Math.max(...slit.map(p => p[1])), sx = Math.min(...slit.map(p => p[0]));
-      for (let dx = 0; dx < 4; dx++) if (MASK[V.get(f, sx + dx, sy + 1)] && V.get(f, sx + dx, sy + 1) === 'dae6e6') { V.set(f, sx + dx, sy + 1, C.stamp); break; }
-    }
-  }
-};
+// tengu.png (boss Ebene 10) is no longer painted here: the SUV is drawn from scratch by
+// tools/generate-kiez-suv.cjs.
 
 // ================================================================ the custom tiles
 // Amt wall face and linoleum floor, copied from the converted tiles_prison.png (floor tile
@@ -573,7 +540,7 @@ for (const name of only) {
 
 // ---------------------------------------------------------------- previews
 // per sheet: the used area, original on top, result below, each frame cell separated
-const FRAMES = {skeleton: [12, 16], thief: [12, 13], dm100: [16, 14], guard: [12, 16], necromancer: [16, 16], tengu: [14, 16], prison_quest: [16, 16], prison_exit: [16, 16]};
+const FRAMES = {skeleton: [12, 16], thief: [12, 13], dm100: [16, 14], guard: [12, 16], necromancer: [16, 16], prison_quest: [16, 16], prison_exit: [16, 16]};
 if (previewDir) {
   fs.mkdirSync(previewDir, {recursive: true});
   for (const S of results) {

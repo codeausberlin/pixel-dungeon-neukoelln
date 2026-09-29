@@ -21,17 +21,24 @@
 
 package com.shatteredpixel.shatteredpixeldungeon.items.quest;
 
+import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs.Imp;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
+import com.shatteredpixel.shatteredpixeldungeon.levels.VaultLevel;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
 import com.shatteredpixel.shatteredpixeldungeon.utils.GLog;
 
+//Neukoelln: in the club labyrinth (VaultLevel) these are the "Garderobenmarken".
+// Exactly VAULT_REQUIRED of them exist per club level, one per treasure room.
 public class DwarfToken extends Item {
-	
+
+	public static final int VAULT_REQUIRED = 7;
+
 	{
-		image = ItemSpriteSheet.TOKEN;
+		//Neukoelln: wardrobe token icon (red tag with a white 7) drawn into the unused VIAL cell
+		image = ItemSpriteSheet.VIAL;
 		
 		stackable = true;
 		unique = true;
@@ -54,13 +61,31 @@ public class DwarfToken extends Item {
 			hero.next();
 			return true;
 		}
-		return super.doPickUp(hero, pos);
+		if (!super.doPickUp(hero, pos)){
+			return false;
+		}
+		if (Dungeon.level instanceof VaultLevel && !Imp.Quest.isOld()){
+			int count = heldCount(hero);
+			if (count >= VAULT_REQUIRED){
+				GLog.p(Messages.get(DwarfToken.class, "complete", VAULT_REQUIRED));
+			} else {
+				GLog.i(Messages.get(DwarfToken.class, "progress", count, VAULT_REQUIRED));
+			}
+		}
+		return true;
+	}
+
+	public static int heldCount(Hero hero){
+		DwarfToken tokens = hero == null ? null : hero.belongings.getItem(DwarfToken.class);
+		return tokens == null ? 0 : tokens.quantity();
 	}
 
 	@Override
 	public String desc() {
 		if (Imp.Quest.isOld()){
 			return Messages.get(this, "desc_old");
+		} else if (Dungeon.level instanceof VaultLevel && Dungeon.hero != null && !Imp.Quest.mirrorUsed){
+			return super.desc() + "\n\n" + Messages.get(DwarfToken.class, "progress", heldCount(Dungeon.hero), VAULT_REQUIRED);
 		} else {
 			return super.desc();
 		}

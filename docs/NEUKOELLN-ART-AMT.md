@@ -2,7 +2,7 @@
 
 Stand 2026-09-29. Die Gegner und die zwei Sondertile-Sheets der Region "Das Amt ohne Termin"
 (upstream Prison) sind Reskins der Upstream-Sheets (Shattered Pixel Dungeon v4.0.0). Erzeugt
-werden sie mit `node tools/generate-kiez-amt.cjs`. Der Schalter `--only guard,tengu`
+werden sie mit `node tools/generate-kiez-amt.cjs`. Der Schalter `--only guard,thief`
 schränkt auf einzelne Sheets ein, `--preview DIR` schreibt pro Sheet eine Vorher/Nachher-Vorschau
 (`<sheet>-vorher-nachher.png`, Sprites sechsfach, Tiles dreifach). Das Skript nutzt nur Node und zlib.
 
@@ -23,7 +23,7 @@ Silhouette, pro Frame an einem Anker ausgerichtet (Augen, Hand, Gürtel, Mantels
 | guard.png (12x16) | Guard 0-14 | Amtssecurity | Marineblaue Schirmmütze mit gelbem Abzeichen, dunkler Schirm, Gesicht bleibt, Kinnschutz wird Haut mit Mundlinie, Uniformjacke mit gelbem Brustabzeichen, dunkle Hose. Die hellgelbe Kette an der Hüfte bleibt exakt (sie ist seine Mechanik) |
 | necromancer.png (16x16) | Necromancer 0-12 | Wiedervorlagebeamter | Kapuze wird graues Haar um ein verschattetes Gesicht, graue Augen werden Brillengläser mit Steg, brauner Cardigan, vor der Brust eine rote Wiedervorlagemappe mit weißem Etikett (Anker: Mantelschließe) |
 | | Spectral 16-28 | Geister-Sachbearbeiter | Halbtransparenz bleibt, Schwarz wird kaltes Blaugrau, weiße Augen bleiben |
-| tengu.png (14x16) | Tengu 0-10 (Boss) | Schalterspringer | Die Maske ist ein Formular (Papierweiß, der schwarze Augenschlitz liest sich als leeres Feld) mit violettem Amtsstempel; hellblaues Bürohemd, brauner Gürtel, graue Hose; schwarze Arme = Ärmelschoner, helle Kniewickel = Kniebandagen (wie im Text). Teleport-Rauch wird eine Wolke loser Formulare mit Zeilen und Stempelpunkten |
+| tengu.png (14x16) | Tengu 0-10 (Boss) | SUV (Runde 3) | Nicht mehr in diesem Skript: neu gezeichnet von `tools/generate-kiez-suv.cjs`, siehe Abschnitt SUV unten |
 | custom_tiles/prison_quest.png (16x16) | Tisch (Tile 0/16) | Tisch im Ritualraum | Holzregal wird graubeiges Resopal, Blut wird violette Stempelfarbe, Knochen werden Papiere, Boden Linoleum |
 | | Ritualzeichen (5x5 ab Tile 32) | Ritualzeichen | Roter Kreis bleibt (Stempelrot), Steinboden wird Amts-Linoleum (Vorlage: Bodentile aus `tiles_prison.png`) |
 | | Massengrab (9x9 ab Tile 5), Knochenfeld (Tile 19) | Massengrab / Archiv | Wände: Beige-Kappe bleibt, Wandfläche exakt wie die Amtswand (grüne Farbe, Fliesensockel); Rundbogennische und Statuen bleiben; Boden abgedunkeltes Linoleum (Helligkeit pro 8x8-Feld aus der Quelle); Knochenstriche werden ein Aktenberg aus Papier, Manila-Mappen, einigen Knochen, roten Wiedervorlage- und blauen Mappen |
@@ -47,8 +47,33 @@ Offen und ehrlich vermerkt:
 - Java-Farben bleiben upstream: Blutfarbe des Wartenden (Hellgrau), Funkenfarbe des Automaten,
   Zauberstrahl des Beamten, Kettenoptik (Effekt-Asset) der Security. Anpassung ist Sache des
   Gameplay-Agents.
-- Die Wurfgeschosse des Schalterspringers und die Tengu-Arena-Fallen liegen in anderen Sheets
+- Die Wurfgeschosse des Bosses und die Tengu-Arena-Fallen liegen in anderen Sheets
   und sind hier nicht angefasst.
 - `actors.mobs.bandit.desc` spricht noch von einem "glänzenden lila Maßanzug". Die Grafik
   ist auf Anweisung des Koordinators anthrazit, Lila bleibt nur im Einstecktuch. Text oder Grafik
   sollten angeglichen werden (Lore-Agent).
+
+## SUV (Boss Ebene 10, Runde 3)
+
+`tengu.png` wird seit Runde 3 von `node tools/generate-kiez-suv.cjs` erzeugt (`--preview DIR`
+schreibt `tengu-suv-x8.png`, oben upstream, unten neu, auf Wiesengrün). Der Eintrag ist aus
+`generate-kiez-amt.cjs` entfernt; die übrigen Amt-Sheets erzeugt jenes Skript weiter
+byte-identisch (per md5 geprüft). Das SUV-Skript zeichnet alle elf Frames neu (harte Alpha,
+eigene Silhouette), liest das Upstream-Sheet nur zur Größenprüfung und ist deterministisch.
+
+Motiv: wuchtiger, überbreiter Pixel-SUV, Seitenansicht nach rechts wie der upstream Tengu,
+Räder auf Zeile 15. Stahlblau-metallic, schwarz getönte Scheiben mit Glanzstrich, graue Dachbox
+auf Dachreling, rotes Rücklicht, Scheinwerfer, Warnblinker an beiden Enden. Keine Automarke,
+kein Logo, kein nachgebildeter Kühlergrill.
+
+| Frames (TenguSprite 14x16) | Animation | Umsetzung |
+| --- | --- | --- |
+| 0, 1 | idle 0,0,0,1 | Stand; in Frame 1 blinkt der Warnblinker ("nur kurz") |
+| 2-5 | run 2,3,4,5,0 (nach jedem Zug und jedem Teleport) | "Umparken": Abgaswolke verdeckt das Auftauchen (2, 3), danach drehen sich die Räder (Profilmarke wandert über den Reifen) und die Karosserie federt ein (4) |
+| 6, 7 | attack 6,7,7,0 und zap | Lichthupe: Scheinwerfer weiß, Lichtaustritt über die Frontkante, Blendung auf der Frontscheibe, Warnblinker an |
+| 8-10 | die 8,9,10 (10 wird gehalten) | Reifen werden platt (Karosserie sinkt zwei Pixel), Motorhaube steht offen, grauer Qualm aus dem Motorraum |
+
+Offen: Der Boss wirft weiterhin `ItemSpriteSheet.SHURIKEN` aus `items.png`
+(`TenguSprite.TenguShuriken`); dort ist derzeit ein Kronkorken gezeichnet. Für "Parkknöllchen"
+oder "Steinschlag" braucht es ein eigenes Item-Icon (Items-Agent) und ggf. einen eigenen
+Bildindex in Java (Gameplay-Agent). Im Spiel nicht getestet, nur Vorschau-PNGs.

@@ -126,8 +126,10 @@ Stempel, Afterhour, Parodie-Clubs).
   abgewandelt, keine Parteinamen, keine realen Personen namentlich. Die Pointe trifft immer
   die Rhetorik, nie die Menschen, über die sie redet. Wenn „Stadtbild“ vorkommt, zeigt der
   Witz, wer das Stadtbild wirklich verändert: Mieten, Glasfassaden, seine eigenen Plakate.
-- **Herr Fuß:** Seine Gefahr kommt nur von der undichten Apparatur. Der Rollstuhl wird im Text
-  nie erwähnt und ist nie Teil einer Pointe. Keine identifizierenden Merkmale einer realen
+- **Herr Fuß:** Seit Runde 3 (2026-09-29) kein Rollstuhl, kein Apparat, kein Gas als Motiv
+  (Gasapparat plus deutsche Geschichte ist tabu). Er ist ein eigenwilliger Nachbar, der einfach
+  stinkt: Käsefüße, ausgelatschte Socken in Latschen, Mief als Wolke. Karikiert wird nur der
+  Mief, nie Armut, Obdachlosigkeit oder Körper. Keine identifizierenden Merkmale einer realen
   Person (`NEUKOELLN-DESIGN.md`).
 - **Reddit und Presse** sind Anregung, keine Tatsachenbehauptung über reale Menschen.
 
@@ -136,14 +138,15 @@ Stempel, Afterhour, Parodie-Clubs).
 | Register | Wer | Kennzeichen | Nie |
 | --- | --- | --- | --- |
 | Erzähler | Beschreibungen, Journal-Rahmen, Tutorial | Hochdeutsch, trocken, Präsens, Pointe am Ende | Berlinisch, Ausrufezeichen-Ketten |
-| Berlinisch | Spätimann, Alter Polier, Alteingesessene | „ick, dit, wat, nich, jut, keen“, kurze Sätze | Mischformen in einer Sprechblase |
-| Amtsdeutsch | Schalterspringer, Amtssecurity, Wiedervorlagebeamte | Passiv, Substantivketten, „zuständig“, „Vorgang“ | echte Paragraphen |
+| Berlinisch | Spätimann, Netztechniker, Alteingesessene | „ick, dit, wat, nich, jut, keen“, kurze Sätze | Mischformen in einer Sprechblase |
+| Amtsdeutsch | Amtssecurity, Wiedervorlagebeamte | Passiv, Substantivketten, „zuständig“, „Vorgang“ | echte Paragraphen |
 | Maklerlyrik | Luxussanierer, Exposé-Zitate, Feelings | „großzügiger Schnitt“, „Souterrain mit Galerie“ | reale Portale |
 | Leichtes Schwäbisch (einzige Ausnahme von Regel 9, Auftrag des Projektinhabers) | Dagebliebener Schwabe | feste Marker „i, net, isch, des, scho, no, au, gell, a bissle, nix, Grüß Gott, ade“, -le-Endungen; Mechanik-Hinweise in `_…_` bleiben Hochdeutsch | Herkunft als Pointe, schwer lesbare Lautschrift, Mischung mit Berlinisch |
 | Startup-Sprech | Expat, Ehrgeiziger Filialist | Englische Buzzwords, danach deutsche Effektzeile | Akzent, Grammatikfehler als Gag |
 | Investorensprech | König der Eigentumswohnungen, Abschreibungshexer | „Potenzial“, „Rendite“, „systemrelevant“ | echte Firmen |
 | Tabellenstimme | Ewiger Mietspiegel | GROSS. PUNKT. ZWISCHEN. JEDEM. WORT. | Emotion |
 | Sonntagsrede | Kanzler März (nur Plakat, Graffiti, Tonband, Journal) | Leistungsparolen, „Ordnung“, Versprechen im Futur | echte Zitate, Parteien |
+| Kurzparker-Sprech | Kurzparker (SUV-Boss, Ebene 10) | Hupe, Lichthupe, Warnblinker, „Ich steh nur kurz hier“, Du-Form von oben herab | reale Automarken, Unfall- oder Verletzungswitze |
 | Türsteher | Türsteher, Concierge-Mönch, Amtssecurity in Varianten | „Heute nicht.“ Zwei Wörter, kein Grund | Beleidigung nach Aussehen oder Herkunft |
 
 ---
@@ -180,15 +183,15 @@ Rixdorf durchschimmert.
 - **Eskalation:** Wer lange genug wartet, wird zum ewig Wartenden, und die
   Wiedervorlagebeamten legen ihn wieder vor. Der Ewige Antragsteller hält Nummer 0816 und ist
   „als Nächstes dran“.
-- **Boss:** Schalterspringer. Er ist an keinem Schalter zuständig und leitet dich an sich selbst
-  weiter. Besiegt, bekommst du endlich einen Bescheid: „Ihr Anliegen wurde nach unten
-  weitergeleitet.“
+- **Boss:** Kurzparker (seit Runde 3, vorher Schalterspringer). Ein SUV, der hinter der
+  Außenstelle das Tempelhofer Feld als Parkplatz entdeckt hat und „nur kurz“ auf der Landebahn
+  steht. Besiegt, wird er abgeschleppt (Badge „Abgeschleppt“).
 - **Übergangspointe:** Nach unten heißt: in den U-Bahn-Schacht. „Gute Anbindung“ kommt bald.
 
 ### Akt 3 – Die ewige Baustelle (Ebene 11–15): „Fertigstellung vsl. Herbst“
 
-- **Ausgangslage:** Die U7/U8-Verlängerung, wegen der alle hergezogen sind. Seit 1998
-  Frühstückspause beim Alten Polier. Auf jeder Wand ein Bauschild mit neuem Datum (Gag 12).
+- **Ausgangslage:** Die U7/U8-Verlängerung, wegen der alle hergezogen sind. Seit zwei Jahren
+  wartet alles auf den Netztechniker, Termin zwischen 8 und 18 Uhr. Auf jeder Wand ein Bauschild mit neuem Datum (Gag 12).
 - **Kern-Satire:** Infrastruktur als Versprechen, das Mieten hebt, bevor es fertig ist. Im
   Tunnel läuft seit Freitag die Afterhour (Gag 14), weil das der einzige Ort ist, den noch
   kein Investor gekauft hat.
@@ -288,7 +291,7 @@ Kaution, „ich lerne Deutsch, nächstes Quartal“. Gespottet wird über den Ja
 möblierte Wohnung auf Firmenkosten, nie über Akzent, Herkunft oder Aufenthaltsstatus. Das Amt
 ist sein Endgegner so wie für alle anderen, nur mit mehr Formularen. Stärke: Er probiert Dinge,
 die sonst niemand wagt. Blinder Fleck: Er hält „disruptiv“ für ein Kompliment.
-- Alter Polier: „Du hast ‚Let's align‘ jesagt. Ick hab ‚Nee‘ jesagt. Jetzt sind wa aligned.“
+- Netztechniker: „Du hast ‚Can we circle back on my fiber?‘ jesagt. Gecirclet wird hier seit zwei Jahren.“
 - Ewiger Antragsteller: „Sie warten auch auf die Ausländerbehörde? Dann sind Sie jetzt wirklich integriert.“
 - Spätimann: „Firmenkreditkarte? Nee, Kollege. Pitch ooch nich. Münzen.“
 
@@ -298,7 +301,7 @@ jeden Hausmeister, jeden Hinterausgang und jede Mängelanzeige seit der Wende. A
 mit Respekt und leichter Angst an. Stärke: Sturheit als Überlebenstechnik. Blinder Fleck:
 „Früher war hier alles besser“, der Bauzaun, an dem sie jeden Morgen meckert, und das
 Kinderzimmer, das sie für 900 Euro an Touristen vermietet.
-- Alter Polier: „Du bist die, die jeden Morgen am Bauzaun steht und meckert. Bleib. Du bist hier die Einzige mit Erfahrung.“
+- Netztechniker: „Du hast den Anschluss als Erste im Haus beantragt. Termin zwischen acht und achtzehn Uhr, wa? Hier bin ick.“
 - Spätimann: „Wie immer? Schrippe, Wegbier und dit Gefühl, dass früher allet besser war. Dit Letzte is gratis.“
 - Ewiger Mietspiegel: „ALTVERTRAG. ERKANNT. DU. BIST. EIN. KOSTENFAKTOR.“
 
@@ -319,7 +322,7 @@ alles, außer den Stellen mit „Fotos verboten“. Andere behandeln ihn wie Wet
 macht Lärm. Stärke: Niemand beachtet ihn, bis es zu spät ist. Blinder Fleck: Die Ferienwohnung,
 in der er schläft, war einmal jemandes Wohnung.
 - Dagebliebener Schwabe: „Du bisch au über die Feiertage da? Dann sind wir scho zu zweit. Des isch ja fast a Hausgemeinschaft.“
-- Schalterspringer: „Ein Touristenschalter ist nicht vorgesehen. Die Wartenummer gibt es als Souvenir. Mit Stempel: vier Euro.“
+- Kurzparker: „HUUUP! Selfie auf der Landebahn? Ich steh hier nur kurz. Du auch.“
 - Türsteher: „Du nich. Und dein Rollkoffer ooch nich.“
 
 ### Bosse
@@ -333,13 +336,16 @@ Running Gag.
 - „ICH BIN KEIN MANGEL. ICH BIN AUSSTATTUNG.“
 - „...ICH... KOMME... IM... NOVEMBER... WIEDER...“
 
-**Schalterspringer (Ebene 10)**
-Ein Sachbearbeiter in Amtsdeutsch, höflich, passiv und völlig unzuständig. Jede Teleportation
-ist eine Weiterleitung, und jede Falle ist ein Formfehler, den du gemacht hast. Er ist nicht
-böse, sondern müde, und will nur Feierabend. Sein Beleidigungsfechten besteht aus Zuständigkeiten.
-- „Da sind Sie hier falsch. Schalter 7.“
-- „Ihr Anliegen wurde weitergeleitet. An mich. Ich bin jetzt da drüben.“
-- „Endlich... Feierabend...“ (bestehend)
+**Kurzparker (Ebene 10, SUV auf dem Tempelhofer Feld; ersetzt seit Runde 3 den Schalterspringer)**
+Ein SUV ohne Marke, breiter als der Radweg, auf dem er sonst steht. Er spricht mit Hupe und
+Lichthupe, duzt von oben herab und steht grundsätzlich „nur kurz“. Satire auf Fahrverhalten und
+Anspruchsdenken, nie auf Menschen im Auto oder Unfälle. Mechanik-Zuordnung (Tengu unverändert):
+Teleport = Umparken; Wurfgeschoss = Parkknöllchen aus dem Seitenfenster; Phase-1-Fallen = Haufen mit
+versteckter Scheibenwaschdüse (Gift); Phase 2: Rauchbombe = Abgasbombe, Feuerpulver = Glut aus
+der Grillzone, Schocker = Alarmanlage. Drop: Duftbäumchen des Kurzparkers (Unterklassenwahl).
+- „HUUUP! Mach Platz, %s. Ich steh nur kurz hier.“ (`notice_gotcha`)
+- „Warnblinker an. Ich park mal eben um. Aufs Feld.“ (`interesting`, Phasenwechsel)
+- „Ich stand doch... nur... kurz...“ (`defeated`)
 
 **DM-300 Bohrlinde (Ebene 15)**
 Eine Maschine, die in Bauschild-Durchsagen spricht: GROSS, im Nominalstil, mit Sicherheitshinweisen.
@@ -403,13 +409,15 @@ als Revolution.
 - „Einen Zauberstab? Gern. Ohne Antrag. Sagen Sie es bitte niemandem.“
 - „Falls Sie oben einen bezahlbaren Werkstattraum sehen: Ich stehe auf der Liste. Platz 4.000.“
 
-**Alter Polier (Ebene 11–15)**
-Derbes Berlinisch, grummelig, faul mit Würde. Er hat drei Bauherren und zwei Insolvenzen
-überlebt und macht seit 1998 Frühstückspause. Er ist der letzte echte Handwerker und arbeitet
-„ohne Rechnung, versteht sich“. Bei ihm lohnt jede Frage mit einer Abfuhr.
-- „Ick hab Frühstückspause. Seit 1998. Zisch ab.“ (bestehend)
-- „Die Spitzhacke war noch aus Volkseigentum. Wehe.“
-- „Fertig werden? Junge, dafür wird man hier rausjeschmissen.“
+**Netztechniker (Ebene 11–15, Blacksmith; ersetzt seit Runde 3 den Alten Polier)**
+Der Techniker vom Netzbetreiber, auf den das ganze Haus seit zwei Jahren wartet: „Termin
+zwischen 8 und 18 Uhr.“ Kein Markenname, keine Markenfarbe. Berlinisch, trocken, nur „bis zum
+Hausübergabepunkt zuständig“. Ohne Material kann er nichts: Du holst selbst die
+Glasfaserstücke (Quest-Item, vorher Dunkelgold-Erz, 40 Stück) aus dem Kabelschacht, dann hilft
+er. Running Gag: die Benachrichtigungskarte „Wir haben Sie leider nicht angetroffen“.
+- „Die Anbindung bin ick. Ick komm. Irgendwann.“
+- „Laut Benachrichtigungskarte hab ick dich nich angetroffen. Also zisch ab!“
+- „Ick bin nur bis zum Hausübergabepunkt zuständig. Der Schacht is' Tiefbau.“
 
 **Ehrgeiziger Filialist (Ebene 16–21)**
 Ein kleiner Dämon im Franchise-Sprech: Filiale zwei, bald drei, „Next Level“. Freundlich, schnell,
@@ -419,12 +427,14 @@ Bewertungen, Provision, Learning. Keine Emoticons im Text, sein Zwinkern steckt 
 - „Ich bin kein Konzern. Ich bin ein Konzern in der Seed-Phase.“
 - „Bewerte uns gern! Fünf Sterne, sonst Fluch.“
 
-**Herr Fuß (Gasalchemist, Ebene 1–5)**
-Ein stolzer Kiezalchemist, der Gestank beschreibt wie ein Sommelier Wein: Kopfnote, Abgang,
-Jahrgang. Er lädt jeden zur Vorführung ein, niemand hat gefragt. Seine Gefahr ist allein die
-undichte Apparatur, und sie kündigt sich hörbar an. Der Rollstuhl kommt in keinem Text vor.
-- „Riechen Sie das? Kopfnote Kellerassel, Abgang Biotonne, August.“
-- „Das Ventil pfeift. Das heißt: Premiere.“
+**Herr Fuß (Klasse GasAlchemist, Ebene 1–5; Runde 3 überarbeitet)**
+Ein eigenwilliger Nachbar aus dem Seitenflügel, der auf seine Latschen schwört und auf die Socken
+darin, beide seit 2016 im Dienst. Er beschreibt seinen eigenen Mief wie ein Sommelier Wein:
+Kopfnote, Abgang, Jahrgang. Kein Apparat, kein Gas, kein Rollstuhl. Die Stinkwolke ist
+mechanisch die bisherige Giftwolke und kündigt sich einen Zug vorher an: Er schlüpft aus den
+Latschen. Karikiert wird nur der Mief, nie Armut oder Obdachlosigkeit.
+- „Riechen Sie das? Kopfnote Emmentaler, Abgang Turnhalle, Jahrgang 2016.“
+- „Latschen aus. Das heißt: Premiere.“
 - „Frischluft ist was für Leute ohne Vision.“
 
 ### Neue Figuren aus dem Zusatzauftrag (nur mit Gameplay-Freigabe)
@@ -479,12 +489,15 @@ und eine **Leitplanke**. Autorinnen tragen neue Fundstellen hier ein, bevor sie 
 | 13 | **Kanzler März** (Plakate, Graffiti, Sonntagsrede) | noch keiner; Wirte: `levels.sewerlevel.region_deco_desc` (Parolen), `levels.citylevel.statue_desc`, `succubus.desc`, Journal | Ebene 1–5 „Mehr Ordnung im Hinterhof“, übersprüht; Amt „Termine für alle, ab der nächsten Legislatur“; Baustelle „Wir bauen!“ an der Baustelle, die nie fertig wird; Renditequartier „Unser Stadtbild: aufgeräumt“; Rathaus: Sonntagsrede vom Tonband | Spätimann: „Hat 'n Foto vorm Laden gemacht. Gekauft hat er nix.“ Badge-Serie „Leistung“ (Punch-up 58) | Politikstil, keine echten Zitate, keine Partei, kein Aussehen. Die Pointe trifft die Rhetorik, nie die Menschen, über die sie redet. |
 | 14 | **Club und Afterhour** (Türsteher, Gästeliste, Stempel, Kater) | `actors.blobs.confusiongas.desc` („Club am Sonntagmittag“), `actors.buffs.daze.desc` („Montag nach dem Club“), `items.armor.platearmor` (Türsteherweste), `items.armor.clotharmor.desc`, `items.wands.wandofprismaticlight.desc` (Club ist jetzt Bioladen) | „Heute nicht.“ als universelle Absage: Türsteher, Amtssecurity, Concierge, Mietspiegel. Stempel: Club-Stempel und Amts-Stempel sehen gleich aus (Stempelfalle). Parodie-Clubs „Bärghain“, „Tresen“. Afterhour im Tunnel seit Freitag. Clubsterben durch Investoren (F18) im Renditequartier | Siegszene: Du stehst endlich auf der Gästeliste, sie heißt Hausgemeinschaft | Keine echten Clubs, keine Drogen-Gags; Kater und Schlafmangel sind die Grenze. Türsteher beurteilen Verhalten, nie Herkunft oder Aussehen. |
 | 15 | **Maklerlyrik** | Feelings r1 („Souterrain mit Galerie“, „großzügiger Schnitt“, „begrünter Innenbereich“), `intros.sewers.body` („Atelier“) | Jede Region übersetzt ein Loch, einen Mangel, eine Gefahr in Exposé-Sprache | Rathaus: „Lage, Lage, Lage“ als Todesursache in der Rangliste | Makler und Portale als Ziel, nie Wohnungssuchende. |
+| 16 | **„Termin zwischen 8 und 18 Uhr“** (Runde 3) | `blacksmith.*` (Netztechniker), `shopkeeper.talk_caves`, `caves_explorer.troll.body` | Amt: Termin gibt es nicht; Baustelle: Termin gibt es, das Jahr fehlt; Benachrichtigungskarte „Wir haben Sie leider nicht angetroffen“ | Spätimann: „Der hat bei mir ooch 'n Termin. Seit zwei Jahren.“ | Kein Markenname, keine Markenfarbe, Satire auf Service-Logik, nie auf einzelne Beschäftigte. |
+| 17 | **„Ich steh nur kurz hier“** (Runde 3) | `tengu.*` (Kurzparker), `ghosthero.seen_tengu_*`, `prison_warden.letter.body` | Radweg, Feuerwehrzufahrt, Landebahn des Tempelhofer Felds | Badge `boss_slain_2` „Abgeschleppt“ | Keine realen Automarken, keine Unfall- oder Verletzungswitze. |
+| 18 | **A100, nie fertig** (Runde 3) | `levels.features.chasm.*`, `levels.level.chasm_*`, `feeling.chasm_desc_r1`–`r5` | Keller: Souterrain mit Autobahnanschluss; Amt: Planfeststellung im Eingangskorb; Baustelle kreuzt U-Bahn-Baustelle; Renditequartier: Tiefgarage mit Autobahnanbindung; Rathaus: laut Akte nicht existent | Badge `death_from_falling` „Abfahrt verpasst“ | Reale Straße als Kulisse, Satire auf Planung und Politikstil, keine realen Personen. |
 
 Callback-Karte nach Ort (Kurzform für Autorinnen):
 - **Items:** Döner (7), Kuli/Gold (3), Pfandflasche (2), Türsteherweste und Club-Hoodie (14), Mietvertrag (Finale).
 - **Gegner:** Pfandratte/Golem (2), Terminhändler (3, 5), Leihscooter (8), Luxussanierer (15), Technojünger (14), Mieterhöhungslarve (Akt 5).
 - **Journal:** Hofwächterin-Briefe (4, 9), Amtsleiterin (5), Bautagebuch (12), Hexer (13, 14), Rodney (11).
-- **Badges:** `games_played_3` (6), `boss_slain_2` „Termin erhalten“ (5), `death_from_hunger` „Späti hatte zu“ (7), `gold_collected_*` (3), `high_score_*` (13), `victory`/`happy_end` (Finale).
+- **Badges:** `games_played_3` (6), `boss_slain_2` „Abgeschleppt“ (17), `death_from_hunger` „Späti hatte zu“ (7), `gold_collected_*` (3), `high_score_*` (13), `victory`/`happy_end` (Finale).
 
 ---
 
@@ -715,3 +728,17 @@ Beide stimmen den neuen Namen vor dem Schreiben miteinander ab.
 - 2026-09-29: „Kraft-Wegbier“ bleibt als Name (Beschreibung ohne Trink-Pointe).
 - 2026-09-29: Der Zustand „verkrüppelt“ behält den Upstream-Namen.
 - 2026-09-29: Der Name „Kanzler März“ bleibt (Politikstil-Parodie, keine echten Zitate oder Parteibezüge).
+- 2026-09-29 (Runde 3, Texte in bestehenden Keys umgesetzt, nicht spielgetestet):
+  Wasserschlauch → **Sternchen-Pils** (Parodie, keine echte Marke), Tautropfen → **Biertropfen**
+  (Kronkorken-Tropfen; kein Rausch- oder Suchtwitz, „Du trinkst nur so viel, wie du brauchst“),
+  Taufänger → Tropfenfänger, Talent Balkontau → Tropfenschild. Pflasterstein-Wurfwaffe →
+  **Stadttaube** (wird losgeschickt, nicht geworfen; Alteingesessene füttert sie seit 1978).
+  Talent Nachsetzen → **Erst Zettel, dann Klingeln**. Herr Fuß ohne Rollstuhl und ohne
+  Gasapparat, nur Mief. Magischer Katalysator → **WG-Umzugskarton**. Widerspruchsformular →
+  **Entfluchungsantrag**. Späti-Proviant → **Schachtel Baklava** (Konditor an der Sonnenallee),
+  Späti-Snack sind jetzt Salzstangen. Schalterspringer → **Kurzparker** (SUV, Tempelhofer Feld),
+  Dienstmaske → Duftbäumchen des Kurzparkers, Badges „Abgeschleppt“ und „Ohne Knöllchen“.
+  Alter Polier → **Netztechniker**, Dunkelgold-Erz → **Glasfaserstück**, Schmiede →
+  Technikerwerkstatt, Mine → Kabelschacht. Abgrund → **A100-Baulücke** (nie fertig gebaute
+  Teilabschnitte), Badge „Abfahrt verpasst“. Sonnenallee (Barbershop, Shisha-Bar, Konditorei)
+  in den Hinterhof-Feelings `grass_desc_r1`, `large_desc_r1`, `secrets_desc_r1`.

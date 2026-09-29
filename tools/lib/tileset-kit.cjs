@@ -98,7 +98,7 @@ const T = {
   FLAT_ALCHEMY_POT: 64, FLAT_BARRICADE: 65, FLAT_HIGH_GRASS: 66, FLAT_FURROWED_GRASS: 67, FLAT_HIGH_GRASS_ALT: 69, FLAT_FURROWED_ALT: 70,
   FLAT_STATUE: 72, FLAT_STATUE_SP: 73, FLAT_REGION_DECO: 74, FLAT_REGION_DECO_ALT: 75,
   RAISED_WALL: 80, RAISED_WALL_DECO: 84, RAISED_WALL_DOOR: 88, RAISED_WALL_BOOKSHELF: 92,
-  RAISED_WALL_ALT: 96, RAISED_WALL_DECO_ALT: 100, RAISED_WALL_BOOKSHELF_ALT: 108,
+  RAISED_WALL_ALT: 96, RAISED_WALL_DECO_ALT: 100, RAISED_WALL_NOTICE: 104, RAISED_WALL_BOOKSHELF_ALT: 108,
   RAISED_DOOR: 112, RAISED_DOOR_OPEN: 113, RAISED_DOOR_LOCKED: 114, RAISED_DOOR_CRYSTAL: 115, RAISED_DOOR_SIDEWAYS: 116,
   RAISED_ALCHEMY_POT: 120, RAISED_BARRICADE: 121, RAISED_HIGH_GRASS: 122, RAISED_FURROWED_GRASS: 123,
   RAISED_HIGH_GRASS_ALT: 125, RAISED_FURROWED_ALT: 126,
@@ -188,6 +188,13 @@ function open({name, blob, argv = process.argv.slice(2)}) {
       A.put(t, x, y, shade(c, f));
     }
   };
+  // Cells RAISED_WALL_NOTICE +0..+3 (104-107; unused, opaque wall art upstream, never
+  // referenced by the game code before): a third plain-wall variant chosen by
+  // DungeonTileSheet (see WallDeco.java). They start as RGB copies of the finished
+  // RAISED_WALL +0..+3 faces (same alpha), so end shading and seams match the plain wall.
+  A.addNoticeCells = () => cloneNoticeCells(src, out, idx);
+  // paint function that keeps the end-of-wall shading of variant t against its row's +0
+  A.endPaint = t => endPaint(A.srcRGB, A.solid, t);
   A.finish = (miniMapSpec = {}) => {
     if (miniMapSpec.stage !== undefined) syncFeatures(src, out, miniMapSpec.stage, argv);
     for (let i = 3; i < out.px.length; i += 4) if (out.px[i] !== src.px[i]) throw new Error('alpha changed at ' + (i >> 2));
@@ -206,6 +213,25 @@ function open({name, blob, argv = process.argv.slice(2)}) {
     }
   };
   return A;
+}
+
+function cloneNoticeCells(src, out, idx) {
+  // the upstream atlases hold unused, fully opaque wall art in these cells; only RGB is
+  // replaced, and only if the alpha matches the plain face exactly
+  for (let v = 0; v < 4; v++) for (let y = 0; y < 16; y++) for (let x = 0; x < 16; x++) {
+    const from = idx(T.RAISED_WALL + v, x, y), to = idx(T.RAISED_WALL_NOTICE + v, x, y);
+    if (src.px[to + 3] !== src.px[from + 3]) throw new Error('RAISED_WALL_NOTICE +' + v + ': alpha differs from RAISED_WALL');
+    src.px.copy(src.px, to, from, from + 3);
+    out.px.copy(out.px, to, from, from + 3);
+  }
+}
+function endPaint(srcRGB, solid, t) {
+  const base = t - (t % 4);
+  return (tt, x, y, c) => {
+    const L0 = lum(...srcRGB(base, x, y)), L1 = lum(...srcRGB(t, x, y));
+    const f = Math.abs(L1 - L0) < 3 ? 1 : Math.max(0.35, Math.min(1.6, (L1 + 8) / (L0 + 8)));
+    solid(tt, x, y, shade(c, f));
+  };
 }
 
 function scale(img, s, bgFn) {
@@ -374,4 +400,251 @@ function word(w, maxWidth = 16) {
   return rows;
 }
 
-module.exports = {word, miniMap, syncFeatures, FEATURES_BLOB, decodePNG, encodePNG, rgb, hex, lum, mix, shade, ramp, range, T, FLOOR_THROUGH, open, ROOT};
+// ---------------------------------------------------------------- A100 chasm edges
+// Chasms are the never finished stretches of the A100 (Stadtautobahn): the cells under
+// floor/wall show a broken-off carriageway (asphalt with lane marking, concrete deck,
+// bent rebar, a torn guardrail) above a dark void. Shared by all five region atlases so
+// the motif reads the same everywhere. Only RGB of fully opaque cells is replaced; the
+// plain CHASM cell stays black and CHASM_WATER keeps its region waterfall.
+const A100_KEYS = {
+  A: '38383b', a: '4a4a4f', W: 'd8d6cc', w: '9c9a92',              // asphalt, lane marking
+  E: 'b3aea2', c: '98938a', C: '77736b', D: '57544e', d: '3d3b37', // concrete lip, deck, cracks
+  r: '6e3a20', R: 'a4592e',                                         // rebar (rust)
+  g: 'c2cacd', G: '838d91', H: '4c5458', P: '34393c',                 // guardrail + post
+  k: '0f0d11', '.': '000000',                                       // shadow, void
+};
+const A100 = {
+  floor: [ // CHASM_FLOOR: carriageway edge with a dashed lane marking, deck and rebar
+    'AaAAAAAaAAAAAaAA',
+    'AAAWWWWWWAAaAAAA',
+    'AaAwwwwwwAAAAAaA',
+    'EEEEEcEEEEEEEcEE',
+    'CCCCCCCDCCCCCCCC',
+    'CDCCRCCCCCDCCRCC',
+    'DDdDrDDdDDDDdrDD',
+    'kdkkrkdkkdkkkrkd',
+    '.k..r..k...k.R..',
+    '....R.......r...',
+    '...r.......r....',
+    '................',
+    '................',
+    '................',
+    '................',
+    '................',
+  ],
+  floorSp: [ // CHASM_FLOOR_SP: the guardrail tore off and hangs into the hole
+    'AAaAAAAAAaAAAAaA',
+    'AaAAAAaAAAAAaAAA',
+    'gggggggAAAAaAAAA',
+    'HHHHHGggEEEcEEEE',
+    'gggggHGGgCCDCCCC',
+    'GGGGGGHGGgCCCRCC',
+    'HHHHHHdHGGgdDrDD',
+    'kdkkdkkdHGGgkrkd',
+    '.k......kHGGg...',
+    '..........HGGg..',
+    '..........PHGg..',
+    '..........PPHG..',
+    '..........PP....',
+    '...........P....',
+    '................',
+    '................',
+  ],
+  wall: [ // CHASM_WALL rows 8-15: the wall stands on a broken concrete deck
+    'EEEcEEEEEEEcEEEE',
+    'CCDCCCCDCCCCCDCC',
+    'DCCrDCCCCdCRCCDC',
+    'kDkrkDkkDkkrkdkk',
+    '...r.......r....',
+    '...R........r...',
+    '................',
+    '................',
+  ],
+};
+function a100Chasm(put) {
+  if (typeof put !== 'function') { const A = put; put = (t, x, y, c) => A.put(t, x, y, c); }
+  const draw = (t, rows, y0 = 0) => rows.forEach((row, y) => [...row].forEach((ch, x) => {
+    const k = A100_KEYS[ch]; if (!k) throw new Error('A100: no colour for ' + ch);
+    put(t, x, y0 + y, rgb(k));
+  }));
+  draw(T.CHASM_FLOOR, A100.floor);
+  draw(T.CHASM_FLOOR_SP, A100.floorSp);
+  draw(T.CHASM_WALL, A100.wall, 8);
+}
+
+// ---------------------------------------------------------------- wall motifs (round 4)
+// Graffiti, stencils and tear-off flat-hunt notes ("Wohnungsgesuche") for raised wall
+// faces. Each design covers the face rows 4-15 of a 16x16 cell; '.' leaves the wall
+// alone. Texts belong to levels.walldeco.* (WallDeco.java picks the key from the same
+// visual). No real names, brands, parties or phone numbers.
+const MOTIF_KEYS = {
+  w: 'efece2', e: 'c4c0b2', T: 'd8cf98', L: '7d8394', g: 'aeb1ba',   // paper, paper edge, tape, ballpoint, tear-off text
+  b: '9cc2d8', D: 'a0692f', d: 'd9a867', k: '241c1a', o: '4e4a44',   // photo: sky, dog brown, dog light, eye/nose; paper outline
+  r: 'd0343f', R: '8e1f2a', B: '3f64b8',                             // heart red, heart dark, stamp blue
+  P: 'e8487e', p: 'a82c58', q: '2a0e1a', Q: 'f0e04a',                             // spray pink, pink shadow/drip, yellow
+  K: '1b1a1d', G: '4d4c50', S: 'e8e8e4', s: 'b8b8b4', O: 'c8402e',   // stencil black, grey, sign white/grey, sign red
+  C: '3fb6c9', c: '237784',                                          // cyan spray + shadow
+};
+const MOTIFS = {
+  // Hinterhof: "Hund heisst Keks" note, photo of the dog, two tabs already torn off
+  gesuch_1: [
+    '..TT......TT....',
+    '..owwwwwwwwwo...',
+    '..owDbbbDwLLo...',
+    '..owDdddDwwwo...',
+    '..owdkdkdwLLo...',
+    '..owbdkdbwwwo...',
+    '..owwwwwwwwwo...',
+    '..owLLLLLLLwo...',
+    '..owowo.o.owo...',
+    '..ogogo.o.ogo...',
+    '..owowo...owo...',
+    '..owowo...owo...',
+  ],
+  // Amt: note with a red heart, one tab gone
+  gesuch_2: [
+    '..TT......TT....',
+    '..owwwwwwwwwo...',
+    '..owrrwrrwLLo...',
+    '..owrrrrRwwwo...',
+    '..owwrrRwwLLo...',
+    '..owwwRwwwwwo...',
+    '..owwwwwwwwwo...',
+    '..owLLLLLLLwo...',
+    '..owowowo.owo...',
+    '..ogogogo.ogo...',
+    '..owowowo.owo...',
+    '..owowowo.owo...',
+  ],
+  // Baustelle: typed note with a blue guarantor stamp, every tab still there
+  gesuch_3: [
+    '..TT......TT....',
+    '..owwwwwwwwwo...',
+    '..owLLLLLLLwo...',
+    '..owwwwwwwwwo...',
+    '..owLLLLLwBwo...',
+    '..owwwwwwBwBo...',
+    '..owLLLLwwBwo...',
+    '..owwwwwwwwwo...',
+    '..owowowowowo...',
+    '..ogogogogogo...',
+    '..owowowowowo...',
+    '..owowowowowo...',
+  ],
+  // Hinterhof: pink "MIE-/TE?!" sprayed over render and clinker, with drips
+  graffiti_miete: [
+    '................',
+    'P...P.P.PPP.....',
+    'PP.PP.P.P.......',
+    'P.P.P.P.PPP.PPP.',
+    'P...P.P.P.......',
+    'P...P.P.PPP.....',
+    'p.....p...p.....',
+    'PPP.PPP.PPP.P...',
+    '.P..P.....P.P...',
+    '.P..PP...PP.P...',
+    '.P..P.......p...',
+    '.P..PPP..P..P...',
+  ],
+  // Amt: a heart sticker next to the waiting-number display (drawn at 10,4)
+  graffiti_herz: [
+    '..........rr.rr.',
+    '.........rrrrrRR',
+    '.........rrSrrRR',
+    '..........rrrRR.',
+    '...........rRR..',
+    '............R...',
+    '................',
+    '................',
+    '................',
+    '................',
+    '................',
+    '................',
+  ],
+  // Baustelle: tower-crane stencil, crossed out in red
+  graffiti_kran: [
+    '..............OO',
+    '.......K.....OO.',
+    '....KKKKKKKKOOK.',
+    '....KK.K...OO.K.',
+    '.......K..OO..K.',
+    '.......K.OO...K.',
+    '.......KOO....K.',
+    '.......OOK...KKK',
+    '......OOKK......',
+    '.....OO.KK......',
+    '....OO..KK......',
+    '...OO..KKKK.....',
+  ],
+  // Renditequartier: pink "KIEZ" tag with a drop shadow across the glass
+  graffiti_kiez: [
+    '................',
+    '................',
+    'P.P.PPP.PPP.PPP.',
+    'PqPq.PqqPqqq.qPq',
+    'PP.q.Pq.PP...P.q',
+    'PqP..Pq.Pqq.P.q.',
+    'PqPqPPP.PPP.PPP.',
+    '.q.q.qqq.qqq.qqq',
+    '................',
+    '................',
+    '................',
+    '................',
+  ],
+  // Renditequartier: realtor board "zu vermieten" (unreadable lines), sprayed-over black X
+  graffiti_vermieten: [
+    '..OOOOOOOOOOOO..',
+    '..OSSSOSSSSOOO..',
+    '..OOOOOOOOOOOO..',
+    '..SKSSSSSSSSKS..',
+    '..SsKssssssKsS..',
+    '..SSSKSSSSKSSS..',
+    '..SsssKssKsssS..',
+    '..SSSSSKKSSSSS..',
+    '..SsssKssKsssS..',
+    '..SSSKSSSSKSSS..',
+    '..sssssssssKss..',
+    '................',
+  ],
+  // Rathaus: stencilled city pigeon, looking left
+  graffiti_taube: [
+    '................',
+    '................',
+    '...ss...........',
+    '..sKss..........',
+    '.Ssssss.........',
+    '...sCCssss......',
+    '....sssssssss...',
+    '....ssGsGsssss..',
+    '.....sssssssssGG',
+    '......ssssss....',
+    '.......G..G.....',
+    '......GG.GG.....',
+  ],
+  // Rathaus: "WEG / DA" in black spray
+  graffiti_wegda: [
+    '................',
+    'S...S.SSS..SS...',
+    'S...S.S...S.....',
+    'S.S.S.SS..S.SS..',
+    'SS.SS.S...S..S..',
+    'S...S.SSS..SS...',
+    's...s.......s...',
+    '...SS....S......',
+    '...S.S..S.S.....',
+    '...S.S..SSS.....',
+    '...S.S..S.S.....',
+    '...SS...S.S.....',
+  ],
+};
+// paint(t, x, y, rgb): the caller's opaque-pixel painter (with end shading if wanted)
+function wallMotif(paint, t, name, ox = 0, oy = 4) {
+  const rows = MOTIFS[name]; if (!rows) throw new Error('no wall motif ' + name);
+  rows.forEach((row, y) => [...row].forEach((ch, x) => {
+    if (ch === '.') return;
+    const k = MOTIF_KEYS[ch]; if (!k) throw new Error(name + ': no colour for ' + ch);
+    paint(t, ox + x, oy + y, rgb(k));
+  }));
+}
+
+module.exports = {wallMotif, MOTIFS, cloneNoticeCells, a100Chasm, word, miniMap, syncFeatures, FEATURES_BLOB, decodePNG, encodePNG, rgb, hex, lum, mix, shade, ramp, range, T, FLOOR_THROUGH, open, ROOT};

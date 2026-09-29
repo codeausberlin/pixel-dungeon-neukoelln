@@ -47,10 +47,15 @@ function rathaus(x, y) {
   return hash((x + off) >> 2, y, 2) < 25 ? K.brickD : K.brick;
 }
 for (const base of [T.RAISED_WALL, T.RAISED_WALL_DECO, T.RAISED_WALL_ALT, T.RAISED_WALL_DECO_ALT]) A.face(base, rathaus);
+A.addNoticeCells(); // new cells 104-107 (RAISED_WALL_NOTICE), see tools/lib/tileset-kit.cjs
 // alt faces: a sandstone keystone medallion (+0), iron wall anchors at the wall ends
 A.stamp(T.RAISED_WALL_ALT, 6, 9, ['.ss.', 'sSSs', '.ss.'], {s: K.simsDark, S: K.sims});
 A.stamp(T.RAISED_WALL_ALT + 1, 11, 10, ['kkk', '.k.'], {k: K.shaft});
 A.stamp(T.RAISED_WALL_ALT + 2, 2, 10, ['kkk', '.k.'], {k: K.shaft});
+// Round 4 wall motifs (texts: levels.walldeco.*): "WEG DA" sprayed on the single pillar
+// (+3), a stencilled city pigeon on RAISED_WALL_NOTICE
+kit.wallMotif(A.endPaint(T.RAISED_WALL_ALT + 3), T.RAISED_WALL_ALT + 3, 'graffiti_wegda');
+for (let v = 0; v < 4; v++) kit.wallMotif(A.endPaint(T.RAISED_WALL_NOTICE + v), T.RAISED_WALL_NOTICE + v, 'graffiti_taube');
 
 // WALL_DECO (was a stained-glass window): Paternoster shafts. Main: a lit cabin passing;
 // alt: the gap between two cabins, only the chain and a cabin floor showing.
@@ -123,4 +128,6 @@ for (const t of [T.FLAT_REGION_DECO, T.FLAT_REGION_DECO_ALT, T.RAISED_REGION_DEC
 // stairs: sandstone steps
 for (const t of [T.ENTRANCE, T.EXIT, T.ENTRANCE_SP]) A.mapTile(t, k => k.kind !== 'floor' && isStone(k) ? R.sand(k.L) : null);
 
+// Abgruende: nie fertig gebaute A100-Abschnitte (shared, tools/lib/tileset-kit.cjs)
+kit.a100Chasm(A);
 A.finish({stage: 4, water: path.join(kit.ROOT, 'core/src/main/assets/environment/water4.png')});

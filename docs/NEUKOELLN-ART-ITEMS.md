@@ -65,7 +65,7 @@ Zelle `AMULET` fasst es nicht an (das Skript bricht ab, falls doch).
 
 | Kategorie | Anzahl | Icons (Zelle → Motiv) |
 | --- | --- | --- |
-| a) Start-Items | 14 | `WORN_SHORTSWORD` verbogene Messing-Gardinenstange, `MAGES_STAFF` Selfie-Stick mit leuchtendem Handy, `DAGGER` rotes Taschenmesser, `GLOVES` gelber Spülhandschuh, `SPIRIT_BOW` Parkett-Bogen mit Speichen-Griff und hellblauer Sehne, `ARTIFACT_CLOAK` Einweg-Regenponcho mit Kapuze, `SEAL` Kreisliga-Aufnäher (Wappen mit Ball, ausgefranst), `ARMOR_CLOTH` grauer Hoodie, `RATION` Späti-Proviant-Karton, `OVERPRICED` Späti-Snack (Chipstüte), `THROWING_STONE` Pflasterstein, `THROWING_KNIFE` Kartoffelschäler, `WATERSKIN` Lederflasche mit Sticker, `BACKPACK` Jutebeutel mit Herz |
+| a) Start-Items | 14 | `WORN_SHORTSWORD` verbogene Messing-Gardinenstange, `MAGES_STAFF` Selfie-Stick mit leuchtendem Handy, `DAGGER` rotes Taschenmesser, `GLOVES` gelber Spülhandschuh, `SPIRIT_BOW` Parkett-Bogen mit Speichen-Griff und hellblauer Sehne, `ARTIFACT_CLOAK` Einweg-Regenponcho mit Kapuze, `SEAL` Kreisliga-Aufnäher (Wappen mit Ball, ausgefranst), `ARMOR_CLOTH` grauer Hoodie, `RATION`, `OVERPRICED`, `THROWING_STONE` (seit Runde 3 neu, siehe unten), `THROWING_KNIFE` Kartoffelschäler, `WATERSKIN` (seit Runde 3 Bierflasche, siehe unten), `BACKPACK` Jutebeutel mit Herz |
 | b) Rüstungen | 8 | Lederjacke (Biker, Schrägreißverschluss), Bomberjacke (salbeigrün, oranges Futter), Funktionsjacke (petrol), Türsteherweste (schwarz, Platten, weißes Band), Ballonseiden-Anzug (lila/türkis/pink), Gründer-Fleeceweste (navy über hellblauem Hemd, Lanyard), Hawaiihemd (rot, Blüten), Vintage-Cordjacke (Rost-Cord, Teddykragen). Duelist/Kleriker unverändert (nicht spielbar) |
 | c) Waffen | 28 | T1 Nudelholz, Stockschirm; T2 Gardinenstange, Hackebeil, Sonnenschirmstange, Besenstiel, Brotmesser, Heckenschere; T3 Flohmarkt-Säbel mit Preisschild, Fleischklopfer, Dönermesser, Mülltonnendeckel, Grillzangen, Verlängerungskabel; T4 Zaunlatte, Feuerwehraxt, Fahrradschloss-Kette, Esoterik-Säbel, Teppichmesser, Sperrmüll-Armbrust, Deko-Katana; T5 Rotorblatt, Vorschlaghammer, Schneeschieber, Holzspalter-Axt, Kundenstopper (Kreidetafel), Beton-Fäustling, Kleingarten-Sense |
 | c) Wurfwaffen | 13 | Zelthering, Angler-Harpune, Kronkorken, Pfandflasche, Zeltstange, Kabelbinder-Bola, Grillspieß, Halteverbotsschild, Wurfbeil, Backblech (`BOOMERANG`), Mistgabel, Gummihammer, Betonwürfel |
@@ -252,16 +252,16 @@ mit heller Oberseite). `WAND_MAGIC_MISSILE` (Konfetti-Werfer) ist neu aus i), `G
 (Spülhandschuh) war schon eindeutig und bleibt. Vorschau `klassen-vorher-nachher.png`:
 Zeile 1 upstream, Zeile 2 Stand vor dieser Runde, Zeile 3 neu, darunter neu in 1x und 2x.
 
-**Bewusst upstream (30)**, weil das Motiv zum deutschen Text passt oder die Figur nicht spielbar
+**Bewusst upstream (27, `DEWDROP`, `TRINKET_CATA`, `ORE` seit Runde 3 neu)**, weil das Motiv zum deutschen Text passt oder die Figur nicht spielbar
 ist: `SOMETHING` (Fehler-Fragezeichen), `TRINKET_HOLDER` (Rattenschädel wie das Kleinod),
-`MOB_HOLDER`, `ENERGY` (Energiekristall), `DEWDROP`, `REMAINS` (Gebeine eines Helden), `TOMB`
+`MOB_HOLDER`, `ENERGY` (Energiekristall), `REMAINS` (Gebeine eines Helden), `TOMB`
 (Grabmal), `BROKEN_HILT`, `TORN_PAGE`, `ARMOR_DUELIST`, `ARMOR_CLERIC`, `ARTIFACT_TOME`
-(Zweikämpferin/Kleriker nicht spielbar), `TRINKET_CATA` (Ball aus goldenem Staub),
+(Zweikämpferin/Kleriker nicht spielbar),
 `RAT_SKULL`, `EXOTIC_CRYSTALS` (rosa Kristalle), `SUNDIAL`, `CLOVER`, `WONDROUS_RESIN` (blaues
 Harz), `OBLIVION_SHARD`, `BLANDFRUIT`/`BLAND_CHUNKS`, Feiertagsessen (`STEAMED_FISH`,
 `FISH_LEFTOVER`, `EASTER_EGG` gelbe Alufolie, `SHATTERED_CAKE`, `PUMPKIN_PIE`, `VANILLA_CAKE`,
-`CANDY_CANE`), `PICKAXE`, `ORE`. **Ungenutzt** (im Code nirgends als Bild gesetzt, 5): Zelle 47,
-`BEACON`, `KIT`, `GRAVE`, `VIAL`.
+`CANDY_CANE`), `PICKAXE`. **Ungenutzt** (im Code nirgends als Bild gesetzt, 3): Zelle 47,
+`BEACON`, `GRAVE`. Seit Runde 3 tragen `VIAL` die Garderobenmarke und `KIT` das Parkknöllchen (siehe unten).
 
 **`item_icons.png` unverändert:** Die 8x8-Zusatzsymbole (Ringe, Schriftrollen, Tränke nach
 Identifikation) sind abstrakte Wirkungssymbole (Pfeile, Schild, Stern, Batterie, Faust, Herz);
@@ -271,3 +271,70 @@ Hinweise: Die Tränke/Dosen/Formulare/Samen (Zufallsfarben) sind nicht angefasst
 ändert sich nur das Bild; `Bomb.glowing()` (rotes Pulsieren beim Anzünden) wirkt auf alle.
 `EscapeCrystal`, `VaultBeacon` (nutzt `RETURN_BEACON`) und die Placeholder-Runensteine
 (`STONE_HOLDER`) zeigen automatisch die neuen Zellen.
+
+## Runde 3 (Spieltest-Feedback, Stand 2026-09-29)
+
+Umgesetzt im Abschnitt "Runde 3" von `tools/generate-kiez-items.cjs` (Kategorie `w) Runde 3`),
+9 Zellen. Keine echten Marken, keine lesbare Schrift, Rechteckgrößen aus `ItemSpriteSheet.java`.
+
+| Konstante (Zelle, Rect) | Motiv |
+|---|---|
+| `KIT` (63, Rect 16x15, Motiv ca. 10x10 mittig) | **neu:** Parkknöllchen, leicht zerknitterter gelblich-weißer Zettel mit rotem Streifen und unlesbaren grauen Zeilen; Wurfgeschoss des SUV-Bosses (`TenguSprite.TenguShuriken` soll laut Koordination im Java auf `KIT` zeigen). `SHURIKEN` bleibt der Kronkorken des Spieler-Items |
+| `WATERSKIN` (480, 16x14) | "Sternchen-Pils": braune 0,5-l-Flasche, goldener Kronkorken, grünes Etikett mit goldenem Stern, kein Schriftzug |
+| `DEWDROP` (21, 10x9) | Biertropfen: runder goldgelber Tropfen mit Schaumkrönchen |
+| `THROWING_STONE` (147, 12x10) | Stadttaube nach rechts: grau, grün-violett schillernder Hals, oranges Auge, rosa Füße |
+| `TRINKET_CATA` (70, 12x11) | WG-Umzugskarton, oben zugeklebt, unlesbares Filzstift-Gekritzel und Fragezeichen |
+| `RATION` (437, 16x12) | offene weiße Konditor-Schachtel (Sonnenallee) mit zwei Reihen Baklava-Rauten mit Pistazie, rote Schleife |
+| `OVERPRICED` (435, 14x11) | einzelnes Baklava-Stück (Raute) mit Pistazie, sirupdunkle Teigschichten an den Seiten (`SmallRation`) |
+| `ORE` (469, 15x15) | Glasfaserstück: zwei Schlaufen oranges Patchkabel mit schwarzem Kabelbinder, blauer Stecker, leuchtende Spitze |
+| `VIAL` (486, 12x12) | **neu:** Garderobenmarke, rote Plastikmarke mit weißer "7" am türkisen Spiralband |
+
+Hinweise für Java: `VIAL` ist im Code bisher unbenutzt; für die Club-Quest (Garderobenmarken)
+kann ein Item `image = ItemSpriteSheet.VIAL;` setzen (oder eine eigene Konstante auf `BAGS+6`).
+In `MissileSprite` steht `ThrowingStone` inzwischen auf Drehgeschwindigkeit 0 (Taube fliegt
+gerade); `Shuriken` und `TenguShuriken` rotieren mit 2160°/s, das Knöllchen wirbelt also im Flug.
+`KIT` war bisher ungenutzt; ungenutzt bleiben damit Zelle 47, `BEACON`, `GRAVE`. Texte (Namen/Beschreibungen) stammen vom Lore-Agent; ungetestet im Spiel.
+Vorschau: `scratchpad/art2/items-r3/runde3-vorher-nachher-x8.png` (oben vorher, darunter
+nachher x8, x1 und x3).
+
+## Stadttauben statt Runensteine (Stand 2026-09-29)
+
+Abschnitt "Stadttauben (Runensteine)" in `tools/generate-kiez-items.cjs` (Kategorie `x) Stadttauben`),
+direkt vor `main`. Er zeichnet die 12 `STONE_*`-Zellen neu, die Abschnitt k) vorher als Kiesel
+gezeichnet hat (`drawn.delete`, der alte Code bleibt byte-identisch stehen), und setzt
+`HOLDER_FROM.STONE_HOLDER` auf die Blinzeltaube. Alle Tauben sitzen nach rechts (wie die
+Wurfwaffen-Taube `THROWING_STONE`, die unverändert bleibt), sind aber größer und runder (sitzend,
+Rect 14x12 statt 12x10) und tragen je ein farbiges Merkmal in der Farbe des früheren Kiesel-Motivs.
+
+**Identifikation:** Runensteine sind immer identifiziert (`Runestone.isIdentified()` gibt `true`),
+es gibt keine Zufallsfarben. Die Sorten müssen nur untereinander unterscheidbar sein: jede hat
+eine eigene Form (Zeichen über dem Rücken, Kopfbedeckung, Gegenstand am Körper). Die drei gelben
+(Tuning, Bauchgefühl, Weidezaun) unterscheiden sich über Pfeil, "?" + Herz, Blitz + Funken; die
+drei roten (Stänker, Schreck, Böller) über Zornfleck, "!" + Glotzauge, Knallkörper-Band.
+
+| Konstante (Zelle) | Klasse (`image = ...`) | Name (de) | Motiv |
+|---|---|---|---|
+| `STONE_AGGRESSION` (336) | `StoneOfAggression` | Stänker-Taube | roter Zornfleck über dem Rücken, rotes Auge, dunkle Braue |
+| `STONE_AUGMENTATION` (337) | `StoneOfAugmentation` | Tuning-Taube | gelber Pfeil nach oben |
+| `STONE_FEAR` (338) | `StoneOfFear` | Schreck-Taube | weit aufgerissenes weißes Auge, gesträubte Federn, rotes "!" |
+| `STONE_BLAST` (339) | `StoneOfBlast` | Böllertaube | rotes Knallkörper-Band um den Bauch, Lunte mit Funken |
+| `STONE_BLINK` (340) | `StoneOfBlink` | Blinzeltaube | blaues Glitzern, Schwanz schon hellblau verblasst |
+| `STONE_CLAIRVOYANCE` (341) | `StoneOfClairvoyance` | Hellseh-Taube | lila Auge schwebt über dem Rücken, eigenes Auge violett |
+| `STONE_SLEEP` (342) | `StoneOfDeepSleep` | Mittagsschlaf-Taube | blaue Schlafmütze mit Bommel, geschlossenes Auge, blaues "Z" |
+| `STONE_DETECT` (343) | `StoneOfDetectMagic` | Gutachter-Taube | grünes Klemmbrett mit Zettel vor dem Flügel |
+| `STONE_ENCHANT` (344) | `StoneOfEnchantment` | Verzauberungs-Taube | lila Glitzerschweif hinter dem Schwanz |
+| `STONE_FLOCK` (345) | `StoneOfFlock` | Schäfertaube | kleine Taube reitet auf einem weißen Schaf (Text: ruft Schafherde) |
+| `STONE_INTUITION` (346) | `StoneOfIntuition` | Bauchgefühl-Taube | gelbes Herz auf dem Bauch, kleines gelbes "?" |
+| `STONE_SHOCK` (347) | `StoneOfShock` | Weidezaun-Taube | gelber Blitz, gelbe Funken am Kopf |
+| `STONE_HOLDER` (13) | `Runestone` (anonym), `Runestone.PlaceHolder`, `WndJournal` | Stadttaube | schwarze Umriss-Silhouette der Blinzeltaube ohne Glitzer |
+
+Nicht gezeichnet: **Entschärfungs-Taube** (`stoneofdisarming` steht nur noch in den Texten, es gibt
+weder Klasse noch `STONE_*`-Konstante; Zange wäre das Motiv). Die Zellen `STONES+12..15` sind
+unbenutzt und bleiben leer. Die ursprünglich vorgeschlagene Schwarm-Grafik (drei Tauben) wurde
+zugunsten des neuen Namens "Schäfertaube" (ruft Schafe) ersetzt. Accessoires in der obersten
+Zeile verlieren am Zellrand ihre Oberkante-Kontur (Rect 12 hoch, Taube braucht 10). Im Flug
+dreht die Taube nicht (`MissileSprite`: `Runestone` Drehgeschwindigkeit 0, Koordinator); bei
+Würfen nach links setzt `MissileSprite` aber `flipHorizontal` **und** `angle += 90`, die Taube
+fliegt dann gespiegelt und um 90° gekippt (wie `THROWING_STONE`; Java-Sache, nicht Art). Nicht im Spiel getestet.
+Vorschau: `scratchpad/art2/stones/stadttauben-vorher-nachher-x8.png` (Zeile 1 upstream, Zeile 2
+Kiesel-Stand, Zeile 3 Tauben; letzte Spalten `STONE_HOLDER` und zum Vergleich `THROWING_STONE`).

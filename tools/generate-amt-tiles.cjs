@@ -89,6 +89,7 @@ function wallFace(x, y) {
   return y === 15 ? K.tileLow : K.tile;
 }
 for (const base of [T.RAISED_WALL, T.RAISED_WALL_DECO, T.RAISED_WALL_ALT, T.RAISED_WALL_DECO_ALT]) A.face(base, wallFace);
+A.addNoticeCells();
 // the bookshelf walls keep their shelves; only their stone rim above was recoloured
 
 // details on the alt faces: light switch (+0), fire extinguisher (+1), exit pictogram (+2)
@@ -113,17 +114,18 @@ A.stamp(T.RAISED_WALL_ALT + 3, 4, 5, [
 ], {g: K.exitG, G: K.exitGD, w: K.white}); // double arrow pictogram, no text
 // Satire (fictional chancellor "März", no real names/logos/faces):
 // +2 an official-looking election poster "MÄRZ" pinned to the notice wall, corner torn,
-// moustache drawn on. A crossed-out "M" sticker sits next to the LED display (WALL_DECO_ALT).
+// moustache drawn on. Round 4: the crossed-out "M" sticker by the LED display is gone (too
+// much März); a red heart sticker sits there now (WALL_DECO_ALT, levels.walldeco.graffiti_herz).
 { const t = T.RAISED_WALL_ALT + 2, bg = rgb('6f7f95'), ink = rgb('e8ecf0'), bar = rgb('9fb8d8');
   for (let y = 5; y <= 11; y++) for (let x = 0; x < 16; x++) if (!(y === 11 && x > 11) && !(y === 5 && x < 2)) A.solid(t, x, y, y === 10 ? bar : bg);
   kit.word('MÄRZ').forEach((row, y) => [...row].forEach((ch, x) => { if (ch === 'x') A.solid(t, x, 5 + y, ink); }));
   A.stamp(t, 4, 10, ['mm.mm', '.m.m.'], {m: rgb('141214')});
   A.stamp(t, 7, 4, ['p'], {p: rgb('c8322a')}); // red pin
 }
-for (let v = 0; v < 4; v++) { // crossed-out "M" sticker next to the waiting-number display (WALL_DECO_ALT)
-  A.stamp(T.RAISED_WALL_DECO_ALT + v, 11, 4, ['r...r', 'rr.rr', 'r.r.r', 'r...r'], {r: K.red});
-  A.stamp(T.RAISED_WALL_DECO_ALT + v, 11, 4, ['k....', '.k...', '..k..', '...kk'], {k: rgb('1f1f22')});
-}
+for (let v = 0; v < 4; v++) kit.wallMotif(A.endPaint(T.RAISED_WALL_DECO_ALT + v), T.RAISED_WALL_DECO_ALT + v, 'graffiti_herz');
+// RAISED_WALL_NOTICE (new cells 104-107, 5% of plain wall faces): a tear-off flat-hunt
+// note with a red heart pinned to the wall (levels.walldeco.gesuch_2)
+for (let v = 0; v < 4; v++) kit.wallMotif(A.endPaint(T.RAISED_WALL_NOTICE + v), T.RAISED_WALL_NOTICE + v, 'gesuch_2');
 
 // WALL_DECO keeps PrisonLevel's Torch emitter (flame at tile centre +2px, halo): a brass
 // wall lamp with a milk-glass bowl; the alt variant adds a waiting-number display (LED blocks).
@@ -231,4 +233,6 @@ A.stamp(T.RAISED_REGION_DECO, 7, 4, ['ww', 'rw'], {w: K.white, r: K.red});
 // stairs: grey terrazzo steps
 for (const t of [T.ENTRANCE, T.EXIT, T.ENTRANCE_SP]) A.mapTile(t, (k, x, y, c) => (isStone(k) && !A.floorSet.has(k.h) && !spColours.has(kit.hex(c))) ? R.terrazzo(k.L) : null);
 
+// Abgruende: nie fertig gebaute A100-Abschnitte (shared, tools/lib/tileset-kit.cjs)
+kit.a100Chasm(A);
 A.finish({stage: 1, water: path.join(kit.ROOT, 'core/src/main/assets/environment/water1.png')});

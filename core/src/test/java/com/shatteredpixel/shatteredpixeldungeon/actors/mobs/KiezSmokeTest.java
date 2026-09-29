@@ -1,5 +1,6 @@
 package com.shatteredpixel.shatteredpixeldungeon.actors.mobs;
 
+import com.shatteredpixel.shatteredpixeldungeon.Assets;
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Bauzaun;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Blob;
@@ -11,8 +12,11 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.HeroClass;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.WandOfBlastWave;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Level;
+import com.shatteredpixel.shatteredpixeldungeon.levels.PrisonBossLevel;
 import com.shatteredpixel.shatteredpixeldungeon.levels.SewerLevel;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Terrain;
+import com.shatteredpixel.shatteredpixeldungeon.levels.WallDeco;
+import com.shatteredpixel.shatteredpixeldungeon.tiles.DungeonTileSheet;
 import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.standard.HinterhofRoom;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.SparseArray;
@@ -235,6 +239,205 @@ public class KiezSmokeTest {
 		scared.state = scared.FLEEING;
 		check(!scared.tickRetreat() && scared.state == scared.FLEEING, "Fear without own retreat is left alone");
 
-		System.out.println("Kiez smoke checks passed: classes, shops, spawns, gas save/release, courtyard, scooter lanes, deposit shards, appointment reseller, jackhammer, luxury fences, house rules, bass drop.");
+		//Tempelhofer Feld: floor 10 boss arena uses its own tileset (same layout as tiles_prison.png)
+		check(Assets.Environment.TILES_TEMPELHOF.equals(new PrisonBossLevel().tilesTex()), "Tengu arena uses Tempelhof tiles");
+		check(java.nio.file.Files.exists(java.nio.file.Paths.get("src/main/assets/" + Assets.Environment.TILES_TEMPELHOF)), "Tempelhof tileset exists");
+		//Intro sequence: every panel exists and has German and English text
+		String scenesDe = new String(java.nio.file.Files.readAllBytes(
+				java.nio.file.Paths.get("src/main/assets/messages/scenes/scenes_de.properties")), "UTF-8");
+		String scenesEn = new String(java.nio.file.Files.readAllBytes(
+				java.nio.file.Paths.get("src/main/assets/messages/scenes/scenes.properties")), "UTF-8");
+		for (int i = 0; i < Assets.Splashes.INTRO.length; i++) {
+			check(java.nio.file.Files.exists(java.nio.file.Paths.get("src/main/assets/" + Assets.Splashes.INTRO[i])), "Intro panel " + (i+1));
+			check(scenesDe.contains("\nscenes.introscene.page" + (i+1) + "="), "Intro text de " + (i+1));
+			check(scenesEn.contains("\nscenes.introscene.page" + (i+1) + "="), "Intro text en " + (i+1));
+		}
+		for (String key : new String[]{"next", "start", "skip"}) {
+			check(scenesDe.contains("\nscenes.introscene." + key + "=") && scenesEn.contains("\nscenes.introscene." + key + "="), "Intro button " + key);
+		}
+
+		checkGarderobenmarken();
+		checkIntroAudio();
+		checkWallDeco();
+
+		System.out.println("Kiez smoke checks passed: classes, shops, spawns, gas save/release, courtyard, scooter lanes, deposit shards, appointment reseller, jackhammer, luxury fences, house rules, bass drop, Tempelhof arena, intro sequence, wall motif texts.");
+	}
+
+	//Intro: sound bed files exist as Ogg Vorbis, and the intro runs before every new game (no seen-once gate)
+	private static void checkIntroAudio() throws Exception {
+		for (String track : new String[]{Assets.Music.INTRO_1, Assets.Music.INTRO_2, Assets.Music.INTRO_3,
+				Assets.Music.INTRO_4, Assets.Music.INTRO_KELLER}) {
+			java.nio.file.Path path = java.nio.file.Paths.get("src/main/assets/" + track);
+			check(java.nio.file.Files.exists(path), "Intro audio exists: " + track);
+			byte[] data = java.nio.file.Files.readAllBytes(path);
+			check(data.length > 50_000 && data[0] == 'O' && data[1] == 'g' && data[2] == 'g' && data[3] == 'S',
+					"Intro audio is Ogg: " + track);
+		}
+		check(com.shatteredpixel.shatteredpixeldungeon.scenes.IntroScene.showBeforeNewGame(), "Intro before every new game");
+		String heroSelect = new String(java.nio.file.Files.readAllBytes(java.nio.file.Paths.get(
+				"src/main/java/com/shatteredpixel/shatteredpixeldungeon/scenes/HeroSelectScene.java")), "UTF-8");
+		check(!heroSelect.contains("introSequenceSeen"), "Intro trigger does not depend on the seen flag");
+		int starts = heroSelect.split("IntroScene.startNewGame\\(\\)", -1).length - 1;
+		check(starts == 2, "Normal/seeded and daily start both go through the intro (" + starts + ")");
+	}
+
+	//Club-Labyrinth (VaultLevel): exactly 7 Garderobenmarken per level, roaming guests carry none, cloakroom needs 7
+	private static void checkGarderobenmarken() throws Exception {
+		check(com.shatteredpixel.shatteredpixeldungeon.items.quest.DwarfToken.VAULT_REQUIRED == 7, "Cloakroom needs 7 tokens");
+		com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero oldHero = Dungeon.hero;
+		int oldDepth = Dungeon.depth, oldBranch = Dungeon.branch;
+		long oldSeed = Dungeon.seed;
+		Dungeon.hero = new Hero();
+		Dungeon.hero.heroClass = HeroClass.WARRIOR;
+		Dungeon.hero.lvl = 20;
+		Dungeon.depth = 17;
+		Dungeon.branch = 1;
+		Dungeon.seed = 17;
+		//full level generation needs textures, so check the room plan: one token per treasure room, 7 treasure rooms
+		Method initRooms = com.shatteredpixel.shatteredpixeldungeon.levels.VaultLevel.class.getDeclaredMethod("initRooms");
+		initRooms.setAccessible(true);
+		for (long seed = 1; seed <= 5; seed++) {
+			com.watabou.utils.Random.pushGenerator(seed);
+			com.shatteredpixel.shatteredpixeldungeon.levels.VaultLevel club = new com.shatteredpixel.shatteredpixeldungeon.levels.VaultLevel();
+			int treasureRooms = 0;
+			for (Object room : (List<?>) initRooms.invoke(club)) {
+				if (room instanceof com.shatteredpixel.shatteredpixeldungeon.levels.rooms.quest.vault.treasure.VaultTreasureRoom) treasureRooms++;
+			}
+			check(treasureRooms == com.shatteredpixel.shatteredpixeldungeon.items.quest.DwarfToken.VAULT_REQUIRED,
+					"Club plan (seed " + seed + ") has 7 token rooms, found " + treasureRooms);
+			for (int i = 0; i < 12; i++) {
+				Mob guest = club.createMob();
+				check(Dungeon.hero.lvl > guest.maxLvl + 2 && 1 > guest.maxLvl + 2, "Roaming club guest drops no token: " + guest.getClass().getSimpleName());
+				Bundle guestSave = new Bundle();
+				guest.storeInBundle(guestSave);
+				Mob guestRestored = (Mob) com.watabou.utils.Reflection.newInstance(guest.getClass());
+				guestRestored.restoreFromBundle(guestSave);
+				check(guestRestored.maxLvl == guest.maxLvl, "No-token flag survives save/load");
+			}
+			com.watabou.utils.Random.popGenerator();
+		}
+		//treasure room guards are created directly and still carry their room's token
+		Mob guard = new com.shatteredpixel.shatteredpixeldungeon.actors.mobs.quest.vault.VaultShaman();
+		check(guard.loot == com.shatteredpixel.shatteredpixeldungeon.items.quest.DwarfToken.class && Dungeon.hero.lvl <= guard.maxLvl + 2, "Treasure guard keeps token");
+		com.shatteredpixel.shatteredpixeldungeon.items.quest.DwarfToken marks = new com.shatteredpixel.shatteredpixeldungeon.items.quest.DwarfToken();
+		marks.quantity(3);
+		Bundle marksSave = new Bundle();
+		marksSave.put("marks", marks);
+		check(((com.shatteredpixel.shatteredpixeldungeon.items.Item) marksSave.get("marks")).quantity() == 3, "Token progress survives save/load");
+		String itemsDe = new String(java.nio.file.Files.readAllBytes(
+				java.nio.file.Paths.get("src/main/assets/messages/items/items_de.properties")), "UTF-8");
+		String levelsDe = new String(java.nio.file.Files.readAllBytes(
+				java.nio.file.Paths.get("src/main/assets/messages/levels/levels_de.properties")), "UTF-8");
+		for (String key : new String[]{"progress", "complete"}) {
+			check(itemsDe.contains("\nitems.quest.dwarftoken." + key + "="), "Token text " + key);
+		}
+		check(levelsDe.contains("\nlevels.vaultlevel.intro_title=") && levelsDe.contains("\nlevels.vaultlevel.intro_text="), "Club intro text");
+		Dungeon.hero = oldHero;
+		Dungeon.depth = oldDepth;
+		Dungeon.branch = oldBranch;
+		Dungeon.seed = oldSeed;
+	}
+
+	//Wall motifs: the examine text follows the drawn raised-wall variant (same selection as DungeonTileSheet),
+	//every motif has art in its region atlas and a name + description in German and English
+	private static void checkWallDeco() throws Exception {
+		Level oldLevel = Dungeon.level;
+		String levelsDe = new String(java.nio.file.Files.readAllBytes(
+				java.nio.file.Paths.get("src/main/assets/messages/levels/levels_de.properties")), "UTF-8");
+		String levelsEn = new String(java.nio.file.Files.readAllBytes(
+				java.nio.file.Paths.get("src/main/assets/messages/levels/levels.properties")), "UTF-8");
+		for (String key : WallDeco.KEYS) {
+			for (String k : new String[]{key, key + "_name"}) {
+				check(levelsDe.contains("\nlevels.walldeco." + k + "="), "Wall motif text de " + k);
+				check(levelsEn.contains("\nlevels.walldeco." + k + "="), "Wall motif text en " + k);
+			}
+		}
+		//fixed assignments the owner asked about: März only on one wall end per region, and only in two regions
+		String[] sheets = {Assets.Environment.TILES_SEWERS, Assets.Environment.TILES_PRISON, Assets.Environment.TILES_CAVES,
+				Assets.Environment.TILES_CITY, Assets.Environment.TILES_HALLS};
+		String[] notice = {"gesuch_1", "gesuch_2", "gesuch_3", "graffiti_kiez", "graffiti_taube"};
+		int maerzVisuals = 0;
+		for (int region = 0; region < sheets.length; region++) {
+			java.awt.image.BufferedImage atlas = javax.imageio.ImageIO.read(new java.io.File("src/main/assets/" + sheets[region]));
+			check(WallDeco.region(sheets[region]) == region, "Region of " + sheets[region]);
+			for (int visual = DungeonTileSheet.RAISED_WALL; visual < DungeonTileSheet.RAISED_WALL + 32; visual++) {
+				String key = WallDeco.motifFor(region, visual);
+				if (key == null) continue;
+				check(Arrays.asList(WallDeco.KEYS).contains(key), "Known wall motif " + key);
+				if (key.startsWith("maerz")) maerzVisuals++;
+				//a motif cell must look different from the plain wall face with the same wall end
+				//(the Hinterhof shopfronts sit on the plain wall ends themselves and are skipped)
+				int plain = DungeonTileSheet.RAISED_WALL + (visual - DungeonTileSheet.RAISED_WALL) % 4;
+				if (plain == visual) continue;
+				int diff = 0;
+				for (int y = 4; y < 16; y++) for (int x = 0; x < 16; x++) {
+					if (atlas.getRGB((visual % 16) * 16 + x, (visual / 16) * 16 + y) != atlas.getRGB((plain % 16) * 16 + x, (plain / 16) * 16 + y)) diff++;
+				}
+				check(diff >= 6, "Motif " + key + " is drawn in " + sheets[region] + " cell " + visual);
+			}
+			for (int end = 0; end < 4; end++) {
+				check(notice[region].equals(WallDeco.motifFor(region, DungeonTileSheet.RAISED_WALL_NOTICE + end)), "Notice motif " + region + "+" + end);
+			}
+		}
+		check(maerzVisuals == 2, "März appears on exactly two wall variants, found " + maerzVisuals);
+		check("maerz_1".equals(WallDeco.motifFor(WallDeco.HINTERHOF, DungeonTileSheet.RAISED_WALL_ALT + 1))
+				&& "graffiti_miete".equals(WallDeco.motifFor(WallDeco.HINTERHOF, DungeonTileSheet.RAISED_WALL_ALT + 2))
+				&& "maerz_2".equals(WallDeco.motifFor(WallDeco.AMT, DungeonTileSheet.RAISED_WALL_ALT + 2))
+				&& "graffiti_herz".equals(WallDeco.motifFor(WallDeco.AMT, DungeonTileSheet.RAISED_WALL_DECO_ALT)),
+				"Wall motif assignments");
+
+		//only the regular floors of the five regions get the notice variant and motif texts
+		check(WallDeco.enabled(new SewerLevel()) && WallDeco.enabled(new com.shatteredpixel.shatteredpixeldungeon.levels.HallsLevel()),
+				"Regular floors use wall motifs");
+		check(!WallDeco.enabled(new PrisonBossLevel()) && !WallDeco.enabled(new com.shatteredpixel.shatteredpixeldungeon.levels.VaultLevel())
+				&& !WallDeco.enabled(new com.shatteredpixel.shatteredpixeldungeon.levels.CityBossLevel()),
+				"Tempelhof arena, boss arenas and the club keep plain walls");
+
+		//a long wall face above open floor: every face cell's motif matches its drawn variant
+		Level[] levels = {new SewerLevel(), new com.shatteredpixel.shatteredpixeldungeon.levels.PrisonLevel(),
+				new com.shatteredpixel.shatteredpixeldungeon.levels.CavesLevel(), new com.shatteredpixel.shatteredpixeldungeon.levels.CityLevel(),
+				new com.shatteredpixel.shatteredpixeldungeon.levels.HallsLevel()};
+		for (int region = 0; region < levels.length; region++) {
+			Level wall = levels[region];
+			int w = 40, h = 40;
+			wall.setSize(w, h);
+			for (int i = 0; i < w * h; i++) wall.map[i] = Terrain.WALL;
+			for (int y = 2; y < h - 1; y += 3) {
+				for (int x = 1; x < w - 1; x++) wall.map[x + y * w] = (x % 13 == 0) ? Terrain.WALL : Terrain.EMPTY;
+				wall.map[5 + (y - 1) * w] = Terrain.WALL_DECO;
+			}
+			Dungeon.level = wall;
+			DungeonTileSheet.setupVariance(w * h, 1234 + region);
+			int faces = 0, notices = 0, plainChecked = 0;
+			for (int cell = w; cell < w * h - w; cell++) {
+				int visual = WallDeco.visual(wall, cell);
+				if (visual < 0) continue;
+				faces++;
+				String key = WallDeco.motif(wall, cell);
+				check(java.util.Objects.equals(key, WallDeco.motifFor(region, visual)), "Motif follows the drawn variant at " + cell);
+				if (visual >= DungeonTileSheet.RAISED_WALL_NOTICE && visual < DungeonTileSheet.RAISED_WALL_NOTICE + 4) {
+					notices++;
+					check(DungeonTileSheet.tileVariance[cell] < WallDeco.NOTICE_CHANCE, "Notice only below the notice chance");
+					check(notice[region].equals(key), "Notice cell shows the region notice");
+				} else if (wall.map[cell] == Terrain.WALL && DungeonTileSheet.tileVariance[cell] >= 50) {
+					plainChecked++;
+				}
+			}
+			check(faces > 300 && notices > 0 && notices < faces / 8 && plainChecked > 0,
+					"Notice share in " + sheets[region] + ": " + notices + " of " + faces);
+		}
+		//outside the five regions (Tempelhof arena) the notice cells are never chosen
+		Level arena = new PrisonBossLevel();
+		arena.setSize(20, 20);
+		for (int i = 0; i < 400; i++) arena.map[i] = (i / 20) % 2 == 0 ? Terrain.WALL : Terrain.EMPTY;
+		Dungeon.level = arena;
+		DungeonTileSheet.setupVariance(400, 99);
+		for (int cell = 20; cell < 380; cell++) {
+			int visual = WallDeco.visual(arena, cell);
+			check(visual < DungeonTileSheet.RAISED_WALL_NOTICE || visual >= DungeonTileSheet.RAISED_WALL_NOTICE + 4, "No notices in the Tempelhof arena");
+			check(WallDeco.motif(arena, cell) == null, "No motif texts in the Tempelhof arena");
+		}
+		Dungeon.level = oldLevel;
+		DungeonTileSheet.tileVariance = null;
 	}
 }

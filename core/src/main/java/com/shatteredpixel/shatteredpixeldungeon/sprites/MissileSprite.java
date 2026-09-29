@@ -28,6 +28,8 @@ import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.SpiritBow;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.Crossbow;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.missiles.Bolas;
+import com.shatteredpixel.shatteredpixeldungeon.items.weapon.missiles.ThrowingStone;
+import com.shatteredpixel.shatteredpixeldungeon.items.stones.Runestone;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.missiles.FishingSpear;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.missiles.HeavyBoomerang;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.missiles.Javelin;
@@ -99,6 +101,9 @@ public class MissileSprite extends ItemSprite implements Tweener.Listener {
 		ANGULAR_SPEEDS.put(Kunai.class,         0);
 		ANGULAR_SPEEDS.put(Javelin.class,       0);
 		ANGULAR_SPEEDS.put(Trident.class,       0);
+		//Neukoelln: thrown stones are city pigeons, they fly instead of spinning
+		ANGULAR_SPEEDS.put(ThrowingStone.class, 0);
+		ANGULAR_SPEEDS.put(Runestone.class,     0);
 		
 		ANGULAR_SPEEDS.put(SpiritBow.SpiritArrow.class,       0);
 		ANGULAR_SPEEDS.put(ScorpioSprite.ScorpioShot.class,   0);
@@ -157,6 +162,13 @@ public class MissileSprite extends ItemSprite implements Tweener.Listener {
 		if (item instanceof GnollGeomancer.Boulder){
 			angle = 0;
 			flipHorizontal = false;
+			updateFrame();
+		}
+
+		//Neukoelln: pigeons fly upright and face their flight direction
+		if (item instanceof ThrowingStone || item instanceof Runestone){
+			angle = 0;
+			flipHorizontal = d.x < 0;
 			updateFrame();
 		}
 		

@@ -296,44 +296,6 @@ put('ARMOR_CLOTH', [
   '....ZZZZZZZ....',
   '....zzzzzzz....',
 ], {Z: '8c8b96', z: '66656f', s: 'd6d5dc', K: '2a2932'});
-// Späti-Proviant: cardboard survival box with a yellow label and a cookie on top
-put('RATION', [
-  '................',
-  '................',
-  '.....MMMMMMMMM..',
-  '....MNNNNNNNNM..',
-  '...MMMMMMMMMMn..',
-  '...NYYYYYYYYNn..',
-  '...NYkYkkYkYNn..',
-  '...NYYYYYYYYNn..',
-  '...NNNNNNNNNNn..',
-  '...NNNNNNNNNn...',
-  '................',
-]);
-// Späti-Snack: small crinkled crisp bag
-put('OVERPRICED', [
-  '..............',
-  '....s.s.s.....',
-  '....RRRRR.....',
-  '...RpRRRRr....',
-  '...RLLLLRr....',
-  '...RLYLYRr....',
-  '...RLLLLRr....',
-  '...RRRRRRr....',
-  '...rRrRrRr....',
-  '....s.s.s.....',
-]);
-// Pflasterstein (Alteingesessene throwing weapon): Berlin granite sett, light top face, worn edge
-put('THROWING_STONE', [
-  '............',
-  '...ssssss...',
-  '..sWsssssg..',
-  '.ssssssssgg.',
-  '.GGGGGGGGgg.',
-  '.GgGGGGGGgk.',
-  '.GGGGgGGGk..',
-  '.kkkkkkkkk..',
-], {s: 'c4c4cc', W: 'e4e4ea', G: '9a9aa0', g: '6c6c74', k: '4a4a52'});
 // Souvenir-Brieföffner (Writers Room: "Fernsehturm-Griff"): steel blade, concrete tower
 // shaft as the handle, the silver sphere with a light-blue glint and the red-white antenna
 // tip at the end. Same diagonal as upstream, so the thrown sprite still flies blade first.
@@ -352,22 +314,6 @@ put('THROWING_KNIFE', [
   '.RgG........',
   '.W..........',
 ], {C: 'e6e2d8', d: 'a8a49a', i: 'b8e0f8', R: 'd83a2c'});
-// Wasserschlauch: leather bottle with cork and a round sticker
-put('WATERSKIN', [
-  '................',
-  '......MN........',
-  '.....nNNn.......',
-  '......nn........',
-  '....nNNNNn......',
-  '...nNNNNNNn.....',
-  '..nNNWWWNNNn....',
-  '..NNWUUUWNNn....',
-  '..NNWUiUWNNn....',
-  '..NNWUUUWNNn....',
-  '..nNNWWWNNnn....',
-  '...nnNNNNnn.....',
-  '....nnnnnn......',
-]);
 // Jutebeutel: natural jute tote with long handles and a red heart print
 put('BACKPACK', [
   '................',
@@ -3171,6 +3117,318 @@ function buildHolders() {
     putGrid(holder, n);
   }
 }
+
+// ================================================================ Runde 3 (Spieltest-Feedback)
+// Decisions 1, 2, 6, 10, 13, 14 of the round-3 brief. Parody motifs only: no real beer brand,
+// no network operator colours, no readable writing.
+cat('w) Runde 3', 'KIT', 'WATERSKIN', 'DEWDROP', 'THROWING_STONE', 'TRINKET_CATA', 'RATION', 'OVERPRICED', 'ORE', 'VIAL');
+const BEER_PAL = {1: '3e200c', 2: '6a3814', 3: '96561e', 4: 'd08c48', e: '1f5a2c', E: '2f7a3a', L: 'f8d850',
+  y: 'a87a10', Y: 'e0b428', l: 'fff0a0'};
+// Sternchen-Pils: brown 0.5 l bottle, gold crown cap, green label with a gold star (no lettering)
+put('WATERSKIN', [
+  '................',
+  '......yYlYy.....',
+  '.......342......',
+  '.......342......',
+  '......34321.....',
+  '.....3443221....',
+  '.....2EELEE1....',
+  '.....2LLLLL1....',
+  '.....2ELLLE1....',
+  '.....2ELELE1....',
+  '.....2eeeee1....',
+  '.....3432221....',
+  '.....2222111....',
+], BEER_PAL);
+// Parkknöllchen (round 3): thrown by the SUV boss on floor 10 (TenguSprite.TenguShuriken -> KIT,
+// set in Java by the coordinator); small crumpled yellowish-white ticket, red stripe, unreadable lines
+put('KIT', [
+  '................',
+  '................',
+  '....RRRRRRr.....',
+  '...RRRRRRRRr....',
+  '...LWWWWWWWs....',
+  '...LWggWgggs....',
+  '...LWWWWWWss....',
+  '...LWgggWWWs....',
+  '....sWWWWWWWs...',
+  '...LWggWgWWs....',
+  '...LWWWWWWss....',
+  '....ssLss.s.....',
+  '................',
+], {W: 'fbf4cc', L: 'fffff0', s: 'd4c68e', g: '9a9484', R: 'd83a2c', r: '9a1c1c'});
+// Biertropfen: round golden drop with a little foam crown
+put('DEWDROP', [
+  '...W.W....',
+  '..WWWWW...',
+  '.sWsWWss..',
+  '.LYYYYYy..',
+  '.LWYYYYy..',
+  '.LYYYYyy..',
+  '..YYYyy...',
+  '...yyy....',
+], {W: 'fbf8ec', s: 'dcd6be', L: 'fbe68a', Y: 'e8b020', y: 'b07a10'});
+// Stadttaube (Alteingesessene throwing weapon): small grey pigeon facing right,
+// iridescent green/purple neck, orange eye, pink feet
+put('THROWING_STONE', [
+  '............',
+  '.......GG...',
+  '......GGRGk.',
+  '......tmGG..',
+  '...ssGmtG...',
+  '.GGsssGGGG..',
+  '.gGGgggGG...',
+  '.g..GGGG....',
+  '.....p.p....',
+], {G: '9a9aa8', g: '66667a', s: 'c8c8d2', t: '3aa08a', m: '9a58a8', R: 'f08a2a', k: '3a3844', p: 'e0788a'});
+// Umzugskarton einer WG: taped cardboard box, unreadable marker scribble and a question mark
+put('TRINKET_CATA', [
+  '............',
+  '.MMMMTTMMMM.',
+  '.NNNNTTNNNn.',
+  '.NNNNNKKKNn.',
+  '.KKNKNNNNKn.',
+  '.NNKNNNKKNn.',
+  '.NNNNNNKNNn.',
+  '.NKKKNNNNNn.',
+  '.NNNNNNKNNn.',
+  '.nnnnnnnnnn.',
+], {M: 'dcae6e', N: 'b47a3e', n: '84542a', T: 'efe0a8', K: '2a2932'});
+// Baklava vom Konditor (Sonnenallee): open white pastry box, two rows of diamond pieces with pistachio
+put('RATION', [
+  '................',
+  '................',
+  '.gssssssssssssg.',
+  '.syLyyyLyyyLyys.',
+  '.sLEYyLEYyLEYys.',
+  '.syYyLyYyLyYyLs.',
+  '.syyLEYyLEYyLEs.',
+  '.syyyYyyyYyyyYs.',
+  '.WWWWWWRRWWWWWW.',
+  '.WWWWWRqqRWWWWs.',
+  '.sssssssssssssg.',
+], {W: 'f6f5f0', s: 'cfcdd4', g: '9a98a2', L: 'f6d07a', Y: 'd8a23a', y: '9a5e1a', E: '5aa83a', R: 'c83a2c', q: 'f0c040'});
+// Baklava-Stück: one diamond piece, pistachio on top, syrup-dark pastry layers on the sides
+put('OVERPRICED', [
+  '..............',
+  '......LL......',
+  '....LLElLL....',
+  '..LLLEElELLL..',
+  '.YLLLLElLLLLY.',
+  '.yYYLLLLLLYYy.',
+  '.MyyYYLLYYyyM.',
+  '..MMyyYYyyMM..',
+  '....MMyyMM....',
+  '......MM......',
+], {L: 'f6d07a', Y: 'd8a23a', y: '8a5216', M: 'e8b860', E: '4e9a34', l: '9cd66a'});
+// Glasfaserstück (replaces the dark gold ore): two loops of orange fibre patch cable held by a
+// black cable tie, the loose end with a blue plug and a glowing cyan tip
+put('ORE', [
+  '...............',
+  '....qqqqqq.....',
+  '..qqA....Aqq...',
+  '.qA..qqqq..Aq..',
+  '.A..qA..Aq..A..',
+  '.KKKK....A..A..',
+  '.KKKK....A..A..',
+  '.A..aA..Aa..A..',
+  '.aA..aaaa..Aa..',
+  '..aaA....Aaa...',
+  '....aaaaaaA....',
+  '..........AA.j.',
+  '..........UUWj.',
+  '............j..',
+], {a: '9a420c', A: 'e0701a', q: 'f8aa4a', K: '2a2932', U: '3460bc', W: 'ffffff', j: '92e2e8'});
+// Garderobenmarke (new, cell VIAL, not yet used in Java): red numbered plastic tag
+// with a hole, on a teal spiral wristband
+put('VIAL', [
+  '............',
+  '...TTTT.....',
+  '..T....T....',
+  '..T....T....',
+  '...T..T.....',
+  '...RRtRR....',
+  '..pRWWWRr...',
+  '..pRRRWRr...',
+  '..pRRWRRr...',
+  '..pRRWRRr...',
+  '...rrrrr....',
+], {T: '2c9a90', t: '155c5c', R: 'd83a2c', r: '8a1c1c', p: 'ec6a4c', W: 'f4f3ee'});
+
+// ================================================================ Stadttauben (Runensteine)
+// The runestones become city pigeons: every STONE_* cell is a plump sitting pigeon facing
+// right (bigger and rounder than the flying THROWING_STONE pigeon, which stays as it is),
+// each with one coloured feature that shows its effect in the colour of the former pebble
+// motif. Runestones are always identified (Runestone.isIdentified() == true), so no
+// random-colour scheme is needed; the sorts only have to differ from each other.
+// This section redraws cells that section k) drew before (drawn.delete, the old code stays
+// untouched) and points the STONE_HOLDER silhouette at a pigeon.
+cat('x) Stadttauben', 'STONE_AGGRESSION', 'STONE_AUGMENTATION', 'STONE_FEAR', 'STONE_BLAST', 'STONE_BLINK',
+  'STONE_CLAIRVOYANCE', 'STONE_SLEEP', 'STONE_DETECT', 'STONE_ENCHANT', 'STONE_FLOCK', 'STONE_INTUITION',
+  'STONE_SHOCK', 'STONE_HOLDER');
+const PIGEON = [
+  '..............',
+  '.........GGG..',
+  '........GGRGk.',
+  '........GGGG..',
+  '........tmtG..',
+  '...sssssmtmG..',
+  '.ggbbbbssGGG..',
+  '.ggsssssGGGG..',
+  '..gbbbbGGGG...',
+  '....gGGGGGg...',
+  '.....p..p.....',
+  '..............',
+];
+const PIGEON_PAL = {G: '9a9aa8', g: '66667a', s: 'bdbdca', b: '55556a', t: '3aa08a', m: '9a58a8',
+  R: 'f08a2a', k: '3a3844', p: 'e0788a', W: 'f4f3ee'};
+// overlay: rows of 14 chars, '.' keeps the pigeon pixel, '_' clears it
+function pigeonRows(over) {
+  const rows = PIGEON.map(r => [...r]);
+  over.forEach((r, y) => [...r].forEach((ch, x) => {
+    if (ch === '.') return;
+    rows[y][x] = ch === '_' ? '.' : ch;
+  }));
+  return rows.map(r => r.join(''));
+}
+const PIGEON_ART = {
+  // Stänker-Taube: red anger mark above the back, angry brow over the red eye
+  AGGRESSION: [[
+    '..R.R.........',
+    '..RRRR....kk..',
+    '.RRPRR........',
+    '..RRRR........',
+    '..R.R.........',
+  ], {R: 'e02a2a', P: 'ff8a6a'}],
+  // Tuning-Taube: yellow arrow pointing up above the back
+  AUGMENTATION: [[
+    '....Y.........',
+    '...YYY........',
+    '..YYYYY.......',
+    '....Y.........',
+    '....Y.........',
+  ], {Y: 'f6d23a'}],
+  // Schreck-Taube: wide open white eye, ruffled crest, red "!"
+  FEAR: [[
+    '..R......k.k..',
+    '..R.....GWWG..',
+    '..R.....GWKW..',
+    '........GWWG..',
+    '..R...........',
+  ], {R: 'e02a2a', K: '1d1b22'}],
+  // Böller-Taube: red firecracker band strapped round the belly, lit fuse on the back
+  BLAST: [[
+    '..L...........',
+    '...k..........',
+    '...k..........',
+    '....k.........',
+    '....k.........',
+    '...RRRRRRRR...',
+    '.ggWrWrWrWR...',
+    '.ggRRRRRRRR...',
+  ], {R: 'd02c2c', r: '8a1616', L: 'fff27a'}],
+  // Blinzeltaube: blue glitter around it, the tail already fading away
+  BLINK: [[
+    '.i.......__...',
+    'iUi...i.......',
+    '.i...iUi......',
+    '......i.......',
+    '..............',
+    '...jsssss.....',
+    '.jjjbbbs......',
+    '.jjsssss......',
+    '..jbbbb.......',
+  ], {U: '3a70e0', i: '9ac8ff', j: 'c8dcf4'}],
+  // Hellseh-Taube: a purple all-seeing eye floats above the back, its own eye glows violet
+  CLAIRVOYANCE: [[
+    '..............',
+    '..VVVVV.......',
+    '.VwwuwwV......',
+    '..VVVVV.......',
+  ], {V: '7c4cb2', w: 'f0e8ff', u: '2a1c5c', R: 'c9a0ff'}],
+  // Mittagsschlaf-Taube: blue nightcap with a white bobble, closed eye, zZ
+  SLEEP: [[
+    '.UUU....iUU...',
+    '..U....iUUUW..',
+    '.U.....GGkGk..',
+    '.UUU..........',
+  ], {U: '2c50b8', i: '6a8ee8', k: '3a3844'}],
+  // Gutachter-Taube: green clipboard with a white sheet under the wing
+  DETECT: [[
+    '..............',
+    '..............',
+    '..............',
+    '...EkkE.......',
+    '..EWWWWE......',
+    '..EWeeWE......',
+    '..EWWWWE......',
+    '..EWeWeE......',
+    '..EEEEEE......',
+  ], {E: '2e8a4a', e: '6a8a70', k: '3a3844'}],
+  // Verzauberungs-Taube: purple glitter trail behind the tail
+  ENCHANT: [[
+    '..............',
+    '..w...........',
+    '.wVw..........',
+    '..w....w......',
+    '.......w......',
+    'w.............',
+    'V.............',
+    'Vw............',
+    'w.V...........',
+    '.w.w..........',
+  ], {V: '8a4cc8', w: 'c9a0ff'}],
+  // Bauchgefühl-Taube: glowing yellow heart on the belly, small "?" above
+  INTUITION: [[
+    '...LLL........',
+    '.....L........',
+    '....L.........',
+    '..............',
+    '....L.........',
+    '..............',
+    '.......YY.YY..',
+    '.......YLYYY..',
+    '........YYY...',
+    '.........Y....',
+  ], {Y: 'f0b020', L: 'fff27a'}],
+  // Weidezaun-Taube: yellow lightning bolt, feathers standing on end
+  SHOCK: [[
+    '....LL.....L..',
+    '...LL..L......',
+    '..LLLL.......L',
+    '....L.........',
+    '...L..........',
+  ], {L: 'f8e040'}],
+};
+for (const [n, [over, pal]] of Object.entries(PIGEON_ART)) {
+  drawn.delete(cellOf('STONE_' + n));
+  put('STONE_' + n, pigeonRows(over), {...PIGEON_PAL, ...pal});
+}
+// Schäfertaube (StoneOfFlock; name and text say it calls a flock of sheep): a small pigeon
+// riding on the back of a white sheep
+const MINI_PIGEON = ['...GG.', '...GRk', '.ssGt.', 'gsbGG.', '.gGG..'];
+const FLOCK_SHEEP = [
+  '..............',
+  '..............',
+  '..............',
+  '..............',
+  '..............',
+  '..W.WW.WW.....',
+  '.WWWWwWWWWFF..',
+  '.WWwWWWWWFFkF.',
+  '.wWWWWWwWWFFF.',
+  '..wWwWWwW.F...',
+  '...F.F..F.F...',
+  '..............',
+];
+drawn.delete(cellOf('STONE_FLOCK'));
+{
+  const rows = FLOCK_SHEEP.map(r => [...r]);
+  MINI_PIGEON.forEach((r, y) => [...r].forEach((ch, x) => { if (ch !== '.') rows[1 + y][3 + x] = ch; }));
+  put('STONE_FLOCK', rows.map(r => r.join('')), {...PIGEON_PAL, W: 'f4f3ee', w: 'cfcdd8', F: '7a7482', k: '1d1b22'});
+}
+// the empty-slot silhouette is the plain pigeon of the Blinzeltaube (its glitter is not connected)
+HOLDER_FROM.STONE_HOLDER = 'STONE_BLINK';
 
 // ================================================================ main
 function main() {

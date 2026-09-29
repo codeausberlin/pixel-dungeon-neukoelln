@@ -47,6 +47,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.armor.LeatherArmor;
 import com.shatteredpixel.shatteredpixeldungeon.items.armor.MailArmor;
 import com.shatteredpixel.shatteredpixeldungeon.items.armor.PlateArmor;
 import com.shatteredpixel.shatteredpixeldungeon.items.armor.ScaleArmor;
+import com.shatteredpixel.shatteredpixeldungeon.items.quest.DwarfToken;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfExperience;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfFrost;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfHealing;
@@ -108,9 +109,14 @@ import com.shatteredpixel.shatteredpixeldungeon.plants.Starflower;
 import com.shatteredpixel.shatteredpixeldungeon.plants.Stormvine;
 import com.shatteredpixel.shatteredpixeldungeon.plants.Sungrass;
 import com.shatteredpixel.shatteredpixeldungeon.plants.Swiftthistle;
+import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.InterlevelScene;
+import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSprite;
+import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
+import com.shatteredpixel.shatteredpixeldungeon.windows.WndStory;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.audio.Music;
+import com.watabou.utils.Bundle;
 import com.watabou.utils.Callback;
 import com.watabou.utils.Random;
 import com.watabou.utils.Reflection;
@@ -125,6 +131,38 @@ public class VaultLevel extends CityLevel {
 	@Override
 	public void playLevelMusic() {
 		Music.INSTANCE.play(Assets.Music.CITY_TENSE, true);
+		showClubIntro();
+	}
+
+	//Neukoelln: club labyrinth backstory, shown once when the hero first arrives
+	private boolean introShown = false;
+	private static final String INTRO_SHOWN = "intro_shown";
+
+	private void showClubIntro(){
+		if (introShown || Imp.Quest.isOld() || Dungeon.hero == null){
+			return;
+		}
+		introShown = true;
+		Game.runOnRenderThread(new Callback() {
+			@Override
+			public void call() {
+				GameScene.show(new WndStory(new ItemSprite(ItemSpriteSheet.VIAL),
+						Messages.get(VaultLevel.class, "intro_title"),
+						Messages.get(VaultLevel.class, "intro_text", DwarfToken.VAULT_REQUIRED)));
+			}
+		});
+	}
+
+	@Override
+	public void storeInBundle(Bundle bundle) {
+		super.storeInBundle(bundle);
+		bundle.put(INTRO_SHOWN, introShown);
+	}
+
+	@Override
+	public void restoreFromBundle(Bundle bundle) {
+		super.restoreFromBundle(bundle);
+		introShown = bundle.getBoolean(INTRO_SHOWN);
 	}
 
 	@Override
@@ -559,8 +597,16 @@ public class VaultLevel extends CityLevel {
 		if (cls == VaultElemental.class){
 			cls = VaultElemental.random();
 		}
-		return Reflection.newInstance(cls);
+		Mob mob = Reflection.newInstance(cls);
+		//Neukoelln: roaming club guests never carry a wardrobe token.
+		// The only tokens are the one-per-room prizes of the 7 treasure rooms (see DwarfToken.VAULT_REQUIRED),
+		// so exactly 7 exist. Treasure room guards are created directly and keep their token.
+		mob.maxLvl = NO_TOKEN_LVL;
+		return mob;
 	}
+
+	//hero level is always > NO_TOKEN_LVL+2, so Mob.rollToDropLoot() never drops a token
+	public static final int NO_TOKEN_LVL = -5;
 
 	//important to try and preserve mobs that can't spawn in a certain place (e.g. corridors)
 	public void returnMob( Class<?extends Mob> cls){

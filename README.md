@@ -50,8 +50,8 @@ Luxusquartier. Und das Luxusquartier gehört jemandem, der selbst nur Mieter ist
     <td><img src="docs/readme/regionen/amt.png" alt="Wartehalle im Amt, Anzeige NR. 0815, ein Skelett wartet auf dem Stuhl"></td>
     <td><b>Ebene 6-10: Das Amt ohne Termin</b><br>
       Eine Bürgeramt-Außenstelle in einem alten Gefängnis. Die Anzeige zeigt seit Jahren 0815. Wer lange genug wartet, wird zum ewig Wartenden.<br>
-      <b>Boss: Schalterspringer.</b> Teleportiert zwischen allen Schaltern und ist an keinem zuständig.<br>
-      <i>„Endlich... Feierabend...“</i></td>
+      <b>Boss: Der Kurzparker.</b> Ein SUV, der am Hinterausgang des Amts auf dem Tempelhofer Feld steht, „nur kurz“. Parkt um, wenn es eng wird, und verteilt Parkknöllchen.<br>
+      <i>„Ich steh nur kurz hier.“</i></td>
   </tr>
   <tr>
     <td><img src="docs/readme/regionen/baustelle.png" alt="U-Bahn-Tunnel mit Bauschild BAUENDE 20?? und Bohrmaschine"></td>
@@ -162,6 +162,12 @@ Fähnchen die Form, und wer reintritt, weiß danach Bescheid. Sie heißen „lod
 „tiefgefrorener Haufen“ oder „bodenloser roter Haufen“. Der harmloseste ist der „verwitterte
 Blasrohr-Haufen“. Er ist so alt, dass er nicht einmal versteckt ist. Bestandsschutz.
 
+**Stadttauben statt Runensteine.** Blinzeltaube, Böllertaube, Mittagsschlaf-Taube und zehn weitere: Jede landet, macht ihr Ding und fliegt davon. Die Alteingesessene wirft keine Steine, sie schickt Hoftauben los.
+
+**Sternchen-Pils statt Wasserschlauch.** Heilt, wenn du vorher genug Biertropfen gesammelt hast. Dazu Baklava vom Konditor an der Sonnenallee als Proviant, gleich neben Barbershop und Shisha-Bar.
+
+**Wohnungsgesuche an der Wand.** Abreißzettel mit Nummer 0176-KEINE-HOFFNUNG. „Hund heißt Keks, ist aber auch bereit auszuziehen.“
+
 **Samenbomben statt Samen.** Guerilla-Gärtnern mit Folgen: Mietsenkungsblume, Kehrwochenkraut,
 Räumungsklee, Neidmoos, Pflasterkraut. Die Mietsenkungsblume ist das Unrealistischste im ganzen Spiel.
 
@@ -268,10 +274,13 @@ nicht da.
 - Neue Gegner mit eigener Mechanik (Leihscooter, Pfandgolem, Terminhändler, Presslufter, Technojünger, Luxussanierer, Hausordnungs-Hydra und mehr)
 - Mietvertrag als Siegziel, Sperrmüllberge, Hundehaufen, Samenbomben, neue Item-Icons, Wahl- und Clubplakate als Wanddeko
 - Der Spätimann auf 6, 11 und 16
+- Vertontes Intro vor jedem neuen Spiel: die M41 fällt aus, die nächste fährt zu früh, also ab in den Keller
+- Club-Labyrinth auf Ebene 16-19: du wachst ohne Ausrüstung im Club auf und sammelst 7 Garderobenmarken
+- Der Netztechniker (seit zwei Jahren erwartet) statt Schmied, Glasfaserstücke statt Erz, Abgründe als A100-Baulücken
 
 **Noch Rohbau:**
 - Gegner, Bosse und NPCs ab Ebene 6 sind umgestaltet, im Spiel aber noch nicht alle angesehen
-- Soundeffekte sind noch die des Originals; der eigene Techno-Soundtrack (31 Tracks, synthetisch erzeugt) ist drin, aber noch nicht abgemischt
+- Der Soundtrack (31 Tracks) ist eine eigene Synthese, die Soundeffekte sind bewusst die des Originals
 - Nur Deutsch ist umgebaut; Englisch und alle anderen Sprachen zeigen den Text von Shattered Pixel Dungeon
 - Einige Texte sind noch Upstream oder Englisch, zum Beispiel das Änderungsprotokoll im Spiel
 - Android- und iOS-Builds sind nicht geprüft

@@ -160,7 +160,8 @@ public class HeroSelectScene extends PixelScene {
 				ActionIndicator.clearAction();
 				InterlevelScene.mode = InterlevelScene.Mode.DESCEND;
 
-				Game.switchScene( InterlevelScene.class );
+				//Neukoelln: the picture intro runs before every new game (skippable)
+				IntroScene.startNewGame();
 			}
 		};
 		startBtn.icon(Icons.get(Icons.ENTER));
@@ -756,7 +757,8 @@ public class HeroSelectScene extends PixelScene {
 								ActionIndicator.clearAction();
 								InterlevelScene.mode = InterlevelScene.Mode.DESCEND;
 
-								Game.switchScene( InterlevelScene.class );
+								//Neukoelln: daily runs get the picture intro too (skippable)
+								IntroScene.startNewGame();
 							}
 						}
 					});

@@ -1651,6 +1651,18 @@ public abstract class Level implements Bundlable {
 		}
 	}
 	
+	//Neukölln: examine texts for a specific cell; wall faces with a poster, graffiti or notice
+	// get the text of the motif that is actually drawn there (same selection as the tilemap, see WallDeco)
+	public String cellName( int cell ) {
+		String name = WallDeco.name(this, cell);
+		return name != null ? name : tileName(map[cell]);
+	}
+
+	public String cellDesc( int cell ) {
+		String desc = WallDeco.desc(this, cell);
+		return desc != null ? desc : tileDesc(map[cell]);
+	}
+
 	public String tileDesc( int tile ) {
 		
 		switch (tile) {

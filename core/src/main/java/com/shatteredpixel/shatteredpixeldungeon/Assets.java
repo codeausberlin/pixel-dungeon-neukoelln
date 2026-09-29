@@ -47,6 +47,8 @@ public class Assets {
 
 		public static final String TILES_CAVES_CRYSTAL  = "environment/tiles_caves_crystal.png";
 		public static final String TILES_CAVES_GNOLL    = "environment/tiles_caves_gnoll.png";
+		//Neukoelln: Tempelhofer Feld, boss arena of floor 10 (same layout as tiles_prison.png)
+		public static final String TILES_TEMPELHOF      = "environment/tiles_tempelhof.png";
 
 		public static final String WATER_SEWERS = "environment/water0.png";
 		public static final String WATER_PRISON = "environment/water1.png";
@@ -154,6 +156,14 @@ public class Assets {
 		public static final String HALLS_TENSE          = "music/halls_tense.ogg";
 		public static final String HALLS_BOSS           = "music/halls_boss.ogg";
 		public static final String HALLS_BOSS_FINALE    = "music/halls_boss_finale.ogg";
+
+		//Neukoelln: sound bed for the picture intro (tools/generate-kiez-intro-audio.py)
+		//intro_1/3/keller loop, intro_2/4 play once and then hand over to a loop (see IntroScene)
+		public static final String INTRO_1              = "music/intro_1.ogg";
+		public static final String INTRO_2              = "music/intro_2.ogg";
+		public static final String INTRO_3              = "music/intro_3.ogg";
+		public static final String INTRO_4              = "music/intro_4.ogg";
+		public static final String INTRO_KELLER         = "music/intro_keller.ogg";
 	}
 
 	public static class Sounds {
@@ -256,6 +266,13 @@ public class Assets {
 		public static final String CAVES    = "splashes/nk_caves.png";
 		public static final String CITY     = "splashes/nk_city.png";
 		public static final String HALLS    = "splashes/nk_halls.png";
+
+		//Neukoelln: intro sequence panels (shown once before the first descent)
+		public static final String INTRO_1  = "splashes/intro/intro_1.png";
+		public static final String INTRO_2  = "splashes/intro/intro_2.png";
+		public static final String INTRO_3  = "splashes/intro/intro_3.png";
+		public static final String INTRO_4  = "splashes/intro/intro_4.png";
+		public static final String[] INTRO  = {INTRO_1, INTRO_2, INTRO_3, INTRO_4};
 
 		public static class Title {
 			public static final String ARCHS         = "splashes/title/archs.png";

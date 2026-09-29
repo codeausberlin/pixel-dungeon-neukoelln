@@ -17,7 +17,7 @@ Diese Datei ergänzt `docs/NEUKOELLN-DESIGN.md` und ersetzt es nicht.
 | Ebene | Upstream | Neukölln-Region | Boss | Kern-Satire |
 | --- | --- | --- | --- | --- |
 | 1-5 | Sewers | **Neuköllner Hinterhöfe** – Höfe, Keller, Kanäle | Mietschimmel (Goo) | Mängel, die niemand behebt |
-| 6-10 | Prison | **Das Amt ohne Termin** – unterirdische Bürgeramt-Außenstelle, Wartezonen statt Zellen | Schalterspringer (Tengu) | Warten als Lebensform |
+| 6-10 | Prison | **Das Amt ohne Termin** – unterirdische Bürgeramt-Außenstelle, Wartezonen statt Zellen | Kurzparker (Tengu; SUV, Arena Tempelhofer Feld, seit Runde 3) | Warten als Lebensform |
 | 11-15 | Caves | **Die ewige Baustelle** – U7/U8-Schacht, Tunnelbau, Bergbau-Gefühl | Bohrlinde (DM-300) | Fertigstellung „voraussichtlich im Herbst" |
 | 16-20 | City | **Das Renditequartier** – Luxussanierung, Investorenstadt | König der Eigentumswohnungen (Dwarf King) | Wohnen als Anlageklasse |
 | 21-25 | Halls | **Unter dem Rathaus** – das Grundübel unter allem | Ewiger Mietspiegel (Yog-Dzewa) | Das System selbst |
@@ -102,7 +102,7 @@ Farbwelt: Beton, Baustellenrot-weiß, gelbes BVG-Signet (nur als fiktive
 | 9 | **Kindl-Sudhaus mit Kupferkesseln** (sechs riesige Kessel, früher größte Braupfannen Europas; F11) | Setpiece-Halle: Kessel als Hindernisse, Dampf als Deko. Blacksmith-Quest-Eingang. |
 | 10 | **Rixdorfer Höhe (Trümmerberg, ca. 68 m aus 700.000 m³ Schutt)** | Mine-Motiv: Schuttadern statt Erzadern für die Blacksmith-Quest. |
 | 11 | **Tempelhofer-Feld-Unterbau** (fiktiv; reale Tunnel/Keller unter dem Flughafen nur als Anregung) | Große offene Höhle mit Windzug-Deko. Keine historischen NS-Bezüge verwenden. |
-| 12 | **Schmiede am Richardplatz** (seit 1624 erwähnt, Familienbetrieb, F12) | Raum des Alten Poliers (Blacksmith-NPC); Amboss, Esse, Hufeisen-Deko. |
+| 12 | **Schmiede am Richardplatz** (seit 1624 erwähnt, Familienbetrieb, F12) | Ursprünglich Raum des Alten Poliers; seit Runde 3 Technikerwerkstatt des Netztechnikers (Blacksmith-NPC), Esse und Amboss bleiben als Grafik. |
 | 13 | **Spätimann Ebene 11** | Späti in einem ausgedienten Bauwagen neben dem Tunnelportal. |
 
 ### 1.4 Ebene 16-20: Das Renditequartier
@@ -176,7 +176,7 @@ so im Spieltext; die Konzeptspalte beschreibt die Upstream-Mechanik.
 | Sheep (NPC/Zauber) | **Schaf** | Harmlos, blockiert Wege für kurze Zeit; magisch, verschwindet von selbst. |
 | Ghost (NPC) | **Dagebliebener Schwabe** (ersetzt den Traurigen Altmieter, 2026-09-29) | Ein Schwabe, der an Weihnachten ausnahmsweise nicht zur Familie gefahren ist. Alle Berliner Freunde sind bei ihren Eltern, niemand grüßt zurück, und er ist so allein, dass er schon halb durchsichtig ist (daher bleibt das Geist-Sprite halbtransparent). Er ist nicht tot. Monster blockieren Kellerabteil, Christbaumständer oder Mülltonnen; er bittet dich um Hilfe und lässt dich zwischen Waffe und Rüstung wählen. Derselbe Mann ist der Begleiter aus dem Nadelnden Christbaum. Stimme: `NEUKOELLN-WRITERSROOM.md` §3. |
 | Rat King (NPC) | Der Pfandkönig | Schläft auf einem Thron aus Leergut, hält Hof über die Pfandratten und ist beleidigt, wenn man ihn weckt. |
-| *Eigen:* Gas Alchemist | **Herr Fuß** | Frei erfundener, rollender Gasalchemist mit undichter Apparatur. Zischendes Ventil kündigt die Wolke eine Runde vorher an. Seine Gefährlichkeit kommt allein von der Apparatur, nie vom Rollstuhl. |
+| *Eigen:* Gas Alchemist | **Herr Fuß** | Seit Runde 3: frei erfundener, eigenwilliger Nachbar mit Käsefüßen, ausgelatschten Socken und Latschen. Kein Rollstuhl, kein Apparat, kein Gas als Motiv. Er schlüpft einen Zug vorher aus den Latschen, dann steht die Stinkwolke (mechanisch die bisherige Giftwolke) um ihn. Karikiert wird nur der Mief. |
 | *Eigen:* E-Scooter | **Leihscooter** | Klingelt eine Runde lang, dann Sturmfahrt in gerader Linie; knallt gegen Wände. Hat noch nie einen Parkplatz gefunden. |
 | *Eigen:* Pfandgolem | **Pfandgolem** | Langsamer Flaschenberg, der hart zuschlägt; zerbricht in ein Scherbenfeld, das Laufwege verändert. Nimmt es der Welt übel, nie zurückgebracht worden zu sein. |
 
@@ -194,7 +194,7 @@ so im Spieltext; die Konzeptspalte beschreibt die Upstream-Mechanik.
 | Rot Lasher | **Faulbeerranke** | Unbewegliche Ranke der Büropflanze Faulbeere, die zuschlägt, wenn man danebensteht. |
 | Rot Heart | **Faulbeerherz** | Herz der Faulbeere, gibt Giftgas ab; bewegt sich nicht, muss zerstört werden (Antragsteller-Quest). |
 | Wandmaker (NPC) | **Ewiger Antragsteller** | Rüstiger alter Herr mit vergilbter Wartenummer, laut Anzeige seit Jahrzehnten als Nächstes dran; gibt dir einen Zauberstab, wenn du vorher sein Anliegen erledigst. |
-| Tengu | **Schalterspringer** | Boss: Sachbearbeiter, der zwischen allen Schaltern teleportiert und an keinem zuständig ist; wirft Wurfgeschosse, Phase 2 mit Fallen und Bomben der Arena. |
+| Tengu | **Kurzparker** (bis Runde 2: Schalterspringer) | Boss: SUV ohne Marke, der hinter der Außenstelle das Tempelhofer Feld als Parkplatz entdeckt hat und „nur kurz“ steht. Umparken = Teleport, Parkknöllchen aus dem Seitenfenster = Wurfgeschoss, Haufen mit Scheibenwaschdüse = Phase-1-Fallen; Phase 2: Abgasbombe, Glut aus der Grillzone, Alarmanlage. Drop: Duftbäumchen des Kurzparkers. |
 | Wraith | **Vormieterspuk** | Rachsüchtiger Geist eines Vormieters, dessen Sperrmüll angerührt wurde; schwer zu treffen, aber schwach. |
 | Tormented Spirit | **gequälter Vormieter** | Verfluchter Geist; mit Fluch-Entfernen befreit, belohnt er dich. |
 | Statue | **belebte Kunst-am-Bau-Statue** | Belebte Statue mit Waffe, die du nach dem Kampf behältst. |
@@ -224,7 +224,7 @@ so im Spieltext; die Konzeptspalte beschreibt die Upstream-Mechanik.
 | Fungal Core / Sentry / Spinner | **Hausschwamm-Kern / Hausschwamm-Wache / Hausschwamm-Spinne** | Pilz-Minen-Variante: Hausschwamm hat im Stollen ein eigenes Ökosystem gebaut, laut Gutachten „optisch unbedenklich“. Kern stationär, Wache schießt Sporen. |
 | Pylon | Baustromverteiler | Energiesäulen der Bossarena; wer sie aktiv lässt, bekommt Stromschläge ab. |
 | DM-300 | **DM-300 Bohrlinde** | Boss: Tunnelbohrmaschine mit Namensschild. Gräbt, stampft, stößt Gas aus; wird von Baustromverteilern gespeist. „Fertigstellung vsl. im Herbst.“ Welcher Herbst, steht nicht da. |
-| Blacksmith (NPC) | **Alter Polier** | Letzter echter Handwerker im Untergrund, Haut wie Sichtbeton; verbessert und schmiedet Items gegen Material aus seiner Mine. |
+| Blacksmith (NPC) | **Netztechniker** (bis Runde 2: Alter Polier) | Der Techniker vom Netzbetreiber, auf den man seit zwei Jahren wartet („Termin zwischen 8 und 18 Uhr“); kein Markenname, keine Markenfarbe. Du holst ihm 40 Glasfaserstücke (vorher Dunkelgold-Erz) aus dem Kabelschacht, dann verbessert und schmiedet er Items. Mechanik unverändert. |
 | Crystal Mimic | **Kristall-Verschenkkiste** | Glasvitrine, die mit einem Item flieht; beim Einholen gibt es Beute. |
 
 ### 2.4 Ebene 16-20: Das Renditequartier
@@ -312,7 +312,7 @@ z. B. Tränke nach Späti-Getränkefarben.
 | **Zauberstäbe** | Laserpointer, Selfie-Sticks, Baustellen-Leuchtstäbe, Dirigierstab | Magisches Geschoss → Präsentations-Laserpointer; Feuerstoß → Grillanzünder-Stab; Frost → Kühlakku-Stab; Blitz → Baustrom-Kabel; Zersetzung → Schimmelsporenstab; Korruption → Provisionsstab; Druckwelle → Laubbläser; Lebende Erde → Hochbeet-Stab; Nachwachsen → Guerilla-Gärtner-Stab; Transfusion → Blutspende-Werbestab; Prismatisches Licht → Diskokugel-Stab; Zerfall (Disintegration) → Abrissbirnen-Stab; Schutzwache → Bauzaun-Stab. Expat-Flavor: Aktivierung mit Business-Englisch („Let's circle back!"), deutsche Effektzeile darunter. |
 | **Artefakte** | Kiez-Reliquien mit Ladung | Umhang der Schatten → Kapuzenpulli des Touristen; Zeitmesser-Sanduhr → BVG-Fahrplan (unzuverlässig); Horn des Überflusses → Späti-Tüte; Kelch des Blutes → Blutspende-Pokal; Ätherische Ketten → Fahrradkette; Getrocknete Rose → Nadelnder Christbaum (Rosenblätter → Vertrocknete Tannenzweige; ersetzt die Balkonrose); Sandalen der Natur → Birkenstock des Gärtners; Lloyds Leuchtfeuer → Schlüsselfinder; Alchemistenkasten → Mate-Brauset; Dornenumhang → Kaktus-Rucksack; Talisman der Voraussicht → Wetter-App; Instabiles Zauberbuch → Sprachkurs A1; Heiliges Buch → Grundgesetz-Taschenbuch; Meisterdieb-Armband → Festivalbändchen. |
 | **Kleinode (Trinkets)** | Fundstücke vom Sperrmüll | Rattenschädel → Pfandrattenschädel; Dreizehnblättriges Kleeblatt → Kleeblatt vom Tempelhofer Feld; Mimikzahn → Truhenzahn; Salzwürfel → Streusalz-Brocken; Fallenmechanik → Stolperkante; Rest nach Bedarf. |
-| **Waffen** | Improvisiertes aus Hof, Baustelle und Späti | Nahkampf: Kuli (Dolch), Zollstock (Schwert), Baustellenbake (Speer), Spitzhacke der Baustelle, Wischmopp (Quarterstaff), Schraubenschlüssel (Streitkolben), Kehrschaufel (Axt). Fernkampf: Kronkorken (Wurfsterne), Pflastersteine (Wurfsteine), Bumerang-Frisbee (Zugezogene), Dartpfeile vom Kneipenautomat. Keine realen Waffen verherrlichen. |
+| **Waffen** | Improvisiertes aus Hof, Baustelle und Späti | Nahkampf: Kuli (Dolch), Zollstock (Schwert), Baustellenbake (Speer), Spitzhacke der Baustelle, Wischmopp (Quarterstaff), Schraubenschlüssel (Streitkolben), Kehrschaufel (Axt). Fernkampf: Kronkorken (Wurfsterne), Hoftauben (Wurfsteine), Bumerang-Frisbee (Zugezogene), Dartpfeile vom Kneipenautomat. Keine realen Waffen verherrlichen. |
 | **Rüstungen** | Kleidung als Statussymbol | Stoff → Kapuzenpulli; Leder → Kiezjacke; Kette → Fahrradkurier-Weste; Schuppe → Warnweste mit Reflektoren; Platte → Bauhelm-Komplettausrüstung. Klassenrüstungen: Expat = Merch-Hoodie der Startup-Konferenz; Alteingesessene = Trainingsanzug seit 1989; Zugezogene = Funktionsjacke; Tourist = Regenponcho mit Stadtplan. |
 | **Nahrung** | Späti, Imbiss, Wochenmarkt | Ration → Dönerteller; kleine Ration → Schrippe; Pastete → Currywurst; Mystery Meat → Undefinierbarer Grillrest; Gegrilltes → Grillgut vom Feld; Beeren → Obst vom Maybachufer-Markt; Fadfrucht (Blandfruit) → Spätiobst mit Samen-Aroma; Gefrierfleisch → Tiefkühlpizza. Kein Essen als Herkunfts-Witz. |
 | **Samen/Pflanzen** | Samenbomben aus dem Guerilla-Gardening, Doppelsinn-Gewächse | Umgesetzt nach Konzept A, siehe 3.1. |
@@ -404,7 +404,59 @@ Sätze wie „Ein versteckter %s geht los!“ grammatisch passen. Auslöse-Mecha
 | Rockfall | Grau/Raute | bröckelgrauer Haufen |
 | Gnoll Rockfall | wie Rockfall | staubgrauer Bautrupp-Haufen |
 | Worn Dart | Grau/Fadenkreuz | verwitterter Blasrohr-Haufen |
-| Tengu Dart | wie Poison Dart | (kein eigener Name, Beschreibung angepasst) |
+| Tengu Dart | wie Poison Dart | (kein eigener Name; Beschreibung: versteckte Scheibenwaschdüse des Kurzparkers) |
+
+
+### 3.3 Umbenennungen aus Runde 3 (2026-09-29, Texte umgesetzt, nicht spielgetestet)
+
+Entscheidungen des Projektinhabers nach dem ersten Spieltest. Nur Werte bestehender Keys wurden
+geändert; Mechanik, Keys und Platzhalter sind unverändert.
+
+| Upstream | Bisher | Neu | Hinweis |
+| --- | --- | --- | --- |
+| Waterskin | Wasserschlauch | **Sternchen-Pils** | Bierflasche, Parodiemarke; keine echte Marke, kein Rausch- oder Suchtwitz |
+| Dewdrop | Tautropfen | **Biertropfen** | Kronkorken-Tropfen, die man in die Flasche sammelt |
+| Dewcatcher | Taufänger | Tropfenfänger | Pflanze füllt sich mit Biertropfen |
+| Throwing Stone | Pflasterstein → Stadttaube | **Hoftaube** | Wird losgeschickt, pickt, wartet danach am Boden; Alteingesessene füttert sie seit 1978 im Hinterhof. Umbenannt, weil „Stadttaube“ jetzt der Oberbegriff der Runensteine ist (siehe 3.4) |
+| Talent Follow-up Strike | Nachsetzen | **Erst Zettel, dann Klingeln** | Zettel im Treppenhaus (Fernkampf), dann Gespräch an der Tür (Nahkampf) |
+| Trinket Catalyst | magischer Katalysator | **WG-Umzugskarton** | Niemand weiß, was drin ist |
+| Scroll of Remove Curse | Widerspruchsformular | **Entfluchungsantrag** | „der einzige Antrag der Stadt, der ohne Termin bearbeitet wird“ |
+| Food Ration | Späti-Proviant | **Schachtel Baklava** | Vom Konditor an der Sonnenallee; Späti-Snack (Small Ration) sind Salzstangen |
+| Tengu | Schalterspringer | **Kurzparker** | SUV, Tempelhofer Feld; Maske → Duftbäumchen des Kurzparkers |
+| Blacksmith | Alter Polier | **Netztechniker** | Dunkelgold-Erz → Glasfaserstück; Mine → Kabelschacht; Schmiede → Technikerwerkstatt |
+| Chasm | Abgrund | **A100-Baulücke** | Nie fertig gebaute Teilabschnitte der A100, regionale Feelings r1–r5 |
+| Gas Alchemist | Herr Fuß mit Apparat | **Herr Fuß mit Mief** | Käsefüße und Latschen statt Gasapparat |
+
+Sonnenallee-Kiezgefühl (respektvoll, Läden als lebendiger Teil des Kiezes): Barbershop,
+Shisha-Bar und Konditorei in `levels.level$feeling.grass_desc_r1`, `large_desc_r1` und
+`secrets_desc_r1`; Baklava als Standardessen. Keine Figuren, keine Herkunfts- oder
+Religionswitze.
+
+### 3.4 Runensteine werden Stadttauben (2026-09-29, Texte umgesetzt, nicht spielgetestet)
+
+Entscheidung des Projektinhabers. Jede Runenstein-Sorte ist eine eigene Stadttaube: Sie wird
+losgeschickt, landet, löst ihre Wirkung aus und fliegt davon (verbraucht). Keine Tierquälerei,
+nichts zerschellt. Mechanik, Zahlen, Keys und Platzhalter unverändert; Icons (Art-Agent)
+und Java sind in dieser Runde nicht angepasst. Oberbegriff „Stadttaube“/„Stadttauben“ (Katalog, Alchemie-Guide
+„Stadttauben anlocken“, Samentasche, Recycling, Alchemisieren, Versteinerter Samen, Runen-Echo
+des Klerikers). Die Wurfwaffe der Alteingesessenen heißt deshalb **Hoftaube**.
+
+| Upstream | Bisher | Neu | Wirkung (unverändert) |
+| --- | --- | --- | --- |
+| Runestone (Oberbegriff) | Runenstein | **Stadttaube** | – |
+| Stone of Aggression | Stänker-Stein | **Stänker-Taube** | Feinde greifen das markierte Ziel an |
+| Stone of Augmentation | Tuning-Stein | **Tuning-Taube** | Waffe/Rüstung umbauen |
+| Stone of Blast | Böller-Stein | **Böllertaube** | Explosion wie Lachgasflasche; Taube ist vorher weg |
+| Stone of Blink | Blinzelstein | **Blinzeltaube** | Teleport zum Landepunkt |
+| Stone of Clairvoyance | Hellseh-Stein | **Hellseh-Taube** | Großer Bereich aufgedeckt |
+| Stone of Deep Sleep | Mittagsschlaf-Stein | **Mittagsschlaf-Taube** | Magischer Tiefschlaf |
+| Stone of Detect Magic | Gutachter-Stein | **Gutachter-Taube** | Fluch/Magie erkennen |
+| Stone of Disarming | Entschärfungs-Stein | **Entschärfungs-Taube** | Bis zu 9 Haufen (Fallen) entschärfen |
+| Stone of Enchantment | Verzauberungs-Stein | **Verzauberungs-Taube** | Verzauberung/Glyphe |
+| Stone of Fear | Schreck-Stein | **Schreck-Taube** | Ziel flieht |
+| Stone of Flock | Schafherden-Stein | **Schäfertaube** | Ruft magische Schafe; Name nennt Schafe, weil die Mechanik Schafe erzeugt |
+| Stone of Intuition | Bauchgefühl-Stein | **Bauchgefühl-Taube** | Typ raten; hilft zweimal, dann fliegt sie davon |
+| Stone of Shock | Weidezaun-Stein | **Weidezaun-Taube** | Betäubung, Zauberstab-Ladung |
 
 ---
 

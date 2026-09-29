@@ -193,23 +193,71 @@ BUILD.wandmaker = () => {
 };
 
 
-// ================================================================ Alter Polier (blacksmith.png)
-// BlacksmithSprite: TextureFilm 13x16, 0 idle, 1-3 the hammer strike on the glowing piece.
-// Tall, gaunt, skin like Sichtbeton (the upstream grey stays), the helmet "grown onto the
-// head" becomes the white Polier helmet, the bare torso an orange high-visibility vest with a
-// silver reflective stripe, the olive trousers dark work trousers. Forge glow stays.
-const HIVIS = ramp([[60, '8a3a08'], [100, 'c85a10'], [140, 'f07a1a'], [170, 'ff9a36']]);
-const WORKPANTS = ramp([[40, '1e2028'], [80, '343846'], [120, '4c5264'], [170, '646c80']]);
+// ================================================================ Techniker vom Netzbetreiber (blacksmith.png)
+// BlacksmithSprite: TextureFilm 13x16, idle 0 x7, 1, 2,2,2, 3; the forge-spark emitter sits at
+// x+7, y+12 and bursts after frame 3. Redrawn from scratch: the technician you have waited two
+// years for. Tired eyes with bags, three-day stubble, grey-blue work jacket with a plain silver
+// reflective stripe (no brand colour, no lettering), knee pads, a yellow fibre coil over the
+// shoulder, a grey tool case at his feet. Frame 0: he holds up the tablet with the appointment
+// window (grey title bar, empty slots, one red cancelled slot). Frames 1-3: he bends over the
+// splicer on the case and feeds in the fibre; the splice arc glows exactly at the emitter
+// (7,12), so the upstream spark burst reads as the fusion splicer firing.
+const TECH_PAL = {
+  o: '1e1a24', H: '6a5040', h: '4a3629', S: 'e4b08a', s: 'b98462', E: '2a2230', U: '9c7468',
+  J: '4a5664', j: '323c48', k: '6a7888', r: 'c4ccd4', P: '3a3c44', p: '2a2c32', K: '17171d', F: '2c2622',
+  T: '303038', t: 'e6eef2', x: '8a96a6', X: 'd84a3a', C: '9aa0a8', c: '6a7078', q: '44484e',
+  Y: 'e8c43a', y: 'b8962a', G: 'e8fcff', g: '5ad0f0',
+};
+const TECH_CASE = [ // rows 12-15, the tool case at his feet (x 8-12)
+  'ooooo',
+  'oCCCo',
+  'occco',
+  'ooooo',
+];
 BUILD.blacksmith = () => {
   const S = sheet('blacksmith', 13, 16);
-  const HELMET = {'86b425': 'e8e8e0', 'b9d661': 'ffffff', '8c9b52': 'bdbdb4', '4d5e1a': '84847c'};
-  const SKIN = new Set(['9794a1', 'b0adb7', '6d697b', '797583', '595666']);
-  for (const f of range(0, 3)) S.each([f], (ff, x, y, c) => {
-    if (y <= 3 && HELMET[c]) S.set(f, x, y, HELMET[c]);
-    else if (y === 6 && c === '5e5d36') S.set(f, x, y, '55524c');            // stubble
-    else if (y >= 7 && y <= 10 && x >= 3 && SKIN.has(c)) S.set(f, x, y, y === 9 ? (c === '595666' ? 'b4bcc4' : 'f6f8fa') : HIVIS(c));
-    else if (y >= 11 && y <= 13 && ['8c9b52', 'b9d661', '4d5e1a', '5e5d36'].includes(c)) S.set(f, x, y, WORKPANTS(c));
-  });
+  const legs = [ // rows 12-15
+    '..oPPPPPooooo',
+    '..oPPoPPoCCCo',
+    '..oPPopPocqco',
+    '..oFFoFFooooo',
+  ];
+  S.draw(0, [
+    '.............',
+    '...oooo......',
+    '..oHHHHo.....',
+    '.oHHhHHHo....',
+    '.oHhSSSSo....',
+    '.ohSSSESo....',
+    '.ohSSsUSSo...',
+    '..oSsssSooooo',
+    '.oYjJJJJSxxxo',
+    'oYojJJJkSttto',
+    'oYojJJJJSotXo',
+    '.oYrrrrrJoooo',
+    ...legs,
+  ], TECH_PAL);
+  const bend = (eye, arc) => [
+    '.............',
+    '.............',
+    '....oooo.....',
+    '...oHHHHo....',
+    '..oHHhHHHo...',
+    '..oHhSSSSo...',
+    '..ohSSS' + eye + 'So...',
+    '..ohSSsUSSo..',
+    '.oYoSsssSo...',
+    'oYojJJJJJo...',
+    'oYojJJJkJJooo',
+    '.oYrrrJSSoqgo',
+    '..oPPPP' + arc + 'ooooo',
+    '..oPPoPPoCCCo',
+    '..oKPoKPocqco',
+    '..oFFoFFooooo',
+  ];
+  S.draw(1, bend('s', 'Y'), TECH_PAL);   // reaching down, fibre end in hand
+  S.draw(2, bend('s', 'G'), TECH_PAL);   // splice arc at the emitter point (7,12)
+  S.draw(3, bend('E', 'g'), TECH_PAL);   // looks up, tired: arc fades
   return S;
 };
 

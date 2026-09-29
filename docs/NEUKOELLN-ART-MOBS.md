@@ -54,3 +54,27 @@ Offen und ehrlich vermerkt:
   gewünscht, passt Gameplay sie an (etwa Rost statt Gelb für den Kanalpanzer).
 - Nicht angefasst wurden Rattenkönig (Pfandkönig), Kanalpiranha und Gnoll-Varianten in anderen
   Atlanten.
+
+## Herr Fuß (gas-alchemist.png, Runde 3)
+
+Neu gezeichnet mit `node tools/generate-gas-alchemist.cjs` (`--preview DIR` schreibt
+`gas-alchemist-x8.png`), deterministisch, harte Alpha, Sheet 256x64 mit elf 12x15-Frames im
+Raster von `GnollSprite` (von `GasAlchemistSprite` geerbt), Blick nach rechts, Füße auf Zeile 14.
+
+Kein Rollstuhl, kein Gasapparat, keine Flaschen, Schläuche oder Bollerwagen (Vorgabe des
+Projektinhabers). Herr Fuß ist der eigenwillige Nachbar aus dem Erdgeschoss, der einfach
+riecht: Glatze mit grauem Haarkranz, buschige Braue, grauer Schnurrbart, weißes Feinripp-
+Unterhemd mit einem Senffleck, graue Jogginghose, weiße Tennissocken mit rotem Ring in offenen
+braunen Sandalen. Gelbgrüne Geruchslinien steigen von ihm auf, vor allem von den Füßen.
+Karikiert wird nur der Mief (Wortspiel mit dem Namen), nicht Armut: saubere Hauskleidung,
+zufriedene Miene.
+
+| Frames | Animation | Umsetzung |
+| --- | --- | --- |
+| 0, 1 | idle | Stehen; in Frame 1 schließt er genießerisch das Auge, die Geruchslinien wandern |
+| 2, 3 | attack 2,3,0 | Hebt den vorderen Fuß (Socke in Sandale), setzt ihn ab, Stinkwolke nach vorn |
+| 4-7 | run | Gehzyklus mit Geruchsspur hinter sich |
+| 8-10 | die | Die Knie geben nach, er setzt sich auf den Boden, der Geruch bleibt |
+
+Offen: Beschreibungen in `docs/NEUKOELLN-WELT.md` und `docs/NEUKOELLN-WRITERSROOM.md` sprechen noch
+von Rollstuhl und Apparatur (Lore-Agent). Im Spiel nicht getestet, nur Vorschau-PNGs.

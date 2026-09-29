@@ -352,18 +352,8 @@ for (const [t, style, stone] of DOORS) mapTile(t, doorMapper(t, style, stone));
 
 // ---------------------------------------------------------------- 4. wall decorations
 // WALL_DECO keeps SewerLevel's dripping Sink emitter (tile centre, 3px down), so both
-// designs have a wet source there: a barred Kellerfenster with a dripping sill, and a
-// zinc Fallrohr whose elbow ends at the drip point.
-const WINDOW = [
-  'SSSSSSSSSS',
-  'fbGbGbGbgf',
-  'fbGbGbGbGf',
-  'fbGbGbGbGf',
-  'fbGbGbGbGf',
-  'ssssssssss',
-  '.dddddddd.',
-];
-const WKEYS = {S: 'sill', s: 'sill', f: 'sillDark', G: 'glass', g: 'glassShine', b: 'bar', d: 'sillDark'};
+// designs have a wet source there: the Barbershop window sill (see 4b) and a zinc
+// Fallrohr whose elbow ends at the drip point.
 const PIPE = [
   '.zZy.',
   '.zZy.',
@@ -398,6 +388,11 @@ const BUBBLE = [
 // Satire on the wall ends (+1/+2/+3); fictional chancellor "März", parody clubs, no real
 // names, logos or faces. See docs "Wandplakate und Graffiti".
 const KIT = require('./lib/tileset-kit.cjs');
+// a kit wall motif with the end-of-wall shading of its cell (against +0 of the same row)
+function wallMotifShaded(t, name) {
+  const sh = [t - (t % 4), t];
+  KIT.wallMotif((tt, x, y, c) => { const f = endShade(sh, x, y); paintSolid(tt, x, y, c.map(v => Math.max(0, Math.min(255, Math.round(v * f))))); }, t, name);
+}
 const P_KEYS = {p: rgb('6f7f95'), x: rgb('e8ecf0'), b: rgb('9fb8d8'), m: rgb('141214'), g: rgb('4a9a3c'), y: rgb('e8cf3c'), t: rgb('5b6678')};
 function wordStamp(t, ox, oy, w, ink, bg) { KIT.word(w).forEach((row, y) => [...row].forEach((ch, x) => { if (ch === 'x') paintSolid(t, ox + x, oy + y, ink); else if (bg) paintSolid(t, ox + x, oy + y, bg); })); }
 // +1: torn election poster "MÄRZ", moustache painted over, a spring-flower sticker
@@ -410,12 +405,9 @@ function wordStamp(t, ox, oy, w, ink, bg) { KIT.word(w).forEach((row, y) => [...
   stamp(t, 4, 10, ['mm.mm', '.m.m.'], {m: P_KEYS.m});          // moustache graffiti
   stamp(t, 12, 10, ['ggg', 'gyg', 'ggg'], {g: P_KEYS.g, y: P_KEYS.y}); // "Frühling kommt trotzdem" sticker (unreadable at this size)
 }
-// +2: crossed-out red M on the render, "RAUS" sprayed on the clinker
-{ const t = T.RAISED_WALL_ALT + 2, red = rgb('c83a3a');
-  stamp(t, 1, 5, ['r...r', 'rr.rr', 'r.r.r', 'r...r', 'r...r'], {r: red});
-  stamp(t, 0, 7, ['kk.....', '..kkk..', '.....kk'], {k: rgb('1e1c1e')});
-  KIT.word('RAUS').slice(1).forEach((row, y) => [...row].forEach((ch, x) => { if (ch === 'x') paintSolid(t, x, 11 + y, rgb('1e1c1e')); }));
-}
+// +2 (round 4): pink "MIE-/TE?!" graffiti over render and clinker (levels.walldeco.graffiti_miete).
+// It replaces the crossed-out "M" with "RAUS": less März, and no "raus" slogan on a wall.
+wallMotifShaded(T.RAISED_WALL_ALT + 2, 'graffiti_miete');
 // +3: club flyer wall — a pink "BÄRG" flyer over small colourful ones
 { const t = T.RAISED_WALL_ALT + 3;
   for (let y = 5; y <= 9; y++) for (let x = 0; x < 15; x++) paintSolid(t, x, y, rgb('e0609a'));
@@ -426,13 +418,102 @@ function wordStamp(t, ox, oy, w, ink, bg) { KIT.word(w).forEach((row, y) => [...
 }
 stamp(T.FLAT_WALL_ALT, 2, 9, BUBBLE, {k: 'tagBlack', W: 'tagWhite'});
 
+// ---------------------------------------------------------------- 4b. Sonnenallee shopfronts
+// The Kiez around the Hinterhof: Barbershop, Shisha-Bar, Konditorei. Shops only, no
+// people, no readable names (the neon is an abstract wave). Placement, without new cells:
+//   RAISED_WALL_DECO (+0..+3, wall deco over water, 50%): Barbershop window with pole,
+//     its sill still catches SewerLevel's Sink drip (tile centre, 3px down);
+//   RAISED_WALL +1 (wall end with a door/opening to the right): Shisha-Bar;
+//   RAISED_WALL +2 (opening to the left): Konditorei with baklava trays;
+//   RAISED_WALL +3 (single pillar): a lone barber pole.
+// The ALT walls (+1 MÄRZ, +2 MIETE?!, +3 BÄRG) and the Fallrohr (DECO_ALT) stay as they are.
+const SHOP = {
+  f: rgb('2a2624'), M: rgb('a9c4cc'), L: rgb('e6f2f4'), g: rgb('3a4448'), R: rgb('c0392f'), r: rgb('7e2320'),
+  c: rgb('b4bec2'), K: rgb('2c2d30'), s: C.sill, d: C.sillDark,
+  // Shisha-Bar
+  b: rgb('1c1820'), P: rgb('ff5fa8'), N: rgb('5ff0e8'), o: rgb('ffb347'), m: rgb('9aa0a6'), a: rgb('6a4a3a'),
+  G: rgb('2e2430'), T: rgb('3fa0a0'), t: rgb('8fe0d8'), V: rgb('8a5ac8'), v: rgb('c4a0f0'), w: rgb('ecebe4'), W: rgb('b3b1aa'),
+  // Konditorei
+  A: rgb('3f7a4a'), H: rgb('2c5634'), e: rgb('c9bc98'), E: rgb('ece0bc'), F: rgb('4a3222'), I: rgb('f4e6c0'),
+  y: rgb('dca544'), Y: rgb('a36a26'), p: rgb('7cb342'), S: rgb('c9ced2'),
+};
+// end-of-wall shading of the +1/+2/+3 variants, as a brightness ratio against variant +0
+// (sh = [base, variant] of the plain wall row, or null for no shading)
+function endShade(sh, x, y) {
+  if (!sh) return 1;
+  const L0 = lum(...srcRGB(sh[0], x, y)), L1 = lum(...srcRGB(sh[1], x, y));
+  return Math.abs(L1 - L0) < 3 ? 1 : Math.max(0.35, Math.min(1.6, (L1 + 8) / (L0 + 8)));
+}
+function shopStamp(t, sh, ox, oy, rows) {
+  rows.forEach((row, y) => [...row].forEach((ch, x) => {
+    if (ch === '.' || ch === ' ') return;
+    const c = SHOP[ch]; if (!c) throw new Error('shop: no colour for ' + ch);
+    const f = endShade(sh, ox + x, oy + y);
+    paintSolid(t, ox + x, oy + y, c.map(v => Math.max(0, Math.min(255, Math.round(v * f)))));
+  }));
+}
+// rot-weiss-blau barber pole: diagonal stripes, chrome caps, darker right side
+function barberPole(t, sh, px, top = 4, bottom = 13) {
+  const stripes = [[rgb('d23a34'), rgb('9a2622')], [rgb('f2f0ea'), rgb('b8b6b0')], [rgb('3a64c0'), rgb('27448a')]];
+  for (let y = top; y <= bottom; y++) for (let x = px; x < px + 3; x++) {
+    let c;
+    if (y === top || y === bottom) c = x === px + 2 ? SHOP.m : SHOP.c;
+    else c = stripes[(x + y) % 3][x === px + 2 ? 1 : 0];
+    const f = endShade(sh, x, y);
+    paintSolid(t, x, y, c.map(v => Math.max(0, Math.min(255, Math.round(v * f)))));
+  }
+}
+const BARBER_WINDOW = [ // mirror with a highlight, red barber chair (side view) on a chrome foot
+  'ffffffffff',
+  'fMMMMMMMMf',
+  'fMLMMMMRMf',
+  'fMMLMMMRMf',
+  'fMMMRRRRMf',
+  'fggrRgcggf',
+  'fgggKccKgf',
+  'ssssssssss',
+  '.dddddddd.',
+];
+const SHISHA = [ // x0..15, y5..15: neon wave sign, two water pipes in the window, a plastic chair
+  'bbbbbbbbbbbbbbb.',
+  'bbNbbbPPbbPPbbP.',
+  'bNNNbPbbPPbbPPb.',
+  'bbbbbbbbbbbbbbb.',
+  'fGoGGGGGGoGGGwf.',
+  'fGmGaGGGGmGaGwf.',
+  'fTTTGGGGVVVGGwf.',
+  'fTtTGGGGVvVwwwf.',
+  'sssssssssssW.Ws.',
+  '...........W.W..',
+  '...........W.W..',
+];
+const KONDITOREI = [ // x0..15, y5..13: striped awning, baklava trays on silver platters
+  '.AAEEAAEEAAEEAAE',
+  '.AAEEAAEEAAEEAAE',
+  '.H.e.H.e.H.e.H.e',
+  '.FIIIIIIIIIIIIIF',
+  '.FyYyYyYIYyYyYyF',
+  '.FYpYyYpIyYpYyYF',
+  '.FSSSSSSISSSSSSF',
+  '.FIIIyYyYyYyIIIF',
+  '.sssssssssssssss',
+];
+// RAISED_WALL_NOTICE (round 4, new cells 104-107 cloned from the plain faces before the
+// shops go on): a tear-off flat-hunt note, "Hund heisst Keks" (levels.walldeco.gesuch_1)
+KIT.cloneNoticeCells(src, out, idx);
+for (let v = 0; v < 4; v++) wallMotifShaded(KIT.T.RAISED_WALL_NOTICE + v, 'gesuch_1');
 for (let v = 0; v < 4; v++) {
   copyTile(T.RAISED_WALL + v, T.RAISED_WALL_DECO + v);
-  stamp(T.RAISED_WALL_DECO + v, 3, 5, WINDOW, WKEYS);
+  const sh = [T.RAISED_WALL, T.RAISED_WALL + v];
+  barberPole(T.RAISED_WALL_DECO + v, sh, 1);
+  shopStamp(T.RAISED_WALL_DECO + v, sh, 5, 4, BARBER_WINDOW);
   copyTile(T.RAISED_WALL + v, T.RAISED_WALL_DECO_ALT + v);
   stamp(T.RAISED_WALL_DECO_ALT + v, 6, 3, PIPE, PKEYS);
 }
-copyTile(T.FLAT_WALL, T.FLAT_WALL_DECO); stamp(T.FLAT_WALL_DECO, 3, 4, WINDOW, WKEYS);
+shopStamp(T.RAISED_WALL + 1, [T.RAISED_WALL, T.RAISED_WALL + 1], 0, 5, SHISHA);
+shopStamp(T.RAISED_WALL + 2, [T.RAISED_WALL, T.RAISED_WALL + 2], 0, 5, KONDITOREI);
+barberPole(T.RAISED_WALL + 3, [T.RAISED_WALL, T.RAISED_WALL + 3], 6);
+copyTile(T.FLAT_WALL, T.FLAT_WALL_DECO); barberPole(T.FLAT_WALL_DECO, null, 1, 3, 12); shopStamp(T.FLAT_WALL_DECO, null, 5, 3, BARBER_WINDOW);
 copyTile(T.FLAT_WALL, T.FLAT_WALL_DECO_ALT); stamp(T.FLAT_WALL_DECO_ALT, 6, 3, PIPE, PKEYS);
 
 // ---------------------------------------------------------------- 5. props
@@ -531,6 +612,9 @@ mapTile(T.EXIT, (k, x, y) => k.kind !== 'grey' ? null : (k.L > 0x78 ? RAMP.face(
 
 // small litter on the moss deco alt: a cigarette butt
 stamp(T.FLOOR_DECO_ALT, 10, 11, ['bbt'], {b: 'butt', t: 'buttTip'});
+
+// Abgruende: nie fertig gebaute A100-Abschnitte (shared with the other regions)
+KIT.a100Chasm(put);
 
 // ---------------------------------------------------------------- verify + write
 for (let i = 3; i < out.px.length; i += 4) if (out.px[i] !== src.px[i]) throw new Error('alpha changed at ' + (i >> 2));

@@ -25,6 +25,7 @@ import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs.Blacksmith;
 import com.shatteredpixel.shatteredpixeldungeon.levels.MiningLevel;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Terrain;
+import com.shatteredpixel.shatteredpixeldungeon.levels.WallDeco;
 import com.watabou.utils.Random;
 import com.watabou.utils.SparseArray;
 
@@ -235,6 +236,8 @@ public class DungeonTileSheet {
 
 	public static final int RAISED_WALL_ALT             = RAISED_WALLS+16;
 	public static final int RAISED_WALL_DECO_ALT        = RAISED_WALLS+20;
+	//Neukölln: third plain-wall variant (notices and graffiti), only in the five region tilesets, see WallDeco
+	public static final int RAISED_WALL_NOTICE          = RAISED_WALLS+24;
 	public static final int RAISED_WALL_BOOKSHELF_ALT   = RAISED_WALLS+28;
 
 	//we use an array instead of a collection because the small element count
@@ -524,6 +527,12 @@ public class DungeonTileSheet {
 	}
 
 	public static void updateAltVariants(){
+		//Neukölln: a small share of plain wall faces shows a notice or graffiti (cells 104-107 of the region tilesets)
+		if (Dungeon.level != null && WallDeco.enabled(Dungeon.level)){
+			tileAltVisuals.put(RAISED_WALL, new tileAlt(new float[]{50f, WallDeco.NOTICE_CHANCE}, RAISED_WALL_ALT, RAISED_WALL_NOTICE));
+		} else {
+			tileAltVisuals.put(RAISED_WALL, new tileAlt(new float[]{50f}, RAISED_WALL_ALT));
+		}
 		if (Dungeon.level instanceof MiningLevel){
 			if (Blacksmith.Quest.Type() == Blacksmith.Quest.CRYSTAL){
 				tileAltVisuals.put(FLAT_MINE_CRYSTAL,       new tileAlt(new float[]{66.7f, 33.3f}, FLAT_MINE_CRYSTAL_ALT, FLAT_MINE_CRYSTAL_ALT_2));

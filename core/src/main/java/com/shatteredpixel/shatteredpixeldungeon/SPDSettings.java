@@ -235,6 +235,18 @@ public class SPDSettings extends GameSettings {
 	public static boolean intro() {
 		return getBoolean( KEY_INTRO, true );
 	}
+
+	//Neukoelln: records that the picture intro (M41, Keller, Fahrrad) was seen at least once.
+	//Informational only: the intro now runs before every new game (IntroScene.showBeforeNewGame).
+	public static final String KEY_INTRO_SEQUENCE = "nk_intro_sequence_seen";
+
+	public static void introSequenceSeen( boolean value ) {
+		put( KEY_INTRO_SEQUENCE, value );
+	}
+
+	public static boolean introSequenceSeen() {
+		return getBoolean( KEY_INTRO_SEQUENCE, false );
+	}
 	
 	public static void lastClass( int value ) {
 		put( KEY_LAST_CLASS, value );

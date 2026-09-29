@@ -69,18 +69,21 @@ public class VaultTokenDoor extends NPC {
 			String descText = description();
 			if (tokens == null){
 				descText += "\n\n" + Messages.get(this, "no_tokens");
-			} else if (tokens.quantity() < 10){
+			} else if (tokens.quantity() < DwarfToken.VAULT_REQUIRED){
 				descText += "\n\n" + Messages.get(this, "too_few_tokens");
 			} else {
 				descText += "\n\n" + Messages.get(this, "enough_tokens");
 			}
+			//Neukoelln: always show wardrobe token progress (x/7) at the cloakroom counter
+			descText += "\n\n" + Messages.get(DwarfToken.class, "progress",
+					tokens == null ? 0 : tokens.quantity(), DwarfToken.VAULT_REQUIRED);
 
 			String finalDescText = descText;
 
 			ShatteredPixelDungeon.runOnRenderThread(new Callback() {
 				@Override
 				public void call() {
-					if (tokens != null && tokens.quantity() >= 10) {
+					if (tokens != null && tokens.quantity() >= DwarfToken.VAULT_REQUIRED) {
 						GameScene.show(new WndOptions(sprite(),
 								Messages.titleCase(name()),
 								finalDescText,

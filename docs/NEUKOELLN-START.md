@@ -2,7 +2,7 @@
 
 ## Einmalig: Java
 
-JDK 11 oder neuer, getestet mit 21. Auf dem Mac am einfachsten den Installer von
+JDK 17 oder neuer (ein JDK mit `javac`, eine reine Java-Laufzeit reicht nicht), getestet mit 21. Auf dem Mac am einfachsten den Installer von
 adoptium.net (Temurin 21, macOS, aarch64 für Apple-Chips, x64 für Intel, Pakettyp JDK,
 `.pkg`). Danach in einem neuen Terminal prüfen: `java -version`.
 

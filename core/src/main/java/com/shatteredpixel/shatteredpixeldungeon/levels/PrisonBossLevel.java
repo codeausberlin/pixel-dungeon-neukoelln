@@ -106,7 +106,7 @@ public class PrisonBossLevel extends Level {
 	
 	@Override
 	public String tilesTex() {
-		return Assets.Environment.TILES_PRISON;
+		return Assets.Environment.TILES_TEMPELHOF;
 	}
 	
 	@Override
