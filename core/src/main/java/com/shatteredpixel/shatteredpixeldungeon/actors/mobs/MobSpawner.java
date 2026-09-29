@@ -78,107 +78,113 @@ public class MobSpawner extends Actor {
 						Rat.class, Rat.class, Rat.class,
 						Snake.class));
 			case 2:
-				//2x rat, 1x snake, 1x gnoll, 1x gas alchemist
+				//2x rat, 1x snake, 1x gnoll, 1x gas alchemist, 1x e-scooter
 				return new ArrayList<>(Arrays.asList(Rat.class, Rat.class,
 						Snake.class,
-						Gnoll.class, GasAlchemist.class));
+						Gnoll.class, GasAlchemist.class,
+						EScooter.class));
 			case 3:
-				//1x rat, 1x snake, 2x gnoll, 1x gas alchemist, 1x swarm, 1x crab
+				//1x rat, 1x snake, 1x gnoll, 1x gas alchemist, 1x e-scooter, 1x swarm, 1x crab, 1x deposit golem
 				return new ArrayList<>(Arrays.asList(Rat.class,
 						Snake.class,
-						Gnoll.class, Gnoll.class, GasAlchemist.class,
+						Gnoll.class, GasAlchemist.class,
+						EScooter.class,
 						Swarm.class,
-						Crab.class));
+						Crab.class,
+						Pfandgolem.class));
 			case 4: case 5:
-				//1x gas alchemist, 1x swarm, 2x crab, 2x slime
+				//1x gas alchemist, 1x e-scooter, 1x swarm, 1x crab, 1x deposit golem, 2x slime
 				return new ArrayList<>(Arrays.asList(GasAlchemist.class,
+						EScooter.class,
 						Swarm.class,
-						Crab.class, Crab.class,
+						Crab.class,
+						Pfandgolem.class,
 						Slime.class, Slime.class));
 
 			// Prison
 			case 6:
-				//3x skeleton, 1x thief, 1x swarm
+				//3x skeleton, 1x thief, 1x appointment reseller, 1x swarm
 				return new ArrayList<>(Arrays.asList(Skeleton.class, Skeleton.class, Skeleton.class,
-						Thief.class,
+						Thief.class, Terminhaendler.class,
 						Swarm.class));
 			case 7:
-				//3x skeleton, 1x thief, 1x DM-100, 1x guard
-				return new ArrayList<>(Arrays.asList(Skeleton.class, Skeleton.class, Skeleton.class,
-						Thief.class,
+				//2x skeleton, 1x thief, 1x appointment reseller, 1x DM-100, 1x guard
+				return new ArrayList<>(Arrays.asList(Skeleton.class, Skeleton.class,
+						Thief.class, Terminhaendler.class,
 						DM100.class,
 						Guard.class));
 			case 8:
-				//2x skeleton, 1x thief, 2x DM-100, 2x guard, 1x necromancer
+				//2x skeleton, 1x thief, 1x appointment reseller, 2x DM-100, 2x guard, 1x necromancer
 				return new ArrayList<>(Arrays.asList(Skeleton.class, Skeleton.class,
-						Thief.class,
+						Thief.class, Terminhaendler.class,
 						DM100.class, DM100.class,
 						Guard.class, Guard.class,
 						Necromancer.class));
 			case 9: case 10:
-				//1x skeleton, 1x thief, 2x DM-100, 2x guard, 2x necromancer
+				//1x skeleton, 1x thief, 1x appointment reseller, 2x DM-100, 2x guard, 2x necromancer
 				return new ArrayList<>(Arrays.asList(Skeleton.class,
-						Thief.class,
+						Thief.class, Terminhaendler.class,
 						DM100.class, DM100.class,
 						Guard.class, Guard.class,
 						Necromancer.class, Necromancer.class));
 
 			// Caves
 			case 11:
-				//3x bat, 1x brute, 1x shaman
+				//1x bat, 1x afterhour raver, 1x brute, 1x jackhammer worker, 1x shaman
 				return new ArrayList<>(Arrays.asList(
-						Bat.class, Bat.class, Bat.class,
-						Brute.class,
+						Bat.class, Technojuenger.class,
+						Brute.class, Presslufter.class,
 						Shaman.random()));
 			case 12:
-				//2x bat, 2x brute, 1x shaman, 1x spinner
+				//1x bat, 1x afterhour raver, 1x brute, 1x jackhammer worker, 1x shaman, 1x spinner
 				return new ArrayList<>(Arrays.asList(
-						Bat.class, Bat.class,
-						Brute.class, Brute.class,
+						Bat.class, Technojuenger.class,
+						Brute.class, Presslufter.class,
 						Shaman.random(),
 						Spinner.class));
 			case 13:
-				//1x bat, 2x brute, 2x shaman, 2x spinner, 1x DM-200
+				//1x bat, 1x afterhour raver, 1x brute, 1x jackhammer worker, 2x shaman, 2x spinner, 1x DM-200
 				return new ArrayList<>(Arrays.asList(
-						Bat.class,
-						Brute.class, Brute.class,
+						Bat.class, Technojuenger.class,
+						Brute.class, Presslufter.class,
 						Shaman.random(), Shaman.random(),
 						Spinner.class, Spinner.class,
 						DM200.class));
 			case 14: case 15:
-				//1x bat, 1x brute, 2x shaman, 2x spinner, 2x DM-300
+				//1x afterhour raver, 1x brute, 1x jackhammer worker, 2x shaman, 2x spinner, 2x DM-200
 				return new ArrayList<>(Arrays.asList(
-						Bat.class,
-						Brute.class,
+						Technojuenger.class,
+						Brute.class, Presslufter.class,
 						Shaman.random(), Shaman.random(),
 						Spinner.class, Spinner.class,
 						DM200.class, DM200.class));
 
 			// City
 			case 16:
-				//3x ghoul, 1x elemental, 1x warlock
+				//2x ghoul, 1x luxury developer, 1x elemental, 1x warlock
 				return new ArrayList<>(Arrays.asList(
-						Ghoul.class, Ghoul.class, Ghoul.class,
+						Ghoul.class, Ghoul.class, Luxussanierer.class,
 						Elemental.random(),
 						Warlock.class));
 			case 17:
-				//1x ghoul, 2x elemental, 1x warlock, 1x monk
+				//1x ghoul, 1x luxury developer, 2x elemental, 1x warlock, 1x monk
 				return new ArrayList<>(Arrays.asList(
-						Ghoul.class,
+						Ghoul.class, Luxussanierer.class,
 						Elemental.random(), Elemental.random(),
 						Warlock.class,
 						Monk.class));
 			case 18:
-				//1x ghoul, 1x elemental, 2x warlock, 2x monk, 1x golem
+				//1x ghoul, 1x luxury developer, 1x elemental, 2x warlock, 2x monk, 1x golem
 				return new ArrayList<>(Arrays.asList(
-						Ghoul.class,
+						Ghoul.class, Luxussanierer.class,
 						Elemental.random(),
 						Warlock.class, Warlock.class,
 						Monk.class, Monk.class,
 						Golem.class));
 			case 19: case 20:
-				//1x elemental, 2x warlock, 2x monk, 3x golem
+				//1x luxury developer, 1x elemental, 2x warlock, 2x monk, 3x golem
 				return new ArrayList<>(Arrays.asList(
+						Luxussanierer.class,
 						Elemental.random(),
 						Warlock.class, Warlock.class,
 						Monk.class, Monk.class,
@@ -186,27 +192,27 @@ public class MobSpawner extends Actor {
 
 			// Halls
 			case 21:
-				//2x succubus, 1x evil eye
+				//1x succubus, 1x house rules hydra, 1x evil eye
 				return new ArrayList<>(Arrays.asList(
-						Succubus.class, Succubus.class,
+						Succubus.class, HausordnungsHydra.class,
 						Eye.class));
 			case 22:
-				//1x succubus, 1x evil eye
+				//1x succubus, 1x house rules hydra, 1x evil eye
 				return new ArrayList<>(Arrays.asList(
-						Succubus.class,
+						Succubus.class, HausordnungsHydra.class,
 						Eye.class));
 			case 23:
-				//1x succubus, 2x evil eye, 1x scorpio
+				//1x succubus, 1x house rules hydra, 2x evil eye, 1x scorpio
 				return new ArrayList<>(Arrays.asList(
-						Succubus.class,
+						Succubus.class, HausordnungsHydra.class,
 						Eye.class, Eye.class,
 						Scorpio.class));
 			case 24: case 25: case 26:
-				//1x succubus, 2x evil eye, 3x scorpio
+				//1x succubus, 1x house rules hydra, 2x evil eye, 2x scorpio
 				return new ArrayList<>(Arrays.asList(
-						Succubus.class,
+						Succubus.class, HausordnungsHydra.class,
 						Eye.class, Eye.class,
-						Scorpio.class, Scorpio.class, Scorpio.class));
+						Scorpio.class, Scorpio.class));
 		}
 
 	}

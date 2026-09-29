@@ -21,3 +21,6 @@ local.properties
 
 # Local development runtime
 .local-tools/
+
+# Python-Bytecode der Generator-Skripte
+__pycache__/

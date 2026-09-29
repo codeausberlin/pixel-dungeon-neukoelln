@@ -30,6 +30,7 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.Actor;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Blob;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.SacrificialFire;
+import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Scherben;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.SmokeScreen;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Web;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.WellWater;
@@ -138,7 +139,14 @@ public abstract class Level implements Bundlable {
 		}
 
 		public String desc() {
+			//each region can flavour a feeling, generic text otherwise
+			String regional = Messages.get(this, name()+"_desc_r" + region(Dungeon.depth));
+			if (!regional.contains(Messages.NO_TEXT_FOUND)) return regional;
 			return Messages.get(this, name()+"_desc");
+		}
+
+		public static int region( int depth ) {
+			return Math.max(1, Math.min(5, (depth - 1) / 5 + 1));
 		}
 	}
 
@@ -1162,6 +1170,10 @@ public abstract class Level implements Bundlable {
 		if (!ch.isImmune(Web.class) && Blob.volumeAt(ch.pos, Web.class) > 0){
 			blobs.get(Web.class).clear(ch.pos);
 			Web.affectChar( ch );
+		}
+
+		if (!ch.flying && Blob.volumeAt(ch.pos, Scherben.class) > 0){
+			Scherben.affectChar( ch );
 		}
 
 		if (Blob.volumeAt(ch.pos, SacrificialFire.class) > 0 && ch.buff( SacrificialFire.Marked.class ) == null){

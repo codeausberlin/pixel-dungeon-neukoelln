@@ -83,6 +83,7 @@ import com.watabou.noosa.Game;
 import com.watabou.utils.BArray;
 import com.watabou.utils.Bundlable;
 import com.watabou.utils.Bundle;
+import com.watabou.utils.DeviceCompat;
 import com.watabou.utils.FileUtils;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
@@ -230,6 +231,20 @@ public class Dungeon {
 		}
 	}
 	
+	/** Debug builds only: NK_START_DEPTH=11 ./gradlew desktop:debug starts new runs on depth 11. */
+	public static int debugStartDepth() {
+		return debugStartDepth(DeviceCompat.isDebug(), System.getenv("NK_START_DEPTH"));
+	}
+
+	public static int debugStartDepth( boolean debug, String value ) {
+		if (!debug || value == null) return 1;
+		try {
+			return Math.max(1, Math.min(26, Integer.parseInt(value.trim())));
+		} catch (NumberFormatException e) {
+			return 1;
+		}
+	}
+
 	public static void init() {
 
 		initialVersion = version = Game.versionCode;
@@ -260,7 +275,7 @@ public class Dungeon {
 		QuickSlotButton.reset();
 		Toolbar.swappedQuickslots = false;
 		
-		depth = 1;
+		depth = debugStartDepth();
 		branch = 0;
 		generatedLevels.clear();
 

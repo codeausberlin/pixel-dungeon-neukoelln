@@ -912,6 +912,7 @@ public class GameScene extends PixelScene {
 			} else if (notifyDelay <= 0f) {
 				notifyDelay += 1/60f;
 				synchronized (actorThread) {
+					Actor.markBusy();
 					actorThread.notify();
 				}
 			}

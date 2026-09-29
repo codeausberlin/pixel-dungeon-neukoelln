@@ -50,7 +50,7 @@ public class SlimeSprite extends MobSprite {
 
 	@Override
 	public int blood() {
-		return 0xFF88CC44;
+		return 0xFFBDB8AE; //grey wet-wipe fibres
 	}
 	
 }

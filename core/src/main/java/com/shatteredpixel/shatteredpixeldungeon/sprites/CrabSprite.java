@@ -50,6 +50,6 @@ public class CrabSprite extends MobSprite {
 
 	@Override
 	public int blood() {
-		return 0xFFFFEA80;
+		return 0xFF9A5A2E; //rust flakes of the Kanalpanzer
 	}
 }

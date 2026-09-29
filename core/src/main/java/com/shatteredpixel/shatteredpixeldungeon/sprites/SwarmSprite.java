@@ -50,6 +50,6 @@ public class SwarmSprite extends MobSprite {
 	
 	@Override
 	public int blood() {
-		return 0xFF8BA077;
+		return 0xFF8A6A3A; //Biomuell juice
 	}
 }

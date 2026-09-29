@@ -862,13 +862,7 @@ public class Badges {
 				local.add( badge );
 				unlock(badge);
 
-				boolean allUnlocked = true;
-				for (Badge b : firstBossClassBadges.values()){
-					if (!isUnlocked(b)){
-						allUnlocked = false;
-						break;
-					}
-				}
+				boolean allUnlocked = allKiezClassBadges(firstBossClassBadges);
 				if (allUnlocked) {
 					
 					badge = Badge.BOSS_SLAIN_1_ALL_CLASSES;
@@ -883,13 +877,7 @@ public class Badges {
 				local.add( badge );
 				unlock(badge);
 
-				boolean allUnlocked = true;
-				for (Badge b : thirdBossSubclassBadges.values()){
-					if (!isUnlocked(b)){
-						allUnlocked = false;
-						break;
-					}
-				}
+				boolean allUnlocked = allKiezSubclassBadges(thirdBossSubclassBadges);
 				if (allUnlocked) {
 					badge = Badge.BOSS_SLAIN_3_ALL_SUBCLASSES;
 					if (!isUnlocked( badge )) {
@@ -964,25 +952,51 @@ public class Badges {
 		unlock(Badge.FOUND_RATMOGRIFY);
 	}
 	
+	//Neukoelln: the four Kiez classes are unlocked from the start and Duelist/Cleric are not
+	// playable, so class-unlock badges would only show misleading popups
+	private static final boolean FIXED_ROSTER = true;
+
+	private static boolean allKiezClassBadges( java.util.Map<HeroClass, Badge> badges ){
+		for (HeroClass cls : HeroClass.kiezClasses()){
+			Badge b = badges.get(cls);
+			if (b == null || !isUnlocked(b)) return false;
+		}
+		return true;
+	}
+
+	private static boolean allKiezSubclassBadges( java.util.Map<HeroSubClass, Badge> badges ){
+		for (HeroClass cls : HeroClass.kiezClasses()){
+			for (HeroSubClass sub : cls.subClasses()){
+				Badge b = badges.get(sub);
+				if (b == null || !isUnlocked(b)) return false;
+			}
+		}
+		return true;
+	}
+
 	public static void validateMageUnlock(){
+		if (FIXED_ROSTER) return;
 		if (Statistics.upgradesUsed >= 1 && !isUnlocked(Badge.UNLOCK_MAGE)){
 			displayBadge( Badge.UNLOCK_MAGE );
 		}
 	}
 	
 	public static void validateRogueUnlock(){
+		if (FIXED_ROSTER) return;
 		if (Statistics.sneakAttacks >= 10 && !isUnlocked(Badge.UNLOCK_ROGUE)){
 			displayBadge( Badge.UNLOCK_ROGUE );
 		}
 	}
 	
 	public static void validateHuntressUnlock(){
+		if (FIXED_ROSTER) return;
 		if (Statistics.thrownAttacks >= 10 && !isUnlocked(Badge.UNLOCK_HUNTRESS)){
 			displayBadge( Badge.UNLOCK_HUNTRESS );
 		}
 	}
 
 	public static void validateDuelistUnlock(){
+		if (FIXED_ROSTER) return;
 		if (!isUnlocked(Badge.UNLOCK_DUELIST) && Dungeon.hero != null
 				&& Dungeon.hero.belongings.weapon instanceof MeleeWeapon
 				&& ((MeleeWeapon) Dungeon.hero.belongings.weapon).tier >= 2
@@ -1000,6 +1014,7 @@ public class Badges {
 	}
 
 	public static void validateClericUnlock(){
+		if (FIXED_ROSTER) return;
 		if (!isUnlocked(Badge.UNLOCK_CLERIC)){
 			displayBadge( Badge.UNLOCK_CLERIC );
 		}
@@ -1033,13 +1048,7 @@ public class Badges {
 		local.add( badge );
 		unlock(badge);
 
-		boolean allUnlocked = true;
-		for (Badge b : victoryClassBadges.values()){
-			if (!isUnlocked(b)){
-				allUnlocked = false;
-				break;
-			}
-		}
+		boolean allUnlocked = allKiezClassBadges(victoryClassBadges);
 		if (allUnlocked){
 			badge = Badge.VICTORY_ALL_CLASSES;
 			displayBadge( badge );
@@ -1354,7 +1363,7 @@ public class Badges {
 		String result = "\n";
 
 		if (badge == Badge.BOSS_SLAIN_1_ALL_CLASSES){
-			for (HeroClass cls : HeroClass.values()){
+			for (HeroClass cls : HeroClass.kiezClasses()){
 				result += "\n";
 				if (isUnlocked(firstBossClassBadges.get(cls)))  result += "_" + Messages.titleCase(cls.title()) + "_";
 				else                                            result += Messages.titleCase(cls.title());
@@ -1364,7 +1373,7 @@ public class Badges {
 
 		} else if (badge == Badge.VICTORY_ALL_CLASSES) {
 
-			for (HeroClass cls : HeroClass.values()){
+			for (HeroClass cls : HeroClass.kiezClasses()){
 				result += "\n";
 				if (isUnlocked(victoryClassBadges.get(cls)))    result += "_" + Messages.titleCase(cls.title()) + "_";
 				else                                            result += Messages.titleCase(cls.title());
@@ -1374,11 +1383,12 @@ public class Badges {
 
 		} else if (badge == Badge.BOSS_SLAIN_3_ALL_SUBCLASSES){
 
-			for (HeroSubClass cls : HeroSubClass.values()){
-				if (cls == HeroSubClass.NONE) continue;
-				result += "\n";
-				if (isUnlocked(thirdBossSubclassBadges.get(cls)))   result += "_" + Messages.titleCase(cls.title()) + "_";
-				else                                                result += Messages.titleCase(cls.title()) ;
+			for (HeroClass heroCls : HeroClass.kiezClasses()){
+				for (HeroSubClass cls : heroCls.subClasses()){
+					result += "\n";
+					if (isUnlocked(thirdBossSubclassBadges.get(cls)))   result += "_" + Messages.titleCase(cls.title()) + "_";
+					else                                                result += Messages.titleCase(cls.title()) ;
+				}
 			}
 
 			return result;

@@ -244,18 +244,18 @@ public class Assets {
 	}
 
 	public static class Splashes {
-		public static final String WARRIOR  = "splashes/warrior.jpg";
-		public static final String MAGE     = "splashes/mage.jpg";
-		public static final String ROGUE    = "splashes/rogue.jpg";
-		public static final String HUNTRESS = "splashes/huntress.jpg";
+		public static final String WARRIOR  = "splashes/nk_warrior.png";
+		public static final String MAGE     = "splashes/nk_mage.png";
+		public static final String ROGUE    = "splashes/nk_rogue.png";
+		public static final String HUNTRESS = "splashes/nk_huntress.png";
 		public static final String DUELIST  = "splashes/duelist.jpg";
 		public static final String CLERIC   = "splashes/cleric.jpg";
 
-		public static final String SEWERS   = "splashes/sewers.jpg";
-		public static final String PRISON   = "splashes/prison.jpg";
-		public static final String CAVES    = "splashes/caves.jpg";
-		public static final String CITY     = "splashes/city.jpg";
-		public static final String HALLS    = "splashes/halls.jpg";
+		public static final String SEWERS   = "splashes/nk_sewers.png";
+		public static final String PRISON   = "splashes/nk_prison.png";
+		public static final String CAVES    = "splashes/nk_caves.png";
+		public static final String CITY     = "splashes/nk_city.png";
+		public static final String HALLS    = "splashes/nk_halls.png";
 
 		public static class Title {
 			public static final String ARCHS         = "splashes/title/archs.png";

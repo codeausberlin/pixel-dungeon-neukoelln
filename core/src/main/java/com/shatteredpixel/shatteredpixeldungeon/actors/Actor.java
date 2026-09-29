@@ -242,6 +242,19 @@ public abstract class Actor implements Bundlable {
 		return current != null;
 	}
 
+	//true only while the actor thread is parked waiting for input.
+	//The render thread must not touch level state (e.g. mobs) from input handlers otherwise.
+	private static volatile boolean idle = false;
+
+	public static boolean idle(){
+		return idle;
+	}
+
+	//called by the render thread right before it wakes the actor thread
+	public static void markBusy(){
+		idle = false;
+	}
+
 	public static int curActorPriority() {
 		return current != null ? current.actPriority : HERO_PRIO;
 	}
@@ -321,10 +334,13 @@ public abstract class Actor implements Bundlable {
 					//signals to the gamescene that actor processing is finished for now
 					Thread.currentThread().notify();
 					
+					idle = true;
 					try {
 						Thread.currentThread().wait();
 					} catch (InterruptedException e) {
 						interrupted = true;
+					} finally {
+						idle = false;
 					}
 				}
 			}

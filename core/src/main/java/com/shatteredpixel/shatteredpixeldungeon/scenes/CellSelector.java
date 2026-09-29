@@ -382,7 +382,9 @@ public class CellSelector extends ScrollArea {
 			heldDelay -= Game.elapsed;
 		}
 
-		if ((heldAction1 != SPDAction.NONE || leftStickAction != SPDAction.NONE) && Dungeon.hero.ready){
+		//Neukoelln fix: only while the actor thread is parked, otherwise Dungeon.observe()
+		//races with mobs being added/removed (ConcurrentModificationException in updateFieldOfView)
+		if ((heldAction1 != SPDAction.NONE || leftStickAction != SPDAction.NONE) && Dungeon.hero.ready && Actor.idle()){
 			processKeyHold();
 		} else if (Dungeon.hero.ready) {
 			lastCellMoved = -1;

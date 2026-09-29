@@ -149,7 +149,7 @@ public class GooSprite extends MobSprite {
 
 	@Override
 	public int blood() {
-		return 0xFF000000;
+		return 0xFF1E2A1A; //black-green mould spores
 	}
 
 	public void spray(boolean on){

@@ -24,6 +24,9 @@ package com.shatteredpixel.shatteredpixeldungeon.scenes;
 import com.shatteredpixel.shatteredpixeldungeon.ShatteredPixelDungeon;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Flare;
 import com.shatteredpixel.shatteredpixeldungeon.ui.ExitButton;
+import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
+import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSprite;
+import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
 import com.shatteredpixel.shatteredpixeldungeon.ui.Icons;
 import com.shatteredpixel.shatteredpixeldungeon.ui.RenderedTextBlock;
 import com.shatteredpixel.shatteredpixeldungeon.ui.ScrollPane;
@@ -64,6 +67,19 @@ public class AboutScene extends PixelScene {
 		Component content = list.content();
 		content.clear();
 
+		//*** Neukoelln Pixel Dungeon Credits (fork on top, upstream credits kept below) ***
+
+		final int NK_COLOR = 0xF06292;
+		CreditsBlock nk = new CreditsBlock(true, NK_COLOR,
+				Messages.get(this, "nk_title"),
+				new ItemSprite(ItemSpriteSheet.AMULET),
+				Messages.get(this, "nk_body"),
+				"github.com/codeausberlin",
+				"https://github.com/codeausberlin/shattered-neukoelln-dungeon");
+		nk.setRect((w - fullWidth)/2f, insets.top + 6, fullWidth, 0);
+		content.add(nk);
+		final float top = nk.bottom() + 8;
+
 		//*** Shattered Pixel Dungeon Credits ***
 
 		CreditsBlock shpx = new CreditsBlock(true, Window.SHPX_COLOR,
@@ -73,11 +89,13 @@ public class AboutScene extends PixelScene {
 				"ShatteredPixel.com",
 				"https://ShatteredPixel.com");
 		if (landscape()){
-			shpx.setRect((w - fullWidth)/2f - 6, insets.top + 26, 120, 0);
+			shpx.setRect((w - fullWidth)/2f - 6, top + 20, 120, 0);
 		} else {
-			shpx.setRect((w - fullWidth)/2f, insets.top + 6, 120, 0);
+			shpx.setRect((w - fullWidth)/2f, top, 120, 0);
 		}
 		content.add(shpx);
+
+		addLine(top - 4, content);
 
 		CreditsBlock aleks = new CreditsBlock(false, Window.SHPX_COLOR,
 				"Splash & Dungeon Art:",
@@ -87,7 +105,7 @@ public class AboutScene extends PixelScene {
 				"https://www.alekskomitov.com/");
 		aleks.setSize(colWidth/2f, 0);
 		if (landscape()){
-			aleks.setPos(shpx.right(), insets.top+6);
+			aleks.setPos(shpx.right(), top);
 		} else {
 			aleks.setPos(w/2f - colWidth/2f, shpx.bottom()+6);
 		}
