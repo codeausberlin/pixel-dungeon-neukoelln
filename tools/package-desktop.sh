@@ -17,7 +17,7 @@
 #   JAVA_HOME         JDK fuer jlink/jdeps/jpackage (sonst aus PATH)
 #   NK_APP_NAME       angezeigter App-Name (Standard: "Pixel Dungeon Neukölln")
 #   NK_REPO_URL       Repository fuer das Quellcode-Angebot (Standard: GitHub-Repo des Laufs bzw.
-#                     https://github.com/codeausberlin/shattered-neukoelln-dungeon)
+#                     https://github.com/codeausberlin/pixel-dungeon-neukoelln)
 #   NK_SOURCE_REF     Git-Tag oder Commit, der in LIESMICH.txt verlinkt wird (Standard: auf GitHub
 #                     der Tag bzw. GITHUB_SHA, lokal `git describe --tags --always`)
 #   NK_SOURCE_COMMIT  vollstaendiger Commit-Hash dazu (Standard: GITHUB_SHA bzw. `git rev-parse HEAD`)
@@ -116,7 +116,7 @@ REPO_URL="${NK_REPO_URL:-}"
 if [[ -z "$REPO_URL" && -n "${GITHUB_SERVER_URL:-}" && -n "${GITHUB_REPOSITORY:-}" ]]; then
     REPO_URL="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY"
 fi
-REPO_URL="${REPO_URL:-https://github.com/codeausberlin/shattered-neukoelln-dungeon}"
+REPO_URL="${REPO_URL:-https://github.com/codeausberlin/pixel-dungeon-neukoelln}"
 SRC_REF="${NK_SOURCE_REF:-}"
 SRC_COMMIT="${NK_SOURCE_COMMIT:-}"
 SRC_TAG=""
@@ -354,6 +354,11 @@ if [[ "$INSTALLER" == 1 ]]; then
             RES="$WORK/linux-resources"
             rm -rf "$RES"; mkdir -p "$RES"
             cp desktop/src/main/assets/icons/icon_256.png "$RES/$APP_NAME.png"
+            # Das Icon liegt zusaetzlich mit Versionsnummer im App-Ordner, und die Verknuepfung zeigt
+            # direkt darauf: Gnome haelt Icons pro Dateipfad im Speicher, ein neuer Pfad je Version
+            # verhindert, dass nach einem Update das alte Bild (z. B. Java-Duke) stehen bleibt.
+            ICON_FILE="$FILE_BASE-$APP_VERSION.png"
+            cp desktop/src/main/assets/icons/icon_256.png "$IMAGE/lib/app/$ICON_FILE"
             WIN_TITLE="$(sed -n "s/^[[:space:]]*appName[[:space:]]*=[[:space:]]*'\([^']*\)'.*/\1/p" build.gradle | head -n1)"
             cat > "$RES/$APP_NAME.desktop" <<DESKTOP
 [Desktop Entry]
@@ -361,7 +366,7 @@ Name=Pixel Dungeon Neukölln
 GenericName=Roguelike
 Comment=Roguelike auf Deutsch: 25 Ebenen hinab zum Ewigen Mietspiegel
 Exec=APPLICATION_LAUNCHER
-Icon=APPLICATION_ICON
+Icon=/opt/$FILE_BASE/lib/app/$ICON_FILE
 Terminal=false
 Type=Application
 Categories=Game;RolePlaying;

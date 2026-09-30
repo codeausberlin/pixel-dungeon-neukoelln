@@ -101,14 +101,14 @@ public class DesktopLauncher {
 					TinyFileDialogs.tinyfd_messageBox(title + " ist abgestuerzt",
 							title + " konnte die Grafik nicht starten.\n\n" +
 									"Meist liegt das an falsch eingerichteten Grafiktreibern oder fehlender OpenGL-2.0-Unterstuetzung.\n\n" +
-									"Wenn das Spiel auf deinem Rechner laufen sollte, melde den Fehler bitte im Neukoelln-Repository (github.com/codeausberlin/shattered-neukoelln-dungeon), nicht beim Original-Entwickler.\n\n" +
+									"Wenn das Spiel auf deinem Rechner laufen sollte, melde den Fehler bitte im Neukoelln-Repository (github.com/codeausberlin/pixel-dungeon-neukoelln), nicht beim Original-Entwickler.\n\n" +
 									"version: " + Game.version + "\n" +
 									exceptionMsg,
 							"ok", "error", false);
 				} else {
 					TinyFileDialogs.tinyfd_messageBox(title + " ist abgestuerzt",
 							title + " ist abgestuerzt und kann nicht weitermachen. Im Titelbild kannst du mit Fortfahren den zuletzt gespeicherten Stand laden.\n\n" +
-									"Bitte melde diese Meldung im Neukoelln-Repository (github.com/codeausberlin/shattered-neukoelln-dungeon), nicht beim Original-Entwickler:\n\n" +
+									"Bitte melde diese Meldung im Neukoelln-Repository (github.com/codeausberlin/pixel-dungeon-neukoelln), nicht beim Original-Entwickler:\n\n" +
 									"version: " + Game.version + "\n" +
 									exceptionMsg,
 							"ok", "error", false);

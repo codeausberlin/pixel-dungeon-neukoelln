@@ -251,7 +251,7 @@ Aufnahmen aus dem laufenden Spiel (Desktop, Ebene 1). Besichtigung nur mit Termi
 | Linux (alle) | `.tar.gz` | Entpacken und `bin/Pixel-Dungeon-Neukoelln` starten |
 
 Die Pakete erscheinen mit dem ersten Release unter
-[Releases](https://github.com/codeausberlin/shattered-neukoelln-dungeon/releases). Bis dahin gibt
+[Releases](https://github.com/codeausberlin/pixel-dungeon-neukoelln/releases). Bis dahin gibt
 es sie nur als Testbuilds. Jedes Paket enthält eine `LIESMICH.txt`, die Lizenzen und einen Link auf
 genau den Quellcode, aus dem es gebaut wurde.
 
@@ -259,8 +259,8 @@ genau den Quellcode, aus dem es gebaut wurde.
 Temurin von [adoptium.net](https://adoptium.net/)). Prüfen mit `java -version`.
 
 ```
-git clone https://github.com/codeausberlin/shattered-neukoelln-dungeon.git
-cd shattered-neukoelln-dungeon
+git clone https://github.com/codeausberlin/pixel-dungeon-neukoelln.git
+cd pixel-dungeon-neukoelln
 ./start-neukoelln.sh --build
 ```
 

@@ -9,9 +9,8 @@ adoptium.net (Temurin 21, macOS, aarch64 für Apple-Chips, x64 für Intel, Paket
 ## Spiel bauen und starten
 
 ```
-git clone https://github.com/codeausberlin/shattered-neukoelln-dungeon.git
-cd shattered-neukoelln-dungeon
-git checkout neukoelln/prototype
+git clone https://github.com/codeausberlin/pixel-dungeon-neukoelln.git
+cd pixel-dungeon-neukoelln
 ./start-neukoelln.sh --build
 ```
 

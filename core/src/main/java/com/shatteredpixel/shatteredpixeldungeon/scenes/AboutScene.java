@@ -76,7 +76,7 @@ public class AboutScene extends PixelScene {
 				new ItemSprite(ItemSpriteSheet.AMULET),
 				Messages.get(this, "nk_body"),
 				"github.com/codeausberlin",
-				"https://github.com/codeausberlin/shattered-neukoelln-dungeon");
+				"https://github.com/codeausberlin/pixel-dungeon-neukoelln");
 		nk.setRect((w - fullWidth)/2f, insets.top + 6, fullWidth, 0);
 		content.add(nk);
 		final float top = nk.bottom() + 8;

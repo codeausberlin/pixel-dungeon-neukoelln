@@ -68,7 +68,7 @@ public class AndroidMissingNativesHandler extends Activity {
 
 		TextView text = new TextView(this);
 		String message = "Pixel Dungeon Neukölln konnte interne Programmteile nicht laden und kann nicht starten.\n\n" +
-				"Lade das Spiel bitte aus einer offiziellen Quelle des Neukölln-Projekts. Einen Screenshot dieser Angaben kannst du im Neukölln-Repository melden (github.com/codeausberlin/shattered-neukoelln-dungeon/issues), nicht beim Original-Entwickler:";
+				"Lade das Spiel bitte aus einer offiziellen Quelle des Neukölln-Projekts. Einen Screenshot dieser Angaben kannst du im Neukölln-Repository melden (github.com/codeausberlin/pixel-dungeon-neukoelln/issues), nicht beim Original-Entwickler:";
 
 		message += "\n\nPackage: " + getPackageName();
 		message += "\nVersion: " + versionName + " (" + versionCode + ")";

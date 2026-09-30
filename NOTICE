@@ -7,7 +7,7 @@ das seinerseits auf Pixel Dungeon (Oleg Dolya) beruht.
 Geändert ab: 2026-09-05, Upstream-Commit 4256b22 von Shattered Pixel Dungeon.
 Danach eingemischt: Upstream-Commits bis 2bb34a4 (Shattered Pixel Dungeon v4.0.0, 2026-09-09).
 Eigene Änderungen seit 2026-09-29 durch das Neukölln-Team (codeausberlin).
-Quellcode: https://github.com/codeausberlin/shattered-neukoelln-dungeon
+Quellcode: https://github.com/codeausberlin/pixel-dungeon-neukoelln
 
 Umfang der Änderungen gegenüber Shattered Pixel Dungeon v4.0.0 (Commit 2bb34a4):
 - Sprache: deutschsprachige Spieltexte (core/src/main/assets/messages/), Berlin-Neukölln-Setting
