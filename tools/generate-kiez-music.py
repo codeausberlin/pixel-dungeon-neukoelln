@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Neukölln Pixel Dungeon - prozeduraler Kiez-Techno-Soundtrack.
+Pixel Dungeon Neukölln - prozeduraler Kiez-Techno-Soundtrack.
 
 Erzeugt alle 31 Musikdateien (core/src/main/assets/music/*.ogg) rein per
 Synthese mit numpy/scipy: keine Samples, keine Downloads, keine Zitate

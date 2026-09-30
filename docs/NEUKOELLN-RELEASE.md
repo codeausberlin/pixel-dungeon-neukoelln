@@ -11,9 +11,9 @@ Store-Upload. Alle Ergebnisse liegen nur als Artefakte am jeweiligen Workflow-La
 
 | Plattform | Datei | Inhalt |
 | --- | --- | --- |
-| Linux x64 | `neukoelln-pixel-dungeon-<Version>-linux-x64.tar.gz` | Ordner entpacken, `bin/Neukölln Pixel Dungeon` starten |
+| Linux x64 | `pixel-dungeon-neukoelln-<Version>-linux-x64.tar.gz` | Ordner entpacken, `bin/Pixel Dungeon Neukölln` starten |
 | Linux x64 | `…-linux-x64.deb` | Installationspaket für aktuelle Ubuntu/Debian-Versionen (auf dem Runner gebaut, daher Ubuntu-24.04-Paketnamen) |
-| Windows x64 | `…-windows-x64.zip` | Ordner entpacken, `Neukölln Pixel Dungeon.exe` starten |
+| Windows x64 | `…-windows-x64.zip` | Ordner entpacken, `Pixel Dungeon Neukölln.exe` starten |
 | Windows x64 | `…-windows-x64.msi` | Installer mit Startmenü-Eintrag; nur wenn WiX 3 auf dem Runner installiert werden konnte |
 | macOS Apple-Chip | `…-mac-arm64.zip` / `…-mac-arm64.dmg` | App in „Programme“ ziehen |
 | macOS Intel | `…-mac-x64.zip` / `.dmg` | nur mit Option „mac_intel“ |
@@ -35,7 +35,7 @@ Die APK enthält dieselben Dateien (ohne Java-Laufzeit) unter `assets/legal/`; d
 Ein Linux-Paket ist rund 90 MB groß (Spiel-JAR mit Musik und nativen Bibliotheken aller Systeme,
 dazu eine mit jlink verkleinerte Java-21-Laufzeit von etwa 55 MB).
 
-Technische Kennung: App-Name „Neukölln Pixel Dungeon“, macOS-Bundle-ID `com.codeausberlin.neukoelln`,
+Technische Kennung: App-Name „Pixel Dungeon Neukölln“, macOS-Bundle-ID `com.codeausberlin.neukoelln`,
 Android-`applicationId` `de.neukoellnpixeldungeon.game`, Version aus `build.gradle`
 (`appVersionName`, `appVersionCode`). macOS verlangt eine Versionsnummer ab 1, daher trägt das
 Mac-Bundle intern `1.0.<appVersionCode>`, solange die Spielversion mit 0 beginnt.
@@ -135,7 +135,7 @@ Die Pakete sind nicht mit einem kostenpflichtigen Entwicklerzertifikat signiert.
   App einmal starten, Meldung schließen, dann *Systemeinstellungen* → *Datenschutz & Sicherheit* →
   ganz unten *Dennoch öffnen*. Bis macOS 14 geht auch Rechtsklick auf die App → *Öffnen*.
   Meldet macOS „ist beschädigt“, hilft einmal im Terminal:
-  `xattr -dr com.apple.quarantine "/Applications/Neukölln Pixel Dungeon.app"`.
+  `xattr -dr com.apple.quarantine "/Applications/Pixel Dungeon Neukölln.app"`.
   Die App ist nur ad-hoc signiert, nicht notariell beglaubigt.
 - **Android:** Installation aus unbekannten Quellen muss für Browser bzw. Dateimanager erlaubt
   werden. Play Protect kann warnen, weil die App nicht aus dem Play Store kommt.
@@ -160,6 +160,6 @@ Die Pakete sind nicht mit einem kostenpflichtigen Entwicklerzertifikat signiert.
   noch ein, `AndroidLauncher` setzt beide Dienste aber auf `null` (toter Code, wie auf dem Desktop).
 - Die Android-Lizenz-Assets (`copyLegalAssets` in `android/build.gradle`) sind in dieser Umgebung
   nicht gebaut worden (kein Zugriff auf dl.google.com); erster Test ist der Workflow-Lauf.
-- Die Android-Launcher-Icons (`android/src/main/res/mipmap-*`) sind noch die von Shattered.
+- Die Android-Launcher-Icons (`android/src/{main,debug}/res/mipmap-*`) zeigen das Ortsschild (`tools/generate-kiez-appicon.cjs`), adaptiv mit Hintergrund-, Vordergrund- und Monochrom-Ebene. Auf einem Gerät noch nicht geprüft.
 - Das Spiel-JAR enthält native Bibliotheken für alle Systeme (rund 23 MB unkomprimiert, die für
   das jeweilige Paket nicht gebraucht werden). Ausdünnen pro Plattform würde die Pakete verkleinern.

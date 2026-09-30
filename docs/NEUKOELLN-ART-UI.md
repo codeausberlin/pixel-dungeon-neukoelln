@@ -1,4 +1,4 @@
-# Neukölln Pixel Dungeon: UI-Art (Abzeichen, Talente, Rahmen)
+# Pixel Dungeon Neukölln: UI-Art (Abzeichen, Talente, Rahmen)
 
 Stand 2026-09-29. Erzeugt von `node tools/generate-kiez-ui.cjs` (reines Node mit zlib über
 `tools/lib/tileset-kit.cjs`, keine Zufallszahlen; zwei Läufe liefern byte-identische Dateien, per

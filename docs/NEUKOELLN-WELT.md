@@ -1,4 +1,4 @@
-# Neukölln Pixel Dungeon – Weltbibel
+# Pixel Dungeon Neukölln – Weltbibel
 
 Stand: 2026-09-29. Arbeitsdokument des Lore-Teams. Nichts hier ist automatisch
 implementiert oder spielbar. Namen und Konzepte sind Vorschläge, bis Gameplay-
@@ -25,6 +25,10 @@ Diese Datei ergänzt `docs/NEUKOELLN-DESIGN.md` und ersetzt es nicht.
 Siegziel: der letzte **unbefristete Mietvertrag** Berlins (ersetzt das Amulett von Yendor;
 Altbau, Kaltmiete von 1987, keine Staffel, kein Index, kein Eigenbedarf). Der Ewige Mietspiegel
 will ihn zurück, der König der Eigentumswohnungen hat ihn gehortet.
+
+Einstieg (Intro, Stand 2026-09-30): Du bist auf dem Weg zur Sitzung beim Mieterverein. Die M41
+kommt erst nicht und fährt dir dann vor der Nase weg. Also schnell das Fahrrad aus dem Keller holen;
+hinter dir fällt die Brandschutztür ins Schloss, der Schlüssel liegt irgendwo weiter unten.
 
 Spätimann: Händler auf Ebene 6, 11 und 16 (An- und Verkauf). Klassen: Expat
 (Magier), Alteingesessene (Krieger/Tank), Zugezogene (Fernkampf), Tourist

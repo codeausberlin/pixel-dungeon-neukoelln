@@ -1,4 +1,4 @@
-// Neukoelln Pixel Dungeon: intro sequence before the first run (splashes/intro/intro_1..4.png).
+// Pixel Dungeon Neukoelln: intro sequence before the first run (splashes/intro/intro_1..4.png).
 // Story: the M41 never came, the next one left in front of your nose, so you go down to the
 // cellar for your bike, past the dog poo on the first step, and the fire door slams shut.
 // Every scene is drawn at 160x90 and scaled 5x (nearest neighbour) to 800x450, exactly like the

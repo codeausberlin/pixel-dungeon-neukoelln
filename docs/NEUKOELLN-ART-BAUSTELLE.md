@@ -1,4 +1,4 @@
-# Neukölln Pixel Dungeon: Art der Baustelle (Ebene 11-15)
+# Pixel Dungeon Neukölln: Art der Baustelle (Ebene 11-15)
 
 Stand 2026-09-29. Erzeugt mit `node tools/generate-kiez-baustelle-mobs.cjs`
 (`--only bat,dm300` schränkt ein, `--preview DIR` schreibt Vorher/Nachher-Vorschauen in

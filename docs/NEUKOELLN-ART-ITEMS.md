@@ -1,4 +1,4 @@
-# Neukölln Pixel Dungeon: Item-, Banner- und Desktop-Icon-Art
+# Pixel Dungeon Neukölln: Item-, Banner- und Desktop-Icon-Art
 
 Stand 2026-09-29. Alle Grafiken sind originale Pixelarbeit, gezeichnet von drei Node-Skripten
 (nur Node und zlib über `tools/lib/tileset-kit.cjs`, keine heruntergeladene Art, keine
@@ -10,7 +10,7 @@ angesehen, ein Desktop-Lauf mit Inventar, Shop, Boss-Banner und Fenster-Icon ste
 | --- | --- | --- |
 | `node tools/generate-kiez-items.cjs` | `core/src/main/assets/sprites/items.png` (+ über den Aufruf unten `sprites/amulet.png`) | `kiez-items-vorher-nachher-x6.png`, `kiez-items-atlas-x3.png` |
 | `node tools/generate-kiez-banners.cjs` | `core/src/main/assets/interfaces/banners.png` | `kiez-banners-x4.png` |
-| `node tools/generate-kiez-icons.cjs` | `desktop/src/main/assets/icons/*` (8 Dateien) | `kiez-icons-preview.png` |
+| `node tools/generate-kiez-appicon.cjs` (ersetzt `generate-kiez-icons.cjs`) | `desktop/src/main/assets/icons/*` (8 Dateien), `android/src/{main,debug}/res/mipmap-*`, `docs/presse/bilder/logo/app-icon-*.png` | `--preview DIR`: `appicon-*.png`, `android-kreis.png`, `android-squircle.png`, `android-monochrom.png` |
 
 ## Reihenfolge mit `generate-mietvertrag.cjs`
 

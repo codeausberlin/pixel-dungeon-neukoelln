@@ -1,4 +1,4 @@
-# Neukölln Pixel Dungeon – Konvertierungs-Audit
+# Pixel Dungeon Neukölln – Konvertierungs-Audit
 
 Stand: 2026-09-29, geprüft auf `neukoelln/prototype` @ `5ae700f`, Referenz Upstream
 `2bb34a4` (Shattered Pixel Dungeon v4.0.0). Reine Bestandsaufnahme, keine Dateien geändert.
@@ -252,7 +252,7 @@ Blacksmith, Wandmaker, Imp, Skeleton, Thief, Ghost, Gnoll Exile/Trickster. `NEUK
 | `windows/WndSettings.java` Z. 1068 | „This is the source language…“ (nur bei EN) | P4 |
 | `desktop/.../DesktopLauncher.java` Z. 99–110 | Crash-Dialoge EN mit „Evan@ShatteredPixel.com“ | Branding, P3 |
 | `desktop/.../DesktopLaunchValidator.java` Z. 67 | „ShatteredPD must start…“ | P3 |
-| `build.gradle` | `appName='Neukoelln Pixel Dungeon'`, `appPackageName='de.neukoellnpixeldungeon.game'`, `0.1.0` | erledigt; Fenstertitel ohne „ö“ (Entscheidung) |
+| `build.gradle` | `appName='Pixel Dungeon Neukoelln'`, `appPackageName='de.neukoellnpixeldungeon.game'`, `0.1.0` | erledigt; Fenstertitel ohne „ö“ (Entscheidung) |
 | Speicherpfad Desktop | `.neukoellnpixeldungeon/neukoelln-pixel-dungeon/` (Linux), `Library/Application Support/Neukoelln Pixel Dungeon/` (macOS) | getrennt von Shattered ✔ |
 | `desktop/build.gradle` Z. 127 f. | hängt noch an `githubUpdates`/`shatteredNews` (im Launcher auf null gesetzt) | aufräumen |
 | `android/build.gradle` Z. 46 f., `AndroidLauncher` Z. 112/120 | Release nutzt GitHub-Updates von `00-Evan/shattered-pixel-dungeon` und Feed `shatteredpixel.com` | P4, vor Android-Release Pflicht |

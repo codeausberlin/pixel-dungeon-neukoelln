@@ -1,4 +1,4 @@
-# Neukölln Pixel Dungeon: Art Renditequartier (Ebene 16-20)
+# Pixel Dungeon Neukölln: Art Renditequartier (Ebene 16-20)
 
 Stand 2026-09-29. Gegner, Boss und Sonderkacheln des Renditequartiers sind Reskins der
 Upstream-Dateien (Shattered Pixel Dungeon v4.0.0, git `4256b22`). Erzeugt mit

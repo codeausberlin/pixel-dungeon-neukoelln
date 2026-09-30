@@ -1,4 +1,4 @@
-# Neukölln Pixel Dungeon lokal starten
+# Pixel Dungeon Neukölln lokal starten
 
 ## Einmalig: Java
 
@@ -33,7 +33,7 @@ Anschauen von Regionen und Gegnern gedacht, nicht zum fairen Durchspielen.
 | Ebene | Was dort zu sehen ist |
 | --- | --- |
 | 1-5 | Hinterhof-Tileset, Pfandratte, Kabelschlange; ab 2 Leihscooter und Herr Fuß, ab 3 Pfandgolem; Boss auf 5: Mietschimmel |
-| 6 | Späti-Ebene, Amt-Tileset, Terminhändler |
+| 6 | Späti-Ebene, Amt-Tileset, Makler |
 | 11 | Späti-Ebene, Baustellen-Tileset, Presslufter |
 | 16 | Späti-Ebene, Renditequartier, Luxussanierer |
 | 21 | Unter dem Rathaus, Hausordnungs-Hydra |

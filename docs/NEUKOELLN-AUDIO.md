@@ -1,4 +1,4 @@
-# Neukölln Pixel Dungeon – Soundtrack (Kiez-Techno)
+# Pixel Dungeon Neukölln – Soundtrack (Kiez-Techno)
 
 Stand: 2026-09-29, Audio-Agent. Status: **generiert und in `core/src/main/assets/music/` eingesetzt,
 aber noch nicht im laufenden Spiel angehört oder getestet.** Geprüft wurde nur objektiv (Messwerte unten).

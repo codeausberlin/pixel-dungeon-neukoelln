@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Neukölln Pixel Dungeon - prozedurale Kiez-Soundeffekte.
+Pixel Dungeon Neukölln - prozedurale Kiez-Soundeffekte.
 
 Erzeugt alle 67 Soundeffekte (core/src/main/assets/sounds/*.mp3) rein per
 Synthese mit numpy/scipy: keine Samples, keine Downloads. Deterministisch

@@ -1,4 +1,4 @@
-// Neukoelln Pixel Dungeon: original pixel-art splash scenes.
+// Pixel Dungeon Neukoelln: original pixel-art splash scenes.
 // Every scene is drawn at 160x90 and scaled 5x (nearest neighbour) to 800x450,
 // matching the size of the upstream splash images. No external images or fonts.
 // Usage: node tools/generate-neukoelln-splashes.cjs [scene ...]

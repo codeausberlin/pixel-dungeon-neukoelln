@@ -17,7 +17,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
- * Modified for Neukölln Pixel Dungeon, 2026.
+ * Modified for Pixel Dungeon Neukölln, 2026.
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.desktop;
@@ -144,23 +144,26 @@ public class DesktopLauncher {
 		}
 		vendor = vendor.split("\\.")[1];
 
+		//Speicherordner bleibt beim Arbeitstitel, damit Spielstaende aus Testversionen erhalten bleiben
+		final String saveDir = "Neukoelln Pixel Dungeon";
+
 		String basePath = "";
 		Files.FileType baseFileType = null;
 		if (SharedLibraryLoader.os == Os.Windows) {
 			if (System.getProperties().getProperty("os.name").equals("Windows XP")) {
-				basePath = "Application Data/." + vendor + "/" + title + "/";
+				basePath = "Application Data/." + vendor + "/" + saveDir + "/";
 			} else {
-				basePath = "AppData/Roaming/." + vendor + "/" + title + "/";
+				basePath = "AppData/Roaming/." + vendor + "/" + saveDir + "/";
 			}
 			baseFileType = Files.FileType.External;
 		} else if (SharedLibraryLoader.os == Os.MacOsX) {
-			basePath = "Library/Application Support/" + title + "/";
+			basePath = "Library/Application Support/" + saveDir + "/";
 			baseFileType = Files.FileType.External;
 		} else if (SharedLibraryLoader.os == Os.Linux) {
 			String XDGHome = System.getenv("XDG_DATA_HOME");
 			if (XDGHome == null) XDGHome = System.getProperty("user.home") + "/.local/share";
 
-			String titleLinux = title.toLowerCase(Locale.ROOT).replace(" ", "-");
+			String titleLinux = saveDir.toLowerCase(Locale.ROOT).replace(" ", "-");
 			basePath = XDGHome + "/." + vendor + "/" + titleLinux + "/";
 
 			baseFileType = Files.FileType.Absolute;

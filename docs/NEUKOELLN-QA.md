@@ -54,7 +54,7 @@ INDEV-Build (`0.1.0-INDEV`), Xvfb 1024x640. Nichts behoben, nichts committet.
 
 Nicht getestet: Die Bosskämpfe auf 15, 20 und 25 wurden nicht bis zum Ende gespielt (Tod des Bosses, Tor, Beute).
 Die Club-Garderobe (7 Marken), der VIP-Bereich und der Laden des Filialisten weiter unten wurden nicht erreicht.
-Terminhändler, Presslufter, Technojünger und Luxussanierer standen nur im Log und wurden nicht angesehen.
+Makler, Presslufter, Technojünger und Luxussanierer standen nur im Log und wurden nicht angesehen.
 Tod des Helden und Rangliste nach einer Niederlage liefen nur nebenbei (Ebene 6, ohne Screenshot).
 Android und iOS wurden nicht getestet.
 

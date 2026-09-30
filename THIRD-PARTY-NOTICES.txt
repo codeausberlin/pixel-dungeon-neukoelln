@@ -1,7 +1,7 @@
-Neukölln Pixel Dungeon - Hinweise zu Drittkomponenten
+Pixel Dungeon Neukölln - Hinweise zu Drittkomponenten
 ======================================================
 
-Neukölln Pixel Dungeon steht als Ganzes unter der GNU General Public License v3 oder später
+Pixel Dungeon Neukölln steht als Ganzes unter der GNU General Public License v3 oder später
 (LICENSE.txt). Es ist eine modifizierte Fassung von Shattered Pixel Dungeon (NOTICE).
 Die folgenden mitgelieferten Komponenten stehen unter eigenen Lizenzen. Die Lizenztexte
 liegen im Ordner licenses/ (Herkunft: licenses/QUELLEN.txt).

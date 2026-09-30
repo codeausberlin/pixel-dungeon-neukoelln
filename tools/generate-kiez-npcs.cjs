@@ -1,4 +1,4 @@
-// Kiez-NPCs: rebuilds the NPC, ally and summon sprite sheets of Neukölln Pixel Dungeon from
+// Kiez-NPCs: rebuilds the NPC, ally and summon sprite sheets of Pixel Dungeon Neukölln from
 // the unmodified upstream Shattered Pixel Dungeon v4.0.0 PNGs (read from git commit 4256b22).
 // Pure Node (zlib via tools/lib/tileset-kit.cjs), no npm packages, no randomness: two runs
 // write byte-identical files.

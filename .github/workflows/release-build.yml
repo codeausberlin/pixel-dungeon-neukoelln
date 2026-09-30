@@ -88,7 +88,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: neukoelln-desktop-${{ runner.os }}-${{ runner.arch }}
-          path: dist/neukoelln-pixel-dungeon-*
+          path: dist/pixel-dungeon-neukoelln-*
           if-no-files-found: error
           retention-days: 14
           compression-level: 0
@@ -139,12 +139,12 @@ jobs:
           apk=$(ls android/build/outputs/apk/release/*.apk | head -n1)
           suffix=""
           [[ "$NK_SIGNING" == debug ]] && suffix="-debugsigniert"
-          cp "$apk" "dist/neukoelln-pixel-dungeon-$version-android$suffix.apk"
+          cp "$apk" "dist/pixel-dungeon-neukoelln-$version-android$suffix.apk"
           tools=$(ls -d "$ANDROID_HOME"/build-tools/*/ | sort -V | tail -n1)
-          "$tools/apksigner" verify --print-certs "dist/neukoelln-pixel-dungeon-$version-android$suffix.apk"
-          "$tools/aapt2" dump badging "dist/neukoelln-pixel-dungeon-$version-android$suffix.apk" | grep -E "^(package|application-label)" || true
+          "$tools/apksigner" verify --print-certs "dist/pixel-dungeon-neukoelln-$version-android$suffix.apk"
+          "$tools/aapt2" dump badging "dist/pixel-dungeon-neukoelln-$version-android$suffix.apk" | grep -E "^(package|application-label)" || true
           for f in LICENSE.txt NOTICE THIRD-PARTY-NOTICES.txt licenses/Apache-2.0.txt; do
-            unzip -l "dist/neukoelln-pixel-dungeon-$version-android$suffix.apk" | grep -qF "assets/legal/$f" \
+            unzip -l "dist/pixel-dungeon-neukoelln-$version-android$suffix.apk" | grep -qF "assets/legal/$f" \
               || { echo "::error::Lizenzdatei fehlt in der APK: assets/legal/$f"; exit 1; }
           done
           [[ -f android/build/outputs/mapping/release/mapping.txt ]] && cp android/build/outputs/mapping/release/mapping.txt "dist/r8-mapping-$version.txt" || true

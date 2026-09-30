@@ -1,13 +1,13 @@
 <p align="center">
-  <img src="docs/readme/titel.png" alt="Titelbildschirm von Neukölln Pixel Dungeon: Altbaufassade, darüber der Schriftzug NEUKÖLLN PIXEL DUNGEON">
+  <img src="docs/readme/titel.png" alt="Titelbildschirm von Pixel Dungeon Neukölln: Altbaufassade, davor ein schiefes, verwittertes Ortsschild PIXEL DUNGEON: NEUKÖLLN mit zwei grünen Fackeln">
 </p>
 
-<h1 align="center">Neukölln Pixel Dungeon</h1>
+<h1 align="center">Pixel Dungeon Neukölln</h1>
 
 <p align="center">
-  <b>Du wolltest nur dein Fahrrad aus dem Keller holen.</b><br>
-  Jetzt steigst du durch Hinterhof, Amt, Baustelle und Luxusquartier hinab zum letzten unbefristeten Mietvertrag Berlins.<br>
-  Ganz unten wartet kein Vermieter, sondern eine Tabelle, die alle zwei Jahre wächst.
+  <b>Du wolltest zur Sitzung beim Mieterverein und nur kurz das Fahrrad aus dem Keller holen.</b><br>
+  Dann fiel die Brandschutztür zu, und jetzt verhandelst du 25 Ebenen tiefer selbst:<br>
+  mit dem Endgegner, dem Ewigen Mietspiegel.
 </p>
 
 <p align="center">
@@ -19,7 +19,7 @@
 
 Ein deutschsprachiger, inoffizieller Fan-Fork von [Shattered Pixel Dungeon](https://shatteredpixel.com/shatteredpd/).
 Gleiche taktische Rundenkämpfe, gleiche niedliche Pixelgrafik, nur dass die Monster jetzt
-Hausverwaltungen, Leihscooter und Terminhändler sind. Nicht vom Original-Entwickler unterstützt.
+Hausverwaltungen, Leihscooter und Makler sind. Nicht vom Original-Entwickler unterstützt.
 Wer sich beschweren will: Das Amt liegt eine Etage tiefer.
 
 ---
@@ -30,8 +30,8 @@ Wer sich beschweren will: Das Amt liegt eine Etage tiefer.
 
 Irgendwo unter Neukölln liegt er: der **letzte unbefristete Mietvertrag Berlins**.
 *Altbau, Kaltmiete von 1987, keine Staffel, kein Index, kein Eigenbedarf.*
-Er ersetzt das Amulett von Yendor, und alle wollen ihn. Die Hausverwaltung, der Investor,
-ein Schimmelpilz mit Sprechrolle und eine uralte Tabelle, die sich für einen Gott hält.
+Alle wollen ihn: die Hausverwaltung, der Investor, ein Schimmelpilz mit Sprechrolle
+und der Ewige Mietspiegel, der alle zwei Jahre wächst.
 
 Die Geschichte funktioniert wie eine Mängelanzeige: Jede Lösung erzeugt das nächste, größere
 Problem. Du beschwerst dich über den Schimmel, landest beim Amt. Das Amt leitet dich nach unten
@@ -126,7 +126,7 @@ und die betroffenen Felder werden markiert.
 | :-: | --- | :-: | --- | --- |
 | <img src="docs/readme/gegner/leihscooter.png" alt="Leihscooter"> | **Leihscooter** | 2-5 | Steht er 2 bis 5 Felder entfernt in gerader Linie zu dir, klingelt er einen Zug lang und rast dann bis zu 6 Felder geradeaus. Ist die Spur leer, kracht er in die Wand und liegt 2 Züge quer. | Einen Parkplatz hat er noch nie gefunden. Gesucht hat er auch nicht. |
 | <img src="docs/readme/gegner/pfandgolem.png" alt="Pfandgolem"> | **Pfandgolem** | 3-5 | Halb so schnell wie du, schlägt aber kräftig zu. Beim Tod zerspringt er in ein Scherbenfeld, das 20 Züge liegen bleibt und bei jedem Schritt verletzt. | Hat so lange auf den Rückgabeautomaten gewartet, dass ihm Beine gewachsen sind. Keine Scherbe ist rückgabefähig. |
-| <img src="docs/readme/gegner/terminhaendler.png" alt="Terminhändler"> | **Terminhändler** | 6-10 | Jeder Treffer schickt dich 3 Züge in die Warteschleife (verlangsamt). Danach zieht er sich 4 Züge zurück und kommt wieder. | Hat alle Termine des Amts in der ersten Sekunde per Skript gebucht. Quittung gibt es nicht. |
+| <img src="docs/readme/gegner/terminhaendler.png" alt="Makler"> | **Makler** | 6-10 | Jeder Treffer schickt dich 3 Züge in die Warteschleife (verlangsamt). Danach zieht er sich 4 Züge zurück und kommt wieder. | Hat alle Termine des Amts in der ersten Sekunde per Skript gebucht und vermittelt sie weiter, wie Wohnungen. Provision: zwei Nettokaltmieten. |
 | <img src="docs/readme/gegner/presslufter.png" alt="Presslufter"> | **Presslufter** | 11-15 | Steht er neben dir, läuft sein Hammer einen Zug warm, dann trifft er alle 8 Nachbarfelder gleichzeitig. Ein Schritt weg reicht. | Niemand weiß, wer ihn beauftragt hat. Niemand traut sich, ihn abzubestellen. |
 | <img src="docs/readme/gegner/technojuenger.png" alt="Technojünger"> | **Technojünger** | 11-15 | Schläft nie. Kündigt im Umkreis von 2 Feldern einen Bass-Drop an, der alle 2 Felder wegschleudert und 3 Züge schwindelig macht. | Kam Freitag rein, ist nie wieder rausgegangen. Die Sonnenbrille bleibt auf, die Sonne ist hier unten nur ein Gerücht. |
 | <img src="docs/readme/gegner/luxussanierer.png" alt="Luxussanierer"> | **Luxussanierer** | 16-20 | Vermisst die freien Felder hinter dir und stellt dort im nächsten Zug Bauzäune auf, die für 8 Züge Weg und Sicht blockieren. | Sieht überall Potenzial, besonders dort, wo gerade noch jemand wohnt. Über deinem Fluchtweg plant er eine Dachterrasse. |
@@ -271,10 +271,10 @@ nicht da.
 - Ein großer Teil der deutschen Texte (Gegner, Bosse, Gegenstände, Ebenen, Tagebuch, Pflanzen) auf Neukölln umgeschrieben
 - Die vier Rollen mit eigenen Heldensprites und Splash-Bildern; Heldenwahl und Ebene 1 im Spiel angesehen
 - Titelbild, eigene Tilesets für alle fünf Regionen, Regions-Splashes
-- Neue Gegner mit eigener Mechanik (Leihscooter, Pfandgolem, Terminhändler, Presslufter, Technojünger, Luxussanierer, Hausordnungs-Hydra und mehr)
+- Neue Gegner mit eigener Mechanik (Leihscooter, Pfandgolem, Makler, Presslufter, Technojünger, Luxussanierer, Hausordnungs-Hydra und mehr)
 - Mietvertrag als Siegziel, Sperrmüllberge, Hundehaufen, Samenbomben, neue Item-Icons, Wahl- und Clubplakate als Wanddeko
 - Der Spätimann auf 6, 11 und 16
-- Vertontes Intro vor jedem neuen Spiel: die M41 fällt aus, die nächste fährt zu früh, also ab in den Keller
+- Vertontes Intro vor jedem neuen Spiel: Auf dem Weg zum Mieterverein fällt die M41 aus, die nächste fährt zu früh, also schnell das Fahrrad aus dem Keller holen
 - Club-Labyrinth auf Ebene 16-19: du wachst ohne Ausrüstung im Club auf und sammelst 7 Garderobenmarken
 - Der Netztechniker (seit zwei Jahren erwartet) statt Schmied, Glasfaserstücke statt Erz, Abgründe als A100-Baulücken
 
@@ -304,7 +304,7 @@ Figuren stehen in [docs/NEUKOELLN-WELT.md](docs/NEUKOELLN-WELT.md) und
 
 ## Credits und Lizenz
 
-**Neukölln Pixel Dungeon** ist ein inoffizieller deutscher Fork von Shattered Pixel Dungeon und wird
+**Pixel Dungeon Neukölln** ist ein inoffizieller deutscher Fork von Shattered Pixel Dungeon und wird
 **nicht vom Original-Entwickler unterstützt**. Neukölln-Setting, neue Gegner, Texte und Pixelart:
 [codeausberlin](https://github.com/codeausberlin). Fehler in diesem Fork bitte hier melden, nicht beim Original.
 

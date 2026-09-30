@@ -1,4 +1,4 @@
-# Neukölln Pixel Dungeon: Art Unterwelt des Mietspiegels (Ebene 21-25) und Sonderkacheln
+# Pixel Dungeon Neukölln: Art Unterwelt des Mietspiegels (Ebene 21-25) und Sonderkacheln
 
 Stand 2026-09-29. Erzeugt mit `node tools/generate-kiez-unterwelt.cjs`. Der Schalter
 `--only eye,yog` schränkt auf einzelne Sheets ein, `--preview DIR` schreibt je Sheet eine

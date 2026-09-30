@@ -24,3 +24,8 @@ local.properties
 
 # Python-Bytecode der Generator-Skripte
 __pycache__/
+
+# Android-Signierschluessel nie einchecken
+*.keystore
+*.jks
+keystore.b64

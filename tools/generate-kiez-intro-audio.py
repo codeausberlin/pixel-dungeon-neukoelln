@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Neukölln Pixel Dungeon - Klangbett für die Bilder-Intro (IntroScene).
+Pixel Dungeon Neukölln - Klangbett für die Bilder-Intro (IntroScene).
 
 Erzeugt fünf Ogg-Vorbis-Dateien in core/src/main/assets/music/:
 

@@ -1,4 +1,4 @@
-// Neukoelln Pixel Dungeon: original parallax layers for the title background.
+// Pixel Dungeon Neukoelln: original parallax layers for the title background.
 // Replaces core/src/main/assets/splashes/title/{archs,back_clusters,mid_mixed,front_small}.png
 // with Neukoelln street motifs. Frame grids, atlas sizes and binary transparency match
 // what ui/TitleBackground.java expects:

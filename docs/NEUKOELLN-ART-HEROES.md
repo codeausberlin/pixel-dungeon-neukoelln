@@ -1,4 +1,4 @@
-# Neukölln Pixel Dungeon: Helden-Art
+# Pixel Dungeon Neukölln: Helden-Art
 
 Stand 2026-09-29. Die vier spielbaren Heldenatlanten `core/src/main/assets/sprites/`
 `warrior.png`, `mage.png`, `rogue.png` und `huntress.png` sind vollständig neu gezeichnete,

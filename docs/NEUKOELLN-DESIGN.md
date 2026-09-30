@@ -1,4 +1,4 @@
-# Neukoelln Pixel Dungeon
+# Pixel Dungeon Neukoelln
 
 Working design, 2026-09-29. This is a playable fork in development, not a claim
 that all features below have shipped. The working title is provisional.

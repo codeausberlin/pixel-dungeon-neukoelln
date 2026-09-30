@@ -17,7 +17,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
- * Modified for Neukölln Pixel Dungeon, 2026.
+ * Modified for Pixel Dungeon Neukölln, 2026.
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.android;
@@ -67,7 +67,7 @@ public class AndroidMissingNativesHandler extends Activity {
 		}
 
 		TextView text = new TextView(this);
-		String message = "Neukölln Pixel Dungeon konnte interne Programmteile nicht laden und kann nicht starten.\n\n" +
+		String message = "Pixel Dungeon Neukölln konnte interne Programmteile nicht laden und kann nicht starten.\n\n" +
 				"Lade das Spiel bitte aus einer offiziellen Quelle des Neukölln-Projekts. Einen Screenshot dieser Angaben kannst du im Neukölln-Repository melden (github.com/codeausberlin/shattered-neukoelln-dungeon/issues), nicht beim Original-Entwickler:";
 
 		message += "\n\nPackage: " + getPackageName();

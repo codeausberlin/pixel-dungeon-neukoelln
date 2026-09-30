@@ -1,4 +1,4 @@
-# Neukölln Pixel Dungeon: NPC-Art
+# Pixel Dungeon Neukölln: NPC-Art
 
 Stand 2026-09-29. NPCs, Begleiter und Beschwörungen werden mit
 `node tools/generate-kiez-npcs.cjs` erzeugt (`--only shopkeeper,imp` schränkt ein, `--preview DIR`

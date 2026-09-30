@@ -15,7 +15,7 @@
 #
 # Umgebungsvariablen:
 #   JAVA_HOME         JDK fuer jlink/jdeps/jpackage (sonst aus PATH)
-#   NK_APP_NAME       angezeigter App-Name (Standard: "Neukölln Pixel Dungeon")
+#   NK_APP_NAME       angezeigter App-Name (Standard: "Pixel Dungeon Neukölln")
 #   NK_REPO_URL       Repository fuer das Quellcode-Angebot (Standard: GitHub-Repo des Laufs bzw.
 #                     https://github.com/codeausberlin/shattered-neukoelln-dungeon)
 #   NK_SOURCE_REF     Git-Tag oder Commit, der in LIESMICH.txt verlinkt wird (Standard: auf GitHub
@@ -31,8 +31,8 @@
 set -euo pipefail
 cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.."
 
-APP_NAME="${NK_APP_NAME:-Neukölln Pixel Dungeon}"
-FILE_BASE="neukoelln-pixel-dungeon"
+APP_NAME="${NK_APP_NAME:-Pixel Dungeon Neukölln}"
+FILE_BASE="pixel-dungeon-neukoelln"
 BUNDLE_ID="com.codeausberlin.neukoelln"
 VENDOR="Code aus Berlin"
 # Feste UUID, damit spaetere .msi-Versionen die alte Installation ersetzen statt daneben zu landen.
@@ -77,7 +77,7 @@ esac
 # Auf Linux startet ein Paket mit Umlaut im Ordnernamen ohne UTF-8-Locale nicht
 # ("Error loading java.security file"). Deshalb dort ein ASCII-Name fuer Ordner und Starter.
 if [[ "$OS" == linux && -z "${NK_APP_NAME:-}" ]]; then
-    APP_NAME="Neukoelln-Pixel-Dungeon"
+    APP_NAME="Pixel-Dungeon-Neukoelln"
 fi
 # Der Umlaut im App-Namen braucht auf Linux eine UTF-8-Locale, sonst lehnt jpackage den Namen ab.
 if [[ "$OS" == linux ]] && ! locale 2>/dev/null | grep -qi 'utf-\?8'; then
@@ -195,7 +195,7 @@ case "$OS" in
     mac)
         ICON=desktop/src/main/assets/icons/mac.icns
         JAVA_OPTS+=(--java-options "-XstartOnFirstThread")
-        PLATFORM_OPTS+=(--mac-package-identifier "$BUNDLE_ID" --mac-package-name "Neukölln PD")
+        PLATFORM_OPTS+=(--mac-package-identifier "$BUNDLE_ID" --mac-package-name "PD Neukölln")
         ;;
 esac
 

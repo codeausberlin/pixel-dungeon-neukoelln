@@ -17,7 +17,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
- * Modified for Neukölln Pixel Dungeon, 2026.
+ * Modified for Pixel Dungeon Neukölln, 2026.
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.scenes;
@@ -68,7 +68,7 @@ public class AboutScene extends PixelScene {
 		Component content = list.content();
 		content.clear();
 
-		//*** Neukoelln Pixel Dungeon Credits (fork on top, upstream credits kept below) ***
+		//*** Pixel Dungeon Neukoelln Credits (fork on top, upstream credits kept below) ***
 
 		final int NK_COLOR = 0xF06292;
 		CreditsBlock nk = new CreditsBlock(true, NK_COLOR,

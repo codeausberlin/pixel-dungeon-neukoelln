@@ -1,4 +1,4 @@
-# Neukölln Pixel Dungeon – Journal (Tagebuch-Fenster)
+# Pixel Dungeon Neukölln – Journal (Tagebuch-Fenster)
 
 Stand: 2026-09-29. Bestandsaufnahme und Umbau des Tagebuchs (`windows/WndJournal.java`,
 Titelbild-Variante `scenes/JournalScene.java`). Referenz Upstream: `2bb34a4` (Shattered v4.0.0).

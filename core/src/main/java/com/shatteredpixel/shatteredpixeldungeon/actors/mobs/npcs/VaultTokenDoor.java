@@ -17,7 +17,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
- * Modified for Neukölln Pixel Dungeon, 2026.
+ * Modified for Pixel Dungeon Neukölln, 2026.
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs;

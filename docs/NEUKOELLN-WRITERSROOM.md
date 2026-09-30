@@ -1,4 +1,4 @@
-# Neukölln Pixel Dungeon – Writers' Room
+# Pixel Dungeon Neukölln – Writers' Room
 
 Stand: 2026-09-29. Leitfaden des Head Writers für die Text-Überarbeitung („Punch-up“).
 Dieses Dokument ist eine **Arbeitsgrundlage, keine Implementierung**. Es ändert keinen
@@ -31,9 +31,9 @@ Stempel, Afterhour, Parodie-Clubs).
 
 ## 0. Logline
 
-> Du wolltest nur dein Fahrrad aus dem Keller holen. Jetzt steigst du durch Hinterhof,
-> Amt, Baustelle und Luxusquartier hinab zum letzten unbefristeten Mietvertrag Berlins,
-> und ganz unten wartet kein Vermieter, sondern eine Tabelle, die alle zwei Jahre wächst.
+> Du wolltest zur Sitzung beim Mieterverein und nur kurz das Fahrrad aus dem Keller holen,
+> dann fiel die Brandschutztür zu, und jetzt verhandelst du 25 Ebenen tiefer selbst: mit dem
+> Endgegner, dem Ewigen Mietspiegel.
 
 ---
 
@@ -160,8 +160,10 @@ Rixdorf durchschimmert.
 
 ### Akt 1 – Neuköllner Hinterhöfe (Ebene 1–5): „Falsch gelüftet“
 
-- **Ausgangslage:** Du willst nur dein Fahrrad aus dem Keller holen. Die Brandschutztür fällt
-  hinter dir zu, der Schlüssel liegt drinnen. Hundehaufen auf der ersten Stufe (Gag 1).
+- **Ausgangslage:** Du bist auf dem Weg zur Sitzung beim Mieterverein (generisch, kein realer
+  Verein). Die M41 kommt erst nicht und fährt dir dann vor der Nase weg. Also willst du nur kurz
+  dein Fahrrad aus dem Keller holen. Die Brandschutztür fällt hinter dir zu, der Schlüssel liegt
+  weiter unten. Hundehaufen auf der ersten Stufe (Gag 1).
 - **Kern-Satire:** Mängel, die niemand behebt, und eine Verwaltung, die dem Mieter die Schuld
   gibt. Der Wasserschaden von 2009 tropft (Gag 4), die Kaution ist weg (Gag 9).
 - **Eskalation:** Die Pfandratten haben die Hausverwaltung übernommen, und niemand merkt einen
@@ -178,7 +180,7 @@ Rixdorf durchschimmert.
   Jahren „0815“ (Gag 5). Der Spätimann hat in der ehemaligen Kantine eröffnet und ist der
   Einzige hier, der zuständig ist.
 - **Kern-Satire:** Warten als Lebensform, ein Apparat, der sich selbst verwaltet, und
-  Terminhändler, die Termine per Skript horten. Die Wahlplakate von Kanzler März versprechen
+  Makler, die Termine per Skript horten und gegen Provision vermitteln. Die Wahlplakate von Kanzler März versprechen
   „Termine für alle, ab der nächsten Legislatur“ (Gag 13).
 - **Eskalation:** Wer lange genug wartet, wird zum ewig Wartenden, und die
   Wiedervorlagebeamten legen ihn wieder vor. Der Ewige Antragsteller hält Nummer 0816 und ist
@@ -478,7 +480,7 @@ und eine **Leitplanke**. Autorinnen tragen neue Fundstellen hier ein, bevor sie 
 | 2 | **Pfand** | Pfandratte, Pfandgolem, Pfandkönig, `shopkeeper.buyback` („Ohne Pfand“), Pfandflasche als Wurfwaffe | Automat defekt („Leergut wird nicht angenommen“); der Golem wartet auf den Automaten; Glühweinbecher sind Pfand; im Renditequartier gibt es Pfand auf Ideen | Der Pfandgolem war nie böse, nur nicht abgegeben. Im Ziel: 8 Cent Pfand auf den Kuli. | Pfand ist ein Ding- und Automaten-Witz. Keine Pfandsammler, keine Armut (siehe Punch-up 24, 60). |
 | 3 | **Kartenzahlung erst ab 10 Euro** | `items.gold.desc` (Kartenlesegeräte verschlungen), `terminhaendler.desc` („Kartenzahlung auch nicht“) | Spätimann jedes Mal eine Stufe trockener; Filialist nimmt Karte, aber nur ab 100; Renditequartier nimmt nur Karte; Mietspiegel nimmt nur Lastschrift | Finale: „Macht fuffzig Cent. Karte erst ab zehn.“ | Witz auf Geschäftslogik, nie auf den Händler als Person. |
 | 4 | **Wasserschaden seit 2009** | `levels.level$feeling.water_desc_r1`, `levels.sewerlevel.bookshelf_desc` (Steuerratgeber 2009) | Das Jahr bleibt 2009, alles andere ändert sich: Amt legt die Meldung wieder vor, Baustelle pumpt ihn ab, Renditequartier nennt ihn „Wasserspiel“ | Rathaus: Akte „Wasserschaden 3. OG, gemeldet 2009, in Bearbeitung“ | Konstante Jahreszahl 2009, nie variieren. |
-| 5 | **Termin beim Amt / Wartenummer 0815** | `tengu.*`, `wandmaker.desc`, `skeleton.explo_kill`, `dm100.zap_kill`, Splash „NR 0815“, `wndvictorycongrats.start_text` („ganz ohne Termin“) | Anzeige zeigt immer 0815; der Antragsteller hält 0816; Terminhändler verkaufen 0815 weiter; Mietspiegel führt dich als „0815, ortsüblich“ | Siegtext: „ganz ohne Termin“ (bestehend) plus einmal: 0815 wird aufgerufen, als niemand mehr da ist | Ziel ist der Apparat, nie die Menschen am Schalter oder in der Schlange. |
+| 5 | **Termin beim Amt / Wartenummer 0815** | `tengu.*`, `wandmaker.desc`, `skeleton.explo_kill`, `dm100.zap_kill`, Splash „NR 0815“, `wndvictorycongrats.start_text` („ganz ohne Termin“) | Anzeige zeigt immer 0815; der Antragsteller hält 0816; Makler vermitteln die 0815 weiter; Mietspiegel führt dich als „0815, ortsüblich“ | Siegtext: „ganz ohne Termin“ (bestehend) plus einmal: 0815 wird aufgerufen, als niemand mehr da ist | Ziel ist der Apparat, nie die Menschen am Schalter oder in der Schlange. |
 | 6 | **„Früher war hier alles …“** | Badge `games_played_3` („Früher war hier alles besser“), Alteingesessene | Der Satz wird nie gleich beendet: „…Keller“, „…Amt“, „…Afterhour“, „…Kiez“; die Zugezogene sagt ihn nach sechs Jahren auch schon | Ebene 25: „Früher war hier alles Rixdorf. Und da wollte auch keiner wohnen.“ (Umbenennung 1912, F01) | Trifft Nostalgie als Verhalten aller Gruppen. |
 | 7 | **Döner als Heilnahrung** | `actors.buffs.hunger.desc_intro_hungry` („Ein Döner wäre jetzt trotzdem was“), `items.food.meatpie.*` („Döner mit alles“) | Döner-Preis-Index: in jeder Region teurer und umbenannter, Ebene 1 ehrlicher Preis, Renditequartier „Kebab Bowl“ zu 16,90; der Mietspiegel führt Döner als wohnwerterhöhendes Merkmal | Der Döner ist das Einzige, das in allen fünf Akten zuverlässig heilt | Liebevoll. Gag auf Preis, Soße, Hunger um drei Uhr nachts. Nie auf Personal, Herkunft, Sprache. |
 | 8 | **Lieferfahrer (generisch)** | `shopkeeper.talk_prison_intro` („niemand einen Lieferdienst gegründet“), `escooter.hit` („Die App bedankt sich“) | Ein Fahrer mit Würfelrucksack ist in jeder Region schon vor dir da; die App bewertet dich, nicht ihn | Er liefert unter dem Rathaus: „Bestellung für Mietspiegel, Hinterhaus. Kein Trinkgeld.“ | Die Plattform ist das Ziel, der Fahrer ist der kompetenteste Mensch im Dungeon. Keine echte App. |
@@ -495,7 +497,7 @@ und eine **Leitplanke**. Autorinnen tragen neue Fundstellen hier ein, bevor sie 
 
 Callback-Karte nach Ort (Kurzform für Autorinnen):
 - **Items:** Döner (7), Kuli/Gold (3), Pfandflasche (2), Türsteherweste und Club-Hoodie (14), Mietvertrag (Finale).
-- **Gegner:** Pfandratte/Golem (2), Terminhändler (3, 5), Leihscooter (8), Luxussanierer (15), Technojünger (14), Mieterhöhungslarve (Akt 5).
+- **Gegner:** Pfandratte/Golem (2), Makler (3, 5), Leihscooter (8), Luxussanierer (15), Technojünger (14), Mieterhöhungslarve (Akt 5).
 - **Journal:** Hofwächterin-Briefe (4, 9), Amtsleiterin (5), Bautagebuch (12), Hexer (13, 14), Rodney (11).
 - **Badges:** `games_played_3` (6), `boss_slain_2` „Abgeschleppt“ (17), `death_from_hunger` „Späti hatte zu“ (7), `gold_collected_*` (3), `high_score_*` (13), `victory`/`happy_end` (Finale).
 
@@ -742,3 +744,20 @@ Beide stimmen den neuen Namen vor dem Schreiben miteinander ab.
   Technikerwerkstatt, Mine → Kabelschacht. Abgrund → **A100-Baulücke** (nie fertig gebaute
   Teilabschnitte), Badge „Abfahrt verpasst“. Sonnenallee (Barbershop, Shisha-Bar, Konditorei)
   in den Hinterhof-Feelings `grass_desc_r1`, `large_desc_r1`, `secrets_desc_r1`.
+- 2026-09-30: Presse- und Marketingtexte erzählen das Spiel, nicht die Unterschiede zum Original;
+  Logline muss ohne Vorwissen verständlich sein; keine erfundenen Bewertungen im Pressekit.
+- 2026-09-30: Story-Einstieg: Du willst zur Sitzung beim Mieterverein (nur generisch, kein realer
+  Vereinsname), die M41 kommt erst nicht und fährt dir dann vor der Nase weg, erst dann geht es
+  in den Keller zum Fahrrad. Umgesetzt in `scenes.introscene.page1`, `page3` und
+  `journal.document.intros.dungeon.body` (Begrüßungstext), nicht im Spiel angesehen.
+- 2026-09-30: Der Endgegner wird in Presse und Marketing beim Namen genannt („Endgegner ist der
+  Ewige Mietspiegel“), keine Umschreibung als „Tabelle“. Ein kurzer Zusatz wie „wächst alle zwei
+  Jahre“ ist erlaubt, wenn das Wort Mietspiegel dasteht.
+- 2026-09-30: Android ist Startplattform neben Windows, macOS und Linux; iOS später. Solange es
+  nicht auf einem Gerät geprüft ist, steht das im Kasten „Stand der Dinge“.
+- 2026-09-30: Der eigens geschriebene, im Code synthetisierte Techno-Soundtrack (31 Tracks plus
+  Intro-Klangbetten) kommt in Pressetexten prominent vor. Keine erfundenen Musiker, Labels oder
+  Clubs, kein „live eingespielt“.
+- 2026-09-30: Der Gegner der Amt-Region heißt „Makler“ statt „Terminhändler“ (das Wort kennt niemand).
+  Mechanik und Amt-Witz bleiben: Er bucht die Termine per Skript und vermittelt sie gegen Provision
+  weiter. Klassen- und Key-Namen (`Terminhaendler`, `actors.mobs.terminhaendler.*`) bleiben intern.

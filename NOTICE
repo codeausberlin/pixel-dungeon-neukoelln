@@ -1,4 +1,4 @@
-Neukölln Pixel Dungeon
+Pixel Dungeon Neukölln
 ======================
 
 Diese Software ist eine modifizierte Fassung von Shattered Pixel Dungeon (Evan Debenham),
@@ -15,7 +15,7 @@ Umfang der Änderungen gegenüber Shattered Pixel Dungeon v4.0.0 (Commit 2bb34a4
 - Spielmechanik (Java): vier umbenannte spielbare Rollen (Expat, Alteingesessene, Zugezogene,
   Tourist), neue Gegner, Räume und Ebenen-Abschnitte (Kiez, Amt, Baustelle, Renditequartier u. a.),
   Händler "Spätimann", Intro-Sequenz. 37 Upstream-Java-Dateien geändert (Dateikopf trägt die Zeile
-  "Modified for Neukölln Pixel Dungeon, 2026."), 24 Java-Dateien neu.
+  "Modified for Pixel Dungeon Neukölln, 2026."), 24 Java-Dateien neu.
 - Grafik: geänderte und neue Sprites, Umgebungs-, Interface- und Splash-Grafiken, eigener
   Titel-Schriftzug und Desktop-Icons (erzeugt mit den Skripten unter tools/, teils aus den
   Original-Grafiken abgeleitet).
@@ -32,10 +32,10 @@ Lizenz: GNU General Public License Version 3 oder später (LICENSE.txt), ohne je
 Mitgelieferte Drittkomponenten und ihre Lizenzen: THIRD-PARTY-NOTICES.txt und licenses/.
 
 Die Credits des Originals (Oleg Dolya, Evan Debenham und alle Mitwirkenden, freesound.org) sind
-im Spiel unter "Über" vollständig erhalten. Neukölln Pixel Dungeon ist ein inoffizieller Fan-Fork
+im Spiel unter "Über" vollständig erhalten. Pixel Dungeon Neukölln ist ein inoffizieller Fan-Fork
 und wird nicht vom Original-Entwickler unterstützt.
 
 ----------------------------------------------------------------------------------------------
 English summary: This program is a modified version of Shattered Pixel Dungeon by Evan Debenham
 (based on Pixel Dungeon by Oleg Dolya), modified since 2026-09-05 (upstream commit 4256b22) by the
-Neukölln Pixel Dungeon team. Licensed under GPLv3 or later, see LICENSE.txt.
+Pixel Dungeon Neukölln team. Licensed under GPLv3 or later, see LICENSE.txt.

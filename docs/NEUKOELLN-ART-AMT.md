@@ -1,4 +1,4 @@
-# Neukölln Pixel Dungeon: Art Amt (Ebene 6-10)
+# Pixel Dungeon Neukölln: Art Amt (Ebene 6-10)
 
 Stand 2026-09-29. Die Gegner und die zwei Sondertile-Sheets der Region "Das Amt ohne Termin"
 (upstream Prison) sind Reskins der Upstream-Sheets (Shattered Pixel Dungeon v4.0.0). Erzeugt

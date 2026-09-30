@@ -1,4 +1,6 @@
-// Kiez-Icons: desktop window/taskbar icons for Neukölln Pixel Dungeon: a lit Altbau
+// Abgeloest durch tools/generate-kiez-appicon.cjs (Ortsschild-Icon); dieses Skript nicht mehr ausfuehren,
+// es wuerde die Desktop-Icons mit dem alten Altbau-Motiv ueberschreiben.
+// Kiez-Icons: desktop window/taskbar icons for Pixel Dungeon Neukölln: a lit Altbau
 // window above a glowing Späti sign on a clinker-brick tile. Pure Node, deterministic.
 //
 //   node tools/generate-kiez-icons.cjs                 write desktop/src/main/assets/icons/*
