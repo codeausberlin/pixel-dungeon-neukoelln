@@ -250,10 +250,10 @@ Aufnahmen aus dem laufenden Spiel (Desktop, Ebene 1). Besichtigung nur mit Termi
 | Linux (Fedora, openSUSE) | `.rpm` | `sudo dnf install ./pixel-dungeon-neukoelln-<Version>-linux-x64.rpm` |
 | Linux (alle) | `.tar.gz` | Entpacken und `bin/Pixel-Dungeon-Neukoelln` starten |
 
-Die Pakete erscheinen mit dem ersten Release unter
-[Releases](https://github.com/codeausberlin/pixel-dungeon-neukoelln/releases). Bis dahin gibt
-es sie nur als Testbuilds. Jedes Paket enthält eine `LIESMICH.txt`, die Lizenzen und einen Link auf
-genau den Quellcode, aus dem es gebaut wurde.
+**[Neueste Version herunterladen](https://github.com/codeausberlin/pixel-dungeon-neukoelln/releases/latest)**,
+dort unter *Assets* das Paket für dein System wählen. Jedes Paket enthält eine `LIESMICH.txt`, die
+Lizenzen und einen Link auf genau den Quellcode, aus dem es gebaut wurde. Prüfsummen stehen in
+`SHA256SUMS.txt`.
 
 **Aus dem Quellcode.** Du brauchst ein **JDK 17 oder neuer** (getestet mit 21, zum Beispiel
 Temurin von [adoptium.net](https://adoptium.net/)). Prüfen mit `java -version`.

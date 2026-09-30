@@ -13,7 +13,7 @@ Den sehen nur Personen mit Schreibrecht; öffentlich wird er erst per Klick (sie
 
 | Plattform | Datei | Inhalt |
 | --- | --- | --- |
-| Linux x64 | `pixel-dungeon-neukoelln-<Version>-linux-x64.tar.gz` | Ordner entpacken, `bin/Pixel Dungeon Neukölln` starten |
+| Linux x64 | `pixel-dungeon-neukoelln-<Version>-linux-x64.tar.gz` | Ordner entpacken, `bin/Pixel-Dungeon-Neukoelln` starten |
 | Linux x64 | `…-linux-x64.deb` | Installationspaket für aktuelle Ubuntu/Debian-Versionen (auf dem Runner gebaut, daher Ubuntu-24.04-Paketnamen) |
 | Linux x64 | `…-linux-x64.rpm` | Installationspaket für Fedora, openSUSE und andere RPM-Systeme; installiert nach `/opt/pixel-dungeon-neukoelln/`, einzige Abhängigkeit `xdg-utils` |
 | Windows x64 | `…-windows-x64.zip` | Ordner entpacken, `Pixel Dungeon Neukölln.exe` starten |
