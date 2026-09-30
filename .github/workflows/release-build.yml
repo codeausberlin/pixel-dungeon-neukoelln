@@ -79,6 +79,15 @@ jobs:
             cygpath -w "$wix_bin" >> "$GITHUB_PATH"
           fi
 
+      - name: Installationspaket vorbereiten (Linux, rpmbuild)
+        if: runner.os == 'Linux' && (github.event_name != 'workflow_dispatch' || inputs.installers)
+        continue-on-error: true
+        run: |
+          if ! command -v rpmbuild >/dev/null 2>&1; then
+            sudo apt-get update -qq && sudo apt-get install -y -qq rpm
+          fi
+          rpmbuild --version
+
       - name: Installationspaket bauen
         if: github.event_name != 'workflow_dispatch' || inputs.installers
         continue-on-error: true

@@ -138,6 +138,8 @@ tasks.matching { it.name.contains("merge") && it.name.contains("JniLibFolders") 
     packageTask.dependsOn 'copyAndroidNatives'
 }
 
-tasks.matching { it.name.contains("Assets") && it.name != 'copyLegalAssets' }.configureEach { assetTask ->
+// Alles, was die Asset-Ordner liest, muss nach copyLegalAssets laufen: Asset-Tasks und die
+// Lint-Tasks (Gradle 9 bricht sonst bei generate*LintVitalReportModel mit "implicit dependency" ab).
+tasks.matching { (it.name.contains("Assets") || it.name.toLowerCase().contains("lint")) && it.name != 'copyLegalAssets' }.configureEach { assetTask ->
     assetTask.dependsOn 'copyLegalAssets'
 }

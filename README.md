@@ -17,10 +17,12 @@
   <code>Fertigstellung: vsl. Herbst</code>
 </p>
 
-Ein deutschsprachiger, inoffizieller Fan-Fork von [Shattered Pixel Dungeon](https://shatteredpixel.com/shatteredpd/).
-Gleiche taktische Rundenkämpfe, gleiche niedliche Pixelgrafik, nur dass die Monster jetzt
-Hausverwaltungen, Leihscooter und Makler sind. Nicht vom Original-Entwickler unterstützt.
-Wer sich beschweren will: Das Amt liegt eine Etage tiefer.
+Ein Roguelike auf Deutsch für Windows, macOS, Linux und Android. Kostenlos, ohne Werbung, ohne
+Käufe im Spiel. Taktische Rundenkämpfe, niedliche Pixelgrafik und Gegner, die du aus dem Hausflur
+kennst: Hausverwaltungen, Leihscooter und Makler. Es basiert auf dem Open-Source-Roguelike
+[Shattered Pixel Dungeon](https://shatteredpixel.com/shatteredpd/) und ist ein inoffizieller
+Fan-Fork, nicht vom Original-Entwickler unterstützt. Wer sich beschweren will: Das Amt liegt eine
+Etage tiefer.
 
 ---
 
@@ -151,25 +153,29 @@ eingeklemmt zwischen Concept Store und Showroom.
 
 <img src="docs/readme/sperrmuell.png" alt="Vier Sperrmüllberge: normal, angekettet, Vitrine, Schatten-Sperrmüll">
 
-**Sperrmüllberge statt Truhen.** Beute liegt dort, wo sie in Neukölln immer liegt: am Bordstein.
+**Beute vom Bordstein.** Was du findest, liegt dort, wo es in Neukölln immer liegt: im Sperrmüll.
 Manche Berge sind angekettet, manche sind Vitrinen, und manche beißen. Das sind dann
 Sperrmüllmonster. Zu verschenken war hier noch nie etwas.
 
 <img src="docs/readme/hundehaufen.png" alt="Acht Hundehaufen in verschiedenen Farben mit kleinen Fähnchen">
 
-**Hundehaufen statt Fallen.** Jede Falle ist ein Haufen. Die Farbe verrät die Wirkung, das
+**Pass auf, wo du hintrittst.** Jede Falle ist ein Hundehaufen. Die Farbe verrät die Wirkung, das
 Fähnchen die Form, und wer reintritt, weiß danach Bescheid. Sie heißen „lodernder Haufen“,
 „tiefgefrorener Haufen“ oder „bodenloser roter Haufen“. Der harmloseste ist der „verwitterte
 Blasrohr-Haufen“. Er ist so alt, dass er nicht einmal versteckt ist. Bestandsschutz.
 
-**Stadttauben statt Runensteine.** Blinzeltaube, Böllertaube, Mittagsschlaf-Taube und zehn weitere: Jede landet, macht ihr Ding und fliegt davon. Die Alteingesessene wirft keine Steine, sie schickt Hoftauben los.
+**Stadttauben zum Werfen.** Blinzeltaube, Böllertaube, Mittagsschlaf-Taube und zehn weitere: Jede landet, macht ihr Ding und fliegt davon. Die Alteingesessene wirft keine Steine, sie schickt Hoftauben los.
 
-**Sternchen-Pils statt Wasserschlauch.** Heilt, wenn du vorher genug Biertropfen gesammelt hast. Dazu Baklava vom Konditor an der Sonnenallee als Proviant, gleich neben Barbershop und Shisha-Bar.
+**Sternchen-Pils.** Heilt, wenn du vorher genug Biertropfen gesammelt hast. Dazu Baklava vom Konditor an der Sonnenallee als Proviant, gleich neben Barbershop und Shisha-Bar.
 
 **Wohnungsgesuche an der Wand.** Abreißzettel mit Nummer 0176-KEINE-HOFFNUNG. „Hund heißt Keks, ist aber auch bereit auszuziehen.“
 
-**Samenbomben statt Samen.** Guerilla-Gärtnern mit Folgen: Mietsenkungsblume, Kehrwochenkraut,
+**Samenbomben.** Guerilla-Gärtnern mit Folgen: Mietsenkungsblume, Kehrwochenkraut,
 Räumungsklee, Neidmoos, Pflasterkraut. Die Mietsenkungsblume ist das Unrealistischste im ganzen Spiel.
+
+**Techno aus dem Keller.** 31 Tracks Berliner Techno, eigens für das Spiel geschrieben und komplett
+im Code synthetisiert, dazu eigene Klangbetten fürs Intro. Jede Region hat ihren eigenen Sound, vom
+Hinterhof bis unter das Rathaus. Kein Türsteher, keine Gästeliste, du bist drin.
 
 ---
 
@@ -217,7 +223,7 @@ Aufnahmen aus dem laufenden Spiel (Desktop, Ebene 1). Besichtigung nur mit Termi
   </tr>
   <tr>
     <td><img src="docs/readme/screenshots/hinterhof-intro.png" alt="Einleitung Ebene 1 vor dem Hinterhof"><br><sub>Hinter dem Vorderhaus kommt der erste Hinterhof. Und dann die Räume, die im Exposé „Atelier“ hießen.</sub></td>
-    <td><img src="docs/readme/screenshots/heldenwahl-zugezogene.png" alt="Heldenwahl mit der Zugezogenen"><br><sub>Die Zugezogene auf dem Balkon, für den sie eigentlich hergezogen ist.</sub></td>
+    <td><img src="docs/readme/screenshots/heldenwahl-zugezogene.png" alt="Heldenwahl mit der Zugezogenen"><br><sub>Die Zugezogene auf dem Balkon, für den sie hergezogen ist.</sub></td>
   </tr>
   <tr>
     <td><img src="docs/readme/screenshots/kampf-kabelschlange.png" alt="Kampf gegen eine Kabelschlange"><br><sub>Die Zugezogene gegen eine Kabelschlange. Die Schlange weicht aus.</sub></td>
@@ -233,8 +239,24 @@ Aufnahmen aus dem laufenden Spiel (Desktop, Ebene 1). Besichtigung nur mit Termi
 
 ## Einziehen
 
-Erste Validierungsplattform ist der Desktop. Du brauchst ein **JDK 17 oder neuer** (getestet mit
-21, zum Beispiel Temurin von [adoptium.net](https://adoptium.net/)). Prüfen mit `java -version`.
+**Fertige Pakete** (Java ist jeweils eingebaut, nichts extra installieren):
+
+| System | Paket | So geht's |
+| --- | --- | --- |
+| Android | `.apk` | Herunterladen, antippen, Installation aus dieser Quelle einmal erlauben |
+| Windows | `.msi` oder `.zip` | Installer starten oder Ordner entpacken und `Pixel Dungeon Neukölln.exe` öffnen |
+| macOS | `.dmg` oder `.zip` | App in „Programme“ ziehen, beim ersten Start Rechtsklick → Öffnen (die App ist nicht bei Apple beglaubigt) |
+| Linux (Ubuntu, Debian, Mint) | `.deb` | `sudo apt install ./pixel-dungeon-neukoelln-<Version>-linux-x64.deb` |
+| Linux (Fedora, openSUSE) | `.rpm` | `sudo dnf install ./pixel-dungeon-neukoelln-<Version>-linux-x64.rpm` |
+| Linux (alle) | `.tar.gz` | Entpacken und `bin/Pixel-Dungeon-Neukoelln` starten |
+
+Die Pakete erscheinen mit dem ersten Release unter
+[Releases](https://github.com/codeausberlin/shattered-neukoelln-dungeon/releases). Bis dahin gibt
+es sie nur als Testbuilds. Jedes Paket enthält eine `LIESMICH.txt`, die Lizenzen und einen Link auf
+genau den Quellcode, aus dem es gebaut wurde.
+
+**Aus dem Quellcode.** Du brauchst ein **JDK 17 oder neuer** (getestet mit 21, zum Beispiel
+Temurin von [adoptium.net](https://adoptium.net/)). Prüfen mit `java -version`.
 
 ```
 git clone https://github.com/codeausberlin/shattered-neukoelln-dungeon.git
@@ -257,8 +279,8 @@ NK_START_DEPTH=11 ./gradlew desktop:debug
 `~/Library/Application Support/Neukoelln Pixel Dungeon/`. Deine Shattered-Läufe bleiben unangetastet.
 Das ist mehr Kündigungsschutz, als die meisten hier haben.
 
-Mehr Details: [docs/NEUKOELLN-START.md](docs/NEUKOELLN-START.md). Android und iOS sind spätere
-Ziele und noch nicht geprüft.
+Mehr Details: [docs/NEUKOELLN-START.md](docs/NEUKOELLN-START.md), zum Bauen der Pakete
+[docs/NEUKOELLN-RELEASE.md](docs/NEUKOELLN-RELEASE.md). iOS ist ein späteres Ziel.
 
 ---
 
@@ -267,24 +289,32 @@ Ziele und noch nicht geprüft.
 Version 0.1.0. **In Entwicklung.** Fertigstellung voraussichtlich im Herbst. Welcher Herbst, steht
 nicht da.
 
-**Steht schon (eingebaut, Build und Smoke-Test laufen):**
-- Ein großer Teil der deutschen Texte (Gegner, Bosse, Gegenstände, Ebenen, Tagebuch, Pflanzen) auf Neukölln umgeschrieben
-- Die vier Rollen mit eigenen Heldensprites und Splash-Bildern; Heldenwahl und Ebene 1 im Spiel angesehen
-- Titelbild, eigene Tilesets für alle fünf Regionen, Regions-Splashes
+**Steht (eingebaut, Build und Smoke-Test laufen):**
+- Deutsche Texte für Gegner, Bosse, Gegenstände, Ebenen, Tagebuch und Pflanzen auf Neukölln umgeschrieben
+- Vier Rollen mit eigenen Heldensprites und Splash-Bildern
+- Fünf Regionen mit eigenen Tilesets, 25 Ebenen, alle Bosse und der Ewige Mietspiegel als Endgegner
 - Neue Gegner mit eigener Mechanik (Leihscooter, Pfandgolem, Makler, Presslufter, Technojünger, Luxussanierer, Hausordnungs-Hydra und mehr)
-- Mietvertrag als Siegziel, Sperrmüllberge, Hundehaufen, Samenbomben, neue Item-Icons, Wahl- und Clubplakate als Wanddeko
+- Mietvertrag als Siegziel, Sperrmüllberge, Hundehaufen, Stadttauben, Samenbomben, Wanddeko mit Graffiti, Plakaten und Wohnungsgesuchen
 - Der Spätimann auf 6, 11 und 16
-- Vertontes Intro vor jedem neuen Spiel: Auf dem Weg zum Mieterverein fällt die M41 aus, die nächste fährt zu früh, also schnell das Fahrrad aus dem Keller holen
+- Vertontes Intro vor jedem neuen Spiel: auf dem Weg zum Mieterverein, M41 weg, ab in den Keller
 - Club-Labyrinth auf Ebene 16-19: du wachst ohne Ausrüstung im Club auf und sammelst 7 Garderobenmarken
-- Der Netztechniker (seit zwei Jahren erwartet) statt Schmied, Glasfaserstücke statt Erz, Abgründe als A100-Baulücken
+- Der Netztechniker (seit zwei Jahren erwartet) mit seiner Glasfaser-Quest, Abgründe als A100-Baulücken
+- Eigener Techno-Soundtrack mit 31 Tracks
+- Logo und App-Icon: ein schiefes, verwittertes Ortsschild vor der Berliner Skyline
+- Pakete für Android (signierte APK), Windows (`.msi`), macOS (`.dmg`) und Linux (`.deb`, `.rpm`, `.tar.gz`), gebaut per GitHub Actions
+
+**Im Spiel geprüft (QA-Durchgang am 30.9.2026, Desktop):** alle vier Rollen, Speichern und Laden,
+jede Region, die Bosse, der Club, der Mietvertrag bis zum Siegfenster. Keine Abstürze. Für die
+tiefen Ebenen liefen dabei Testhilfen mit (aufgedeckte Karte, viele Lebenspunkte), Details in
+[docs/NEUKOELLN-QA.md](docs/NEUKOELLN-QA.md).
 
 **Noch Rohbau:**
-- Gegner, Bosse und NPCs ab Ebene 6 sind umgestaltet, im Spiel aber noch nicht alle angesehen
-- Der Soundtrack (31 Tracks) ist eine eigene Synthese, die Soundeffekte sind bewusst die des Originals
+- Ein kompletter Lauf ohne Testhilfen bis zum Mietvertrag steht aus, ebenso das Balancing
+- Die Kämpfe gegen Bohrlinde, König der Eigentumswohnungen und Ewigen Mietspiegel wurden angespielt, aber nicht zu Ende gekämpft
+- Die Pakete sind auf echten Geräten noch nicht alle getestet, vor allem Android und macOS; iOS kommt später
+- Die Soundeffekte sind bewusst die des Originals
 - Nur Deutsch ist umgebaut; Englisch und alle anderen Sprachen zeigen den Text von Shattered Pixel Dungeon
 - Einige Texte sind noch Upstream oder Englisch, zum Beispiel das Änderungsprotokoll im Spiel
-- Android- und iOS-Builds sind nicht geprüft
-- Ein kompletter Lauf bis zum Mietvertrag ist noch nicht als getestet dokumentiert
 
 Den ausführlichen Stand führt [docs/NEUKOELLN-AUDIT.md](docs/NEUKOELLN-AUDIT.md). Welt, Ton und
 Figuren stehen in [docs/NEUKOELLN-WELT.md](docs/NEUKOELLN-WELT.md) und

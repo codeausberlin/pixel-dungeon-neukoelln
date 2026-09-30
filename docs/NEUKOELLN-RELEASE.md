@@ -13,6 +13,7 @@ Store-Upload. Alle Ergebnisse liegen nur als Artefakte am jeweiligen Workflow-La
 | --- | --- | --- |
 | Linux x64 | `pixel-dungeon-neukoelln-<Version>-linux-x64.tar.gz` | Ordner entpacken, `bin/Pixel Dungeon Neukölln` starten |
 | Linux x64 | `…-linux-x64.deb` | Installationspaket für aktuelle Ubuntu/Debian-Versionen (auf dem Runner gebaut, daher Ubuntu-24.04-Paketnamen) |
+| Linux x64 | `…-linux-x64.rpm` | Installationspaket für Fedora, openSUSE und andere RPM-Systeme; installiert nach `/opt/pixel-dungeon-neukoelln/`, einzige Abhängigkeit `xdg-utils` |
 | Windows x64 | `…-windows-x64.zip` | Ordner entpacken, `Pixel Dungeon Neukölln.exe` starten |
 | Windows x64 | `…-windows-x64.msi` | Installer mit Startmenü-Eintrag; nur wenn WiX 3 auf dem Runner installiert werden konnte |
 | macOS Apple-Chip | `…-mac-arm64.zip` / `…-mac-arm64.dmg` | App in „Programme“ ziehen |
@@ -20,7 +21,7 @@ Store-Upload. Alle Ergebnisse liegen nur als Artefakte am jeweiligen Workflow-La
 | Android | `…-android.apk` oder `…-android-debugsigniert.apk` | Installation per Datei (Sideloading) |
 
 Jedes Desktop-Paket enthält im obersten Ordner (und zusätzlich im App-Image neben dem JAR, damit
-auch in `.deb`/`.msi`/`.dmg`):
+auch in `.deb`/`.rpm`/`.msi`/`.dmg`):
 
 - `LIESMICH.txt` mit Startanleitung und dem Link auf den Quellcode **genau dieses Stands**
   (auf GitHub: Tag bei Tag-Builds, sonst `GITHUB_SHA`; lokal `git describe --tags --always` und
@@ -60,7 +61,7 @@ nur in zwei Fällen:
 
 1. **Von Hand:** GitHub → Repository → Reiter *Actions* → links *Release-Build (ohne
    Veroeffentlichung)* → rechts *Run workflow* → Branch wählen → Optionen setzen → *Run workflow*.
-   - *installers*: zusätzlich `.deb`, `.msi`, `.dmg` (Standard: an)
+   - *installers*: zusätzlich `.deb`, `.rpm`, `.msi`, `.dmg` (Standard: an)
    - *mac_intel*: zusätzlich ein Intel-Mac-Paket (Standard: aus; macOS-Minuten zählen zehnfach)
    - *android*: APK bauen (Standard: an)
 2. **Per Tag:** `git tag v0.1.0 && git push origin v0.1.0`. Baut alles mit Standardoptionen.
@@ -116,13 +117,13 @@ Mit einem JDK 21 (enthält `jlink`, `jdeps`, `jpackage`):
 ```
 ./gradlew desktop:release
 tools/package-desktop.sh               # App-Image + Archiv
-tools/package-desktop.sh --installer   # zusätzlich .deb / .msi / .dmg
+tools/package-desktop.sh --installer   # zusätzlich .deb / .rpm / .msi / .dmg
 ```
 
 Ergebnis in `desktop/build/package/`. Das Skript bestimmt die nötigen Java-Module mit `jdeps`,
 baut mit `jlink` eine kleine Laufzeit und packt sie mit `jpackage` zur App. Ein Paket entsteht
 immer nur für das System, auf dem das Skript läuft; Windows- und Mac-Pakete baut deshalb der
-Workflow. Für `.deb` braucht Linux `fakeroot`, für `.msi` braucht Windows das WiX Toolset 3.
+Workflow. Für `.deb` braucht Linux `fakeroot`, für `.rpm` `rpmbuild` (Paket `rpm` unter Ubuntu, `rpm-build` unter Fedora; fehlt es, wird nur das `.rpm` übersprungen), für `.msi` braucht Windows das WiX Toolset 3.
 
 ## Bekannte Warnungen beim Start
 
@@ -135,7 +136,7 @@ Die Pakete sind nicht mit einem kostenpflichtigen Entwicklerzertifikat signiert.
   App einmal starten, Meldung schließen, dann *Systemeinstellungen* → *Datenschutz & Sicherheit* →
   ganz unten *Dennoch öffnen*. Bis macOS 14 geht auch Rechtsklick auf die App → *Öffnen*.
   Meldet macOS „ist beschädigt“, hilft einmal im Terminal:
-  `xattr -dr com.apple.quarantine "/Applications/Pixel Dungeon Neukölln.app"`.
+  `xattr -dr com.apple.quarantine "/Applications/Pixel Dungeon Neukoelln.app"` (Ordnername auf macOS ohne Umlaut, weil codesign daran scheitert).
   Die App ist nur ad-hoc signiert, nicht notariell beglaubigt.
 - **Android:** Installation aus unbekannten Quellen muss für Browser bzw. Dateimanager erlaubt
   werden. Play Protect kann warnen, weil die App nicht aus dem Play Store kommt.

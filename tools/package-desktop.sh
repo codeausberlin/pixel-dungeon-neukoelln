@@ -5,7 +5,7 @@
 # Voraussetzung: ein JDK 21 (mit jlink, jdeps, jpackage) und ein fertiges Release-JAR:
 #   ./gradlew desktop:release
 #   tools/package-desktop.sh                 # Linux: .tar.gz; Windows: .zip; macOS: .zip
-#   tools/package-desktop.sh --installer     # zusaetzlich .deb (Linux), .msi (Windows, braucht WiX 3), .dmg (macOS)
+#   tools/package-desktop.sh --installer     # zusaetzlich .deb und .rpm (Linux, .rpm braucht rpmbuild), .msi (Windows, braucht WiX 3), .dmg (macOS)
 #
 # Optionen:
 #   --jar PFAD        Release-JAR (Standard: desktop/build/libs/desktop-<Version>.jar)
@@ -78,6 +78,12 @@ esac
 # ("Error loading java.security file"). Deshalb dort ein ASCII-Name fuer Ordner und Starter.
 if [[ "$OS" == linux && -z "${NK_APP_NAME:-}" ]]; then
     APP_NAME="Pixel-Dungeon-Neukoelln"
+fi
+# Auf macOS scheiterte codesign am Umlaut in Bundle-, Programm- und cfg-Dateinamen (erst Absturz,
+# dann "a sealed resource is missing or invalid"). Deshalb auch dort ASCII im Dateinamen; der
+# Name in der Menueleiste (CFBundleName, --mac-package-name) behaelt den Umlaut.
+if [[ "$OS" == mac && -z "${NK_APP_NAME:-}" ]]; then
+    APP_NAME="Pixel Dungeon Neukoelln"
 fi
 # Der Umlaut im App-Namen braucht auf Linux eine UTF-8-Locale, sonst lehnt jpackage den Namen ab.
 if [[ "$OS" == linux ]] && ! locale 2>/dev/null | grep -qi 'utf-\?8'; then
@@ -221,7 +227,36 @@ if [[ "$OS" == mac ]]; then
     IMAGE="$WORK/image/$APP_NAME.app"
     # Ohne Apple-Zertifikat: ad-hoc signieren, sonst starten arm64-Programme gar nicht.
     # Gatekeeper warnt trotzdem (nicht notariell beglaubigt), siehe LIESMICH.txt.
-    codesign --force --deep --sign - "$IMAGE"
+    # jpackage signiert das App-Image zwar ad-hoc, auf den GitHub-Runnern war diese Signatur aber
+    # ungueltig ("a sealed resource is missing or invalid"), und "codesign --deep" darueber stuerzte
+    # ab. Deshalb: Befund ausgeben, Symlinks durch echte Dateien ersetzen, Attribute entfernen und
+    # von innen nach aussen neu signieren (Mach-O-Dateien, dann die Laufzeit, dann die App).
+    if codesign --verify --deep --strict "$IMAGE" >/dev/null 2>&1; then
+        echo "== Ad-hoc-Signatur von jpackage ist gueltig"
+    else
+        echo "== Signatur von jpackage ungueltig, Befund:"
+        codesign --verify --deep --strict --verbose=4 "$IMAGE" 2>&1 | head -n 20 || true
+        echo "== Symlinks im App-Image aufloesen"
+        while IFS= read -r -d '' link; do
+            tmp="$link.nk-tmp"
+            if cp -RL "$link" "$tmp" 2>/dev/null; then
+                rm -f "$link" && mv "$tmp" "$link"
+            else
+                echo "   entfernt (Ziel fehlt): ${link#$IMAGE/}"
+                rm -f "$link" "$tmp"
+            fi
+        done < <(find "$IMAGE" -type l -print0)
+        xattr -cr "$IMAGE"
+        echo "== Ad-hoc signieren (innen nach aussen)"
+        while IFS= read -r -d '' f; do
+            case "$(file -b "$f")" in
+                *Mach-O*) codesign --force --sign - --timestamp=none "$f" ;;
+            esac
+        done < <(find "$IMAGE/Contents" -type f -print0)
+        [[ -d "$IMAGE/Contents/runtime" ]] && codesign --force --sign - --timestamp=none "$IMAGE/Contents/runtime"
+        codesign --force --sign - --timestamp=none "$IMAGE"
+        codesign --verify --deep --strict --verbose=2 "$IMAGE"
+    fi
 else
     IMAGE="$WORK/image/$APP_NAME"
 fi
@@ -310,28 +345,39 @@ if [[ "$INSTALLER" == 1 ]]; then
     echo "== Installationspaket bauen"
     INST_OPTS=()
     case "$OS" in
-        linux) TYPE=deb; INST_OPTS=(--linux-package-name "$FILE_BASE" --linux-shortcut
-                                    --linux-menu-group "Game" --linux-app-category games) ;;
-        windows) TYPE=msi; INST_OPTS=(--win-menu --win-shortcut --win-dir-chooser
-                                      --win-menu-group "$APP_NAME" --win-upgrade-uuid "$WIN_UPGRADE_UUID"
-                                      --license-file LICENSE.txt) ;;
-        mac) TYPE=dmg; INST_OPTS=(--license-file LICENSE.txt) ;;
+        # Linux: .deb (Debian, Ubuntu, Mint) und .rpm (Fedora, openSUSE); .rpm braucht rpmbuild.
+        linux) TYPES=(deb rpm); INST_OPTS=(--linux-package-name "$FILE_BASE" --linux-shortcut
+                                           --linux-menu-group "Game" --linux-app-category games) ;;
+        windows) TYPES=(msi); INST_OPTS=(--win-menu --win-shortcut --win-dir-chooser
+                                         --win-menu-group "$APP_NAME" --win-upgrade-uuid "$WIN_UPGRADE_UUID"
+                                         --license-file LICENSE.txt) ;;
+        mac) TYPES=(dmg); INST_OPTS=(--license-file LICENSE.txt) ;;
     esac
-    rm -rf "$WORK/installer"
-    "$JPACKAGE" --type "$TYPE" --dest "$WORK/installer" --app-image "$IMAGE" \
-        --name "$APP_NAME" --app-version "$APP_VERSION" --vendor "$VENDOR" \
-        --copyright "GPLv3. Basiert auf Shattered Pixel Dungeon (c) Evan Debenham." \
-        --description "Deutschsprachiger Fan-Fork von Shattered Pixel Dungeon" \
-        "${PLATFORM_OPTS[@]}" "${INST_OPTS[@]}"
-    shopt -s nullglob
-    BUILT=("$WORK/installer"/*)
-    shopt -u nullglob
-    if [[ ${#BUILT[@]} -eq 0 ]]; then
-        echo "Installationspaket ($TYPE) wurde nicht erzeugt, siehe jpackage-Meldung oben." >&2
-        exit 3
-    fi
-    for f in "${BUILT[@]}"; do
-        mv "$f" "$OUT/$PKG_BASE.${f##*.}"
+    for TYPE in "${TYPES[@]}"; do
+        TYPE_OPTS=()
+        if [[ "$TYPE" == rpm ]]; then
+            if ! command -v rpmbuild >/dev/null 2>&1; then
+                echo "WARNUNG: rpmbuild fehlt (Paket 'rpm' bzw. 'rpm-build'), .rpm wird uebersprungen." >&2
+                continue
+            fi
+            TYPE_OPTS=(--linux-rpm-license-type "GPL-3.0-or-later")
+        fi
+        rm -rf "$WORK/installer"
+        "$JPACKAGE" --type "$TYPE" --dest "$WORK/installer" --app-image "$IMAGE" \
+            --name "$APP_NAME" --app-version "$APP_VERSION" --vendor "$VENDOR" \
+            --copyright "GPLv3. Basiert auf Shattered Pixel Dungeon (c) Evan Debenham." \
+            --description "Deutschsprachiger Fan-Fork von Shattered Pixel Dungeon" \
+            "${PLATFORM_OPTS[@]}" "${INST_OPTS[@]}" "${TYPE_OPTS[@]}"
+        shopt -s nullglob
+        BUILT=("$WORK/installer"/*)
+        shopt -u nullglob
+        if [[ ${#BUILT[@]} -eq 0 ]]; then
+            echo "Installationspaket ($TYPE) wurde nicht erzeugt, siehe jpackage-Meldung oben." >&2
+            exit 3
+        fi
+        for f in "${BUILT[@]}"; do
+            mv "$f" "$OUT/$PKG_BASE.${f##*.}"
+        done
     done
 fi
 
