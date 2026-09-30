@@ -346,8 +346,31 @@ if [[ "$INSTALLER" == 1 ]]; then
     INST_OPTS=()
     case "$OS" in
         # Linux: .deb (Debian, Ubuntu, Mint) und .rpm (Fedora, openSUSE); .rpm braucht rpmbuild.
-        linux) TYPES=(deb rpm); INST_OPTS=(--linux-package-name "$FILE_BASE" --linux-shortcut
-                                           --linux-menu-group "Game" --linux-app-category games) ;;
+        linux)
+            TYPES=(deb rpm)
+            # Eigene Menue-Verknuepfung statt der jpackage-Vorlage: Ortsschild-Icon statt Java-Duke,
+            # Anzeigename mit Umlaut, StartupWMClass = Fenstertitel (WM_CLASS unter X11), damit das
+            # laufende Fenster im Dock dieser Verknuepfung zugeordnet wird.
+            RES="$WORK/linux-resources"
+            rm -rf "$RES"; mkdir -p "$RES"
+            cp desktop/src/main/assets/icons/icon_256.png "$RES/$APP_NAME.png"
+            WIN_TITLE="$(sed -n "s/^[[:space:]]*appName[[:space:]]*=[[:space:]]*'\([^']*\)'.*/\1/p" build.gradle | head -n1)"
+            cat > "$RES/$APP_NAME.desktop" <<DESKTOP
+[Desktop Entry]
+Name=Pixel Dungeon Neukölln
+GenericName=Roguelike
+Comment=Roguelike auf Deutsch: 25 Ebenen hinab zum Ewigen Mietspiegel
+Exec=APPLICATION_LAUNCHER
+Icon=APPLICATION_ICON
+Terminal=false
+Type=Application
+Categories=Game;RolePlaying;
+Keywords=Roguelike;Dungeon;Neukölln;Berlin;
+StartupWMClass=${WIN_TITLE:-Pixel Dungeon Neukoelln}
+DESKTOP
+            INST_OPTS=(--linux-package-name "$FILE_BASE" --linux-shortcut
+                       --linux-menu-group "Game" --linux-app-category games
+                       --icon "$RES/$APP_NAME.png" --resource-dir "$RES") ;;
         windows) TYPES=(msi); INST_OPTS=(--win-menu --win-shortcut --win-dir-chooser
                                          --win-menu-group "$APP_NAME" --win-upgrade-uuid "$WIN_UPGRADE_UUID"
                                          --license-file LICENSE.txt) ;;

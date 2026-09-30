@@ -40,6 +40,7 @@ import com.watabou.noosa.Game;
 import com.watabou.utils.FileUtils;
 import com.watabou.utils.Point;
 
+import org.lwjgl.glfw.GLFW;
 import org.lwjgl.util.tinyfd.TinyFileDialogs;
 
 import java.io.PrintWriter;
@@ -189,6 +190,19 @@ public class DesktopLauncher {
 		
 		config.setWindowIcon("icons/icon_16.png", "icons/icon_32.png", "icons/icon_48.png",
 				"icons/icon_64.png", "icons/icon_128.png", "icons/icon_256.png");
+
+		//Linux: ueber X11 (unter Wayland per XWayland) starten. Dort ist WM_CLASS gleich dem Fenstertitel
+		// und passt zu StartupWMClass der .desktop-Datei aus den Paketen, sodass Gnome & Co. Icon und
+		// Namen zuordnen. Natives Wayland bekommt ohne app_id kein Icon (Dock zeigt sonst Java-Duke).
+		if (SharedLibraryLoader.os == Os.Linux) {
+			try {
+				if (GLFW.glfwPlatformSupported(GLFW.GLFW_PLATFORM_X11)) {
+					GLFW.glfwInitHint(GLFW.GLFW_PLATFORM, GLFW.GLFW_PLATFORM_X11);
+				}
+			} catch (Throwable t) {
+				//aeltere GLFW-Versionen ohne Plattformwahl: Standard beibehalten
+			}
+		}
 
 		new Lwjgl3Application(new ShatteredPixelDungeon(new DesktopPlatformSupport()), config);
 	}
