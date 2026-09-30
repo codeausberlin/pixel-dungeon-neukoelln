@@ -15,7 +15,7 @@ BSD-3-Clause-LWJGL.txt                         https://raw.githubusercontent.com
 BSD-2-Clause-jemalloc.txt                      https://raw.githubusercontent.com/jemalloc/jemalloc/5.3.0/COPYING
 LGPL-2.1.txt                                   https://raw.githubusercontent.com/ymnk/jorbis/master/COPYING.LIB
 LGPL-2.0-OpenAL-Soft.txt                       https://raw.githubusercontent.com/kcat/openal-soft/1.23.1/COPYING
-JSON-License.txt                               https://raw.githubusercontent.com/stleary/JSON-java/20170516/LICENSE
+JSON-PublicDomain.txt                          https://raw.githubusercontent.com/stleary/JSON-java/20250517/LICENSE
 FreeType-LICENSE.txt                           https://raw.githubusercontent.com/freetype/freetype/VER-2-13-2/LICENSE.TXT
 FreeType-FTL.txt                               https://raw.githubusercontent.com/freetype/freetype/VER-2-13-2/docs/FTL.TXT
 Zlib-GLFW.txt                                  https://raw.githubusercontent.com/glfw/glfw/3.4/LICENSE.md
