@@ -3,9 +3,11 @@
 Ziel: Spielerinnen und Spieler laden eine Datei herunter und spielen, ohne Java und ohne Terminal.
 Die Pipeline baut dafür Pakete mit eingebauter Java-Laufzeit (Desktop) und eine APK (Android).
 
-**Sie veröffentlicht nichts.** Es gibt keinen GitHub-Release, keinen itch.io-Upload und keinen
-Store-Upload. Alle Ergebnisse liegen nur als Artefakte am jeweiligen Workflow-Lauf und werden nach
-14 Tagen gelöscht. Veröffentlichen bleibt Handarbeit des Projektinhabers (siehe unten).
+**Sie veröffentlicht nichts.** Es gibt keinen itch.io-Upload und keinen Store-Upload. Von Hand
+gestartet liegen alle Ergebnisse nur als Artefakte am Workflow-Lauf und werden nach 14 Tagen
+gelöscht. Bei einem Tag `v*` legt der Workflow zusätzlich einen GitHub-Release als **Entwurf** an.
+Den sehen nur Personen mit Schreibrecht; öffentlich wird er erst per Klick (siehe
+„Release veröffentlichen“).
 
 ## Was gebaut wird
 
@@ -78,6 +80,26 @@ darin liegen die eigentlichen Dateien. Das Android-Artefakt enthält zusätzlich
 `r8-mapping-<Version>.txt`, mit dem sich Absturzberichte des verkleinerten Codes lesen lassen.
 Artefakte sind nur für Personen mit Zugriff auf das Repository sichtbar.
 
+## Release veröffentlichen
+
+1. `appVersionName` und `appVersionCode` in `build.gradle` hochzählen (für 0.1.0 schon erledigt),
+   auf `main` bringen.
+2. Tag setzen und pushen: `git tag v0.1.0 && git push origin v0.1.0`. Alternativ auf GitHub:
+   *Releases* → *Draft a new release* → *Choose a tag* → `v0.1.0` eintippen → *Create new tag* →
+   Fenster **schließen, ohne zu speichern** (der Tag entsteht erst beim Speichern; dann lieber den
+   Befehl nehmen).
+3. Der Workflow baut alles und legt danach im Job *Release-Entwurf* unter *Releases* einen Entwurf
+   „Pixel Dungeon Neukölln 0.1.0“ an, mit allen Paketen, `SHA256SUMS.txt` und einem deutschen
+   Release-Text (Downloads, Warnungen beim ersten Start, Link auf den Quellcode genau dieses Tags).
+4. Entwurf öffnen, Text anpassen, Pakete herunterladen und testen, dann *Publish release*.
+
+Der Entwurf entsteht nur, wenn alle Desktop-Jobs und Android grün sind, der Tag zu
+`appVersionName` passt und die APK mit dem eigenen Schlüssel signiert ist (nicht `-debugsigniert`).
+Die R8-Mapping-Datei kommt nicht in den Release, sie bleibt im Artefakt `neukoelln-android`.
+Läuft der Tag-Build erneut, ersetzt er die Dateien eines noch unveröffentlichten Entwurfs; einen
+veröffentlichten Release fasst er nicht an. Veröffentlichen setzt ein öffentliches Repository voraus,
+sonst sehen nur Mitglieder den Release.
+
 ## Android-Signatur einrichten
 
 Ohne Secrets wird die APK mit einem Debug-Schlüssel signiert, den der Runner bei jedem Lauf neu
@@ -143,9 +165,9 @@ Die Pakete sind nicht mit einem kostenpflichtigen Entwicklerzertifikat signiert.
 
 ## Was manuell bleibt
 
-- **Veröffentlichen:** Artefakte herunterladen, prüfen und selbst hochladen, z. B. auf itch.io
-  (Browser-Upload oder `butler push` durch den Projektinhaber). Die Pipeline enthält bewusst keinen
-  Upload-Schritt und keine Zugangsdaten dafür.
+- **Veröffentlichen:** Der GitHub-Release bleibt Entwurf, bis der Projektinhaber *Publish release*
+  klickt. Andere Plattformen wie itch.io (Browser-Upload oder `butler push`) bleiben Handarbeit; die
+  Pipeline enthält dafür keinen Upload-Schritt und keine Zugangsdaten.
 - **Testen auf echten Geräten:** Windows, macOS und Android werden im Workflow nur gebaut, nicht
   gestartet. Vor einer Veröffentlichung auf jedem System einmal starten und ein Spiel beginnen.
 - **Signaturen mit Zertifikat:** Apple-Notarisierung (Apple-Developer-Konto) und
@@ -159,8 +181,6 @@ Die Pakete sind nicht mit einem kostenpflichtigen Entwicklerzertifikat signiert.
 
 - Android-Release-Builds binden `services/updates/githubUpdates` und `services/news/shatteredNews`
   noch ein, `AndroidLauncher` setzt beide Dienste aber auf `null` (toter Code, wie auf dem Desktop).
-- Die Android-Lizenz-Assets (`copyLegalAssets` in `android/build.gradle`) sind in dieser Umgebung
-  nicht gebaut worden (kein Zugriff auf dl.google.com); erster Test ist der Workflow-Lauf.
-- Die Android-Launcher-Icons (`android/src/{main,debug}/res/mipmap-*`) zeigen das Ortsschild (`tools/generate-kiez-appicon.cjs`), adaptiv mit Hintergrund-, Vordergrund- und Monochrom-Ebene. Auf einem Gerät noch nicht geprüft.
+- Die Android-Launcher-Icons (`android/src/{main,debug}/res/mipmap-*`) zeigen das Ortsschild (`tools/generate-kiez-appicon.cjs`), adaptiv mit Hintergrund-, Vordergrund- und Monochrom-Ebene.
 - Das Spiel-JAR enthält native Bibliotheken für alle Systeme (rund 23 MB unkomprimiert, die für
   das jeweilige Paket nicht gebraucht werden). Ausdünnen pro Plattform würde die Pakete verkleinern.

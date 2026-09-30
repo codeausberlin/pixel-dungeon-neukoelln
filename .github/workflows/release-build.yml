@@ -1,6 +1,8 @@
 # Baut spielfertige Pakete (Desktop mit gebuendelter Java-Laufzeit, Android-APK).
-# Veroeffentlicht NICHTS: kein GitHub-Release, kein itch.io, kein Store. Alle Ergebnisse
-# liegen nur als Workflow-Artefakte am Lauf. Anleitung: docs/NEUKOELLN-RELEASE.md
+# Veroeffentlicht NICHTS: kein itch.io, kein Store. Von Hand gestartet liegen alle Ergebnisse
+# nur als Workflow-Artefakte am Lauf. Bei einem Tag v* legt der Job "release-entwurf" zusaetzlich
+# einen GitHub-Release als ENTWURF an, den nur Personen mit Schreibrecht sehen. Veroeffentlicht
+# wird er erst per Klick auf "Publish release". Anleitung: docs/NEUKOELLN-RELEASE.md
 name: Release-Build (ohne Veroeffentlichung)
 
 on:
@@ -166,3 +168,93 @@ jobs:
           path: dist/*
           if-no-files-found: error
           retention-days: 14
+
+  # Nur bei Tag-Push: sammelt die Pakete aller Jobs und legt einen Release-ENTWURF an.
+  # Laeuft nur, wenn Desktop und Android komplett gruen sind. Die R8-Mapping-Datei bleibt draussen.
+  release-entwurf:
+    name: Release-Entwurf
+    needs: [desktop, android]
+    if: github.event_name == 'push' && github.ref_type == 'tag'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Artefakte holen
+        uses: actions/download-artifact@v6
+        with:
+          path: artefakte
+          merge-multiple: true
+
+      - name: Dateien pruefen
+        run: |
+          version=$(sed -n "s/^[[:space:]]*appVersionName[[:space:]]*=[[:space:]]*'\([^']*\)'.*/\1/p" build.gradle | head -n1)
+          if [[ "$GITHUB_REF_NAME" != "v$version" ]]; then
+            echo "::error::Tag $GITHUB_REF_NAME passt nicht zu appVersionName $version. Kein Entwurf."
+            exit 1
+          fi
+          if ls artefakte/*-debugsigniert.apk >/dev/null 2>&1; then
+            echo "::error::APK ist nur debug-signiert (Signatur-Secrets fehlen). Kein Entwurf."
+            exit 1
+          fi
+          mkdir -p release
+          shopt -s nullglob
+          for f in artefakte/pixel-dungeon-neukoelln-*.{apk,zip,tar.gz,deb,rpm,msi,dmg}; do
+            cp "$f" release/
+          done
+          ls release/*-android.apk >/dev/null 2>&1 || { echo "::error::Keine APK gefunden."; exit 1; }
+          (cd release && sha256sum -- * > SHA256SUMS.txt)
+          echo "version=$version" >> "$GITHUB_ENV"
+          ls -l release
+
+      - name: Release-Text schreiben
+        run: |
+          base="https://github.com/$GITHUB_REPOSITORY"
+          cat > notes.md <<NOTES
+          **Entwurf.** Automatisch aus Tag \`$GITHUB_REF_NAME\` gebaut. Vor dem Veröffentlichen Text
+          prüfen und die Pakete auf echten Geräten starten.
+
+          ## Herunterladen
+
+          | System | Datei |
+          | --- | --- |
+          | Android | \`pixel-dungeon-neukoelln-$version-android.apk\` |
+          | Windows | \`…-windows-x64.msi\` (Installer) oder \`…-windows-x64.zip\` |
+          | macOS (Apple-Chip) | \`…-mac-arm64.dmg\` oder \`…-mac-arm64.zip\` |
+          | Linux | \`…-linux-x64.deb\` (Ubuntu/Debian), \`…-linux-x64.rpm\` (Fedora), \`…-linux-x64.tar.gz\` |
+
+          Desktop-Pakete bringen ihre eigene Java-Laufzeit mit. Prüfsummen stehen in \`SHA256SUMS.txt\`.
+
+          ## Erster Start
+
+          Die Pakete sind nicht mit einem kostenpflichtigen Zertifikat signiert.
+          Android: Installation aus unbekannten Quellen erlauben. Windows: SmartScreen,
+          *Weitere Informationen* und *Trotzdem ausführen*. macOS: einmal starten, dann
+          *Systemeinstellungen*, *Datenschutz & Sicherheit*, *Dennoch öffnen*.
+
+          ## Quelltext und Lizenz
+
+          GPLv3. Quelltext genau dieses Stands: $base/tree/$GITHUB_REF_NAME
+          Basiert auf Shattered Pixel Dungeon von Evan Debenham, das wiederum auf Pixel Dungeon
+          von Watabou basiert. Spielstände liegen getrennt von Shattered Pixel Dungeon.
+          NOTES
+          cat notes.md
+
+      - name: Entwurf anlegen oder aktualisieren
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view "$GITHUB_REF_NAME" --json isDraft -q .isDraft > draft.txt 2>/dev/null; then
+            if [[ "$(cat draft.txt)" != true ]]; then
+              echo "::error::Release $GITHUB_REF_NAME ist bereits veroeffentlicht. Nichts geaendert."
+              exit 1
+            fi
+            gh release upload "$GITHUB_REF_NAME" release/* --clobber
+            echo "Vorhandenen Entwurf aktualisiert."
+          else
+            gh release create "$GITHUB_REF_NAME" release/* --draft --verify-tag \
+              --title "Pixel Dungeon Neukölln $version" --notes-file notes.md
+            echo "Entwurf angelegt. Veroeffentlichen: Releases, Entwurf oeffnen, Publish release."
+          fi

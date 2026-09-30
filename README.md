@@ -306,12 +306,13 @@ nicht da.
 **Im Spiel geprüft (QA-Durchgang am 30.9.2026, Desktop):** alle vier Rollen, Speichern und Laden,
 jede Region, die Bosse, der Club, der Mietvertrag bis zum Siegfenster. Keine Abstürze. Für die
 tiefen Ebenen liefen dabei Testhilfen mit (aufgedeckte Karte, viele Lebenspunkte), Details in
-[docs/NEUKOELLN-QA.md](docs/NEUKOELLN-QA.md).
+[docs/NEUKOELLN-QA.md](docs/NEUKOELLN-QA.md). Die signierte Android-APK lief danach eine Stunde auf
+einem echten Handy, ohne Probleme.
 
 **Noch Rohbau:**
 - Ein kompletter Lauf ohne Testhilfen bis zum Mietvertrag steht aus, ebenso das Balancing
 - Die Kämpfe gegen Bohrlinde, König der Eigentumswohnungen und Ewigen Mietspiegel wurden angespielt, aber nicht zu Ende gekämpft
-- Die Pakete sind auf echten Geräten noch nicht alle getestet, vor allem Android und macOS; iOS kommt später
+- Windows- und macOS-Pakete sind auf echten Geräten noch nicht getestet; iOS kommt später
 - Die Soundeffekte sind bewusst die des Originals
 - Nur Deutsch ist umgebaut; Englisch und alle anderen Sprachen zeigen den Text von Shattered Pixel Dungeon
 - Einige Texte sind noch Upstream oder Englisch, zum Beispiel das Änderungsprotokoll im Spiel
