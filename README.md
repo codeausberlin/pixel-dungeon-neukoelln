@@ -147,7 +147,7 @@ eingeklemmt zwischen Concept Store und Showroom.
 
 > Firmenkreditkarte? Nee, Kollege. Pitch ooch nich. Münzen.
 >
-> Der März war hier. Hat vorm Laden 'n Foto gemacht, Stadtbild und so. Gekauft hat er nix.
+> Der März war hier. Hat vorm Laden 'n Foto gemacht, ernster Blick, Hand am Kühlschrank, "nah an den Menschen". Gekauft hat er nix. Die Einkaufstüte hatte er mitgebracht.
 
 <img src="docs/readme/sperrmuell.png" alt="Vier Sperrmüllberge: normal, angekettet, Vitrine, Schatten-Sperrmüll">
 
@@ -196,7 +196,7 @@ Räumungsklee, Neidmoos, Pflasterkraut. Die Mietsenkungsblume ist das Unrealisti
 > ★★★☆☆ *„Ruhezeit und Kehrwoche gleichzeitig? Kenne ich aus meinem Treppenhaus. Hätte lieber was Fiktionales gespielt.“*<br>
 > **Hausgemeinschaft Vorderhaus**, 14 Unterschriften, keine davon leserlich
 
-> ☆☆☆☆☆ *„Das Stadtbild in diesem Spiel ist nicht aufgeräumt. Mehr Ordnung im Hinterhof! Bewertung folgt ab der nächsten Legislatur.“*<br>
+> ☆☆☆☆☆ *„Der Hinterhof in diesem Spiel ist nicht aufgeräumt. Mehr Ordnung, sofort! Bewertung folgt ab der nächsten Legislatur.“*<br>
 > **Büro Kanzler März** (frei erfundene Figur), Fototermin bereits erledigt
 
 > ★★★★★ *„Karte erst ab zehn Euro.“*<br>

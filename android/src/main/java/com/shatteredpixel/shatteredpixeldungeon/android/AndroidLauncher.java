@@ -17,6 +17,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ * Modified for Neukölln Pixel Dungeon, 2026.
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.android;
@@ -106,19 +107,10 @@ public class AndroidLauncher extends AndroidApplication {
 				installer = "???";
 			}
 
-			//if we were installed by a known 3rd party appstore that auto-updates, disable update checking
-			if (UpdateImpl.supportsUpdates()
-					&& !installer.contains("fdroid") && !installer.contains("com.looker.droidify") && !installer.contains("com.uptodown")) {
-				Updates.service = UpdateImpl.getUpdateService();
-			}
-
-			//F-Droid specifically considers auto news checking to be an 'anti-feature', so default it to false
-			if (NewsImpl.supportsNews()) {
-				if (installer.contains("fdroid") || installer.contains("com.looker.droidify")){
-					SPDSettings.newsDefault = false;
-				}
-				News.service = NewsImpl.getNewsService();
-			}
+			//Neukoelln fork: no update checks or news feed. The upstream services would point
+			//players at Shattered Pixel Dungeon releases and blog posts, not at this fork.
+			Updates.service = null;
+			News.service = null;
 
 			FileUtils.setDefaultFileProperties(Files.FileType.Local, "");
 

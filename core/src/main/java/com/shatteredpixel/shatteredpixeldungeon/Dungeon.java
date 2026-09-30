@@ -17,6 +17,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ * Modified for Neukölln Pixel Dungeon, 2026.
  */
 
 package com.shatteredpixel.shatteredpixeldungeon;
@@ -211,6 +212,9 @@ public class Dungeon {
 	public static boolean daily;
 	public static boolean dailyReplay;
 	public static String customSeedText = "";
+
+	/** Neukölln: run was started below depth 1 via NK_START_DEPTH (debug builds only). No badges or unlocks. */
+	public static boolean debugStart = false;
 	public static long seed;
 	public static long lastPlayed;
 
@@ -276,6 +280,7 @@ public class Dungeon {
 		Toolbar.swappedQuickslots = false;
 		
 		depth = debugStartDepth();
+		debugStart = depth > 1;
 		branch = 0;
 		generatedLevels.clear();
 
@@ -617,6 +622,7 @@ public class Dungeon {
 	public  static final String VERSION		= "version";
 	private static final String SEED		= "seed";
 	private static final String CUSTOM_SEED	= "custom_seed";
+	private static final String NK_DEBUG_START	= "nk_debug_start";
 	private static final String DAILY	    = "daily";
 	private static final String DAILY_REPLAY= "daily_replay";
 	private static final String LAST_PLAYED = "last_played";
@@ -644,6 +650,7 @@ public class Dungeon {
 			bundle.put( VERSION, version = Game.versionCode );
 			bundle.put( SEED, seed );
 			bundle.put( CUSTOM_SEED, customSeedText );
+			bundle.put( NK_DEBUG_START, debugStart );
 			bundle.put( DAILY, daily );
 			bundle.put( DAILY_REPLAY, dailyReplay );
 			bundle.put( LAST_PLAYED, lastPlayed = Game.realTime);
@@ -744,6 +751,7 @@ public class Dungeon {
 
 		seed = bundle.contains( SEED ) ? bundle.getLong( SEED ) : DungeonSeed.randomSeed();
 		customSeedText = bundle.getString( CUSTOM_SEED );
+		debugStart = bundle.getBoolean( NK_DEBUG_START );
 		daily = bundle.getBoolean( DAILY );
 		dailyReplay = bundle.getBoolean( DAILY_REPLAY );
 

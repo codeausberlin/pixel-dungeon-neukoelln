@@ -1,11 +1,28 @@
 apply plugin: 'com.android.application'
 
+// GPLv3 §4/§6 und Drittlizenzen: LICENSE.txt, NOTICE, THIRD-PARTY-NOTICES.txt und licenses/
+// werden als assets/legal/ in jede APK gepackt.
+def nkLegalAssetsDir = layout.buildDirectory.dir('generated/nk-legal-assets').get().asFile
+tasks.register('copyLegalAssets', Copy) {
+    from(rootProject.file('LICENSE.txt'))
+    from(rootProject.file('NOTICE'))
+    from(rootProject.file('THIRD-PARTY-NOTICES.txt'))
+    from(rootProject.file('licenses')) {
+        into 'licenses'
+        // Die Java-Laufzeit wird nur in Desktop-Paketen mitgeliefert.
+        exclude 'OpenJDK-*'
+    }
+    into new File(nkLegalAssetsDir, 'legal')
+}
+
 android {
     namespace 'com.shatteredpixel.shatteredpixeldungeon.android'
     compileSdk appAndroidCompileSDK
     compileOptions.sourceCompatibility = compileOptions.targetCompatibility = appJavaCompatibility
 
-    sourceSets.main.assets.srcDirs = [new File(project(':core').projectDir, "/src/main/assets")]
+    // Lizenzhinweise landen unter assets/legal/ in der APK (Task copyLegalAssets, siehe unten).
+    sourceSets.main.assets.srcDirs = [new File(project(':core').projectDir, "/src/main/assets"),
+                                      nkLegalAssetsDir]
 
     androidResources {
         localeFilters += ['en', 'zh-rCN', 'ko', 'ru', 'es', 'pt', 'fr', 'de', 'zh-rTW', 'ja', 'pl',
@@ -13,7 +30,7 @@ android {
     }
 
     defaultConfig {
-        manifestPlaceholders = [appName:appName]
+        manifestPlaceholders = [appName:appDisplayName]
         applicationId appPackageName
 
         versionCode appVersionCode
@@ -21,6 +38,21 @@ android {
 
         minSdkVersion appAndroidMinSDK
         targetSdkVersion appAndroidTargetSDK
+    }
+
+    // Release-Signatur nur, wenn die Keystore-Daten per Umgebung kommen (GitHub-Secrets, siehe
+    // docs/NEUKOELLN-RELEASE.md). Ohne sie wird der Release-Build mit dem Debug-Schluessel signiert.
+    def nkKeystore = System.getenv('NK_ANDROID_KEYSTORE_FILE')
+    def nkHasReleaseKey = nkKeystore && file(nkKeystore).exists()
+    signingConfigs {
+        if (nkHasReleaseKey) {
+            release {
+                storeFile file(nkKeystore)
+                storePassword System.getenv('NK_ANDROID_KEYSTORE_PASSWORD')
+                keyAlias System.getenv('NK_ANDROID_KEY_ALIAS')
+                keyPassword System.getenv('NK_ANDROID_KEY_PASSWORD')
+            }
+        }
     }
 
     buildTypes {
@@ -33,6 +65,7 @@ android {
             }
         }
         release {
+            signingConfig nkHasReleaseKey ? signingConfigs.release : signingConfigs.debug
 
             //These lines enable R8, which is a code shrinker/optimizer/obfuscator.
             //This makes release APKs smaller and more efficient, but also makes debugging trickier
@@ -103,4 +136,8 @@ task copyAndroidNatives() {
 
 tasks.matching { it.name.contains("merge") && it.name.contains("JniLibFolders") }.configureEach { packageTask ->
     packageTask.dependsOn 'copyAndroidNatives'
+}
+
+tasks.matching { it.name.contains("Assets") && it.name != 'copyLegalAssets' }.configureEach { assetTask ->
+    assetTask.dependsOn 'copyLegalAssets'
 }

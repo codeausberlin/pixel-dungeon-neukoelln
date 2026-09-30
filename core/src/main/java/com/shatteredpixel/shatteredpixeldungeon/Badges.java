@@ -17,6 +17,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ * Modified for Neukölln Pixel Dungeon, 2026.
  */
 
 package com.shatteredpixel.shatteredpixeldungeon;
@@ -1182,6 +1183,10 @@ public class Badges {
 		if (badge == null || (badge.type != BadgeType.JOURNAL && !Dungeon.customSeedText.isEmpty())) {
 			return;
 		}
+		//Neukölln: debug starts (NK_START_DEPTH) must not touch tester profiles
+		if (Dungeon.debugStart) {
+			return;
+		}
 		
 		if (isUnlocked( badge )) {
 			
@@ -1216,7 +1221,8 @@ public class Badges {
 	}
 	
 	public static void unlock( Badge badge ){
-		if (!isUnlocked(badge) && (badge.type == BadgeType.JOURNAL || Dungeon.customSeedText.isEmpty())){
+		if (!isUnlocked(badge) && !Dungeon.debugStart
+				&& (badge.type == BadgeType.JOURNAL || Dungeon.customSeedText.isEmpty())){
 			global.add( badge );
 			saveNeeded = true;
 		}

@@ -1,0 +1,158 @@
+# Baut spielfertige Pakete (Desktop mit gebuendelter Java-Laufzeit, Android-APK).
+# Veroeffentlicht NICHTS: kein GitHub-Release, kein itch.io, kein Store. Alle Ergebnisse
+# liegen nur als Workflow-Artefakte am Lauf. Anleitung: docs/NEUKOELLN-RELEASE.md
+name: Release-Build (ohne Veroeffentlichung)
+
+on:
+  workflow_dispatch:
+    inputs:
+      installers:
+        description: "Zusaetzlich Installationspakete bauen (.deb, .msi, .dmg)"
+        type: boolean
+        default: true
+      mac_intel:
+        description: "Zusaetzlich macOS fuer Intel-Macs bauen (kostet extra macOS-Minuten)"
+        type: boolean
+        default: false
+      android:
+        description: "Android-APK bauen"
+        type: boolean
+        default: true
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  desktop:
+    name: Desktop (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ${{ fromJSON(inputs.mac_intel && '["ubuntu-latest","windows-latest","macos-latest","macos-15-intel"]' || '["ubuntu-latest","windows-latest","macos-latest"]') }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: gradle
+
+      - name: Version pruefen
+        run: |
+          version=$(sed -n "s/^[[:space:]]*appVersionName[[:space:]]*=[[:space:]]*'\([^']*\)'.*/\1/p" build.gradle | head -n1)
+          echo "appVersionName=$version"
+          if [[ "$GITHUB_REF_TYPE" == tag && "$GITHUB_REF_NAME" != "v$version" ]]; then
+            echo "::warning::Tag $GITHUB_REF_NAME passt nicht zu appVersionName $version in build.gradle"
+          fi
+
+      - name: Release-JAR bauen
+        run: ./gradlew desktop:release --console=plain
+
+      # Legt LICENSE.txt, NOTICE, THIRD-PARTY-NOTICES.txt, licenses/ (inkl. Hinweise der Java-Laufzeit)
+      # und LIESMICH.txt mit Link auf genau diesen Tag bzw. Commit (GITHUB_SHA) in jedes Paket
+      # und bricht ab, wenn eine davon im Archiv fehlt.
+      - name: App-Image und Archiv bauen
+        run: bash tools/package-desktop.sh --out dist
+
+      - name: Installationspaket vorbereiten (Windows, WiX 3)
+        if: runner.os == 'Windows' && (github.event_name != 'workflow_dispatch' || inputs.installers)
+        continue-on-error: true
+        run: |
+          if ! command -v candle.exe >/dev/null 2>&1; then
+            choco install wixtoolset --version 3.14.1 -y --no-progress
+          fi
+          wix_bin=$(ls -d "/c/Program Files (x86)/WiX Toolset v3."*/bin 2>/dev/null | head -n1 || true)
+          if [[ -n "$wix_bin" ]]; then
+            cygpath -w "$wix_bin" >> "$GITHUB_PATH"
+          fi
+
+      - name: Installationspaket bauen
+        if: github.event_name != 'workflow_dispatch' || inputs.installers
+        continue-on-error: true
+        run: bash tools/package-desktop.sh --out dist --installer --skip-archive
+
+      - name: Artefakt hochladen
+        uses: actions/upload-artifact@v4
+        with:
+          name: neukoelln-desktop-${{ runner.os }}-${{ runner.arch }}
+          path: dist/neukoelln-pixel-dungeon-*
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 0
+
+  android:
+    name: Android
+    if: github.event_name != 'workflow_dispatch' || inputs.android
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: gradle
+
+      - name: Keystore aus Secrets (falls gesetzt)
+        env:
+          KEYSTORE_B64: ${{ secrets.NK_ANDROID_KEYSTORE_BASE64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.NK_ANDROID_KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.NK_ANDROID_KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.NK_ANDROID_KEY_PASSWORD }}
+        run: |
+          if [[ -n "$KEYSTORE_B64" && -n "$KEYSTORE_PASSWORD" && -n "$KEY_ALIAS" && -n "$KEY_PASSWORD" ]]; then
+            printf '%s' "$KEYSTORE_B64" | base64 -d > "$RUNNER_TEMP/neukoelln-release.keystore"
+            {
+              echo "NK_ANDROID_KEYSTORE_FILE=$RUNNER_TEMP/neukoelln-release.keystore"
+              echo "NK_ANDROID_KEYSTORE_PASSWORD=$KEYSTORE_PASSWORD"
+              echo "NK_ANDROID_KEY_ALIAS=$KEY_ALIAS"
+              echo "NK_ANDROID_KEY_PASSWORD=$KEY_PASSWORD"
+              echo "NK_SIGNING=release"
+            } >> "$GITHUB_ENV"
+            echo "Release-Signatur aktiv."
+          else
+            echo "NK_SIGNING=debug" >> "$GITHUB_ENV"
+            echo "::notice::Keine Signatur-Secrets gesetzt: APK wird mit Debug-Schluessel signiert (nur zum Testen)."
+          fi
+
+      - name: APK bauen
+        run: ./gradlew android:assembleRelease --console=plain
+
+      - name: APK pruefen und benennen
+        run: |
+          version=$(sed -n "s/^[[:space:]]*appVersionName[[:space:]]*=[[:space:]]*'\([^']*\)'.*/\1/p" build.gradle | head -n1)
+          mkdir -p dist
+          apk=$(ls android/build/outputs/apk/release/*.apk | head -n1)
+          suffix=""
+          [[ "$NK_SIGNING" == debug ]] && suffix="-debugsigniert"
+          cp "$apk" "dist/neukoelln-pixel-dungeon-$version-android$suffix.apk"
+          tools=$(ls -d "$ANDROID_HOME"/build-tools/*/ | sort -V | tail -n1)
+          "$tools/apksigner" verify --print-certs "dist/neukoelln-pixel-dungeon-$version-android$suffix.apk"
+          "$tools/aapt2" dump badging "dist/neukoelln-pixel-dungeon-$version-android$suffix.apk" | grep -E "^(package|application-label)" || true
+          for f in LICENSE.txt NOTICE THIRD-PARTY-NOTICES.txt licenses/Apache-2.0.txt; do
+            unzip -l "dist/neukoelln-pixel-dungeon-$version-android$suffix.apk" | grep -qF "assets/legal/$f" \
+              || { echo "::error::Lizenzdatei fehlt in der APK: assets/legal/$f"; exit 1; }
+          done
+          [[ -f android/build/outputs/mapping/release/mapping.txt ]] && cp android/build/outputs/mapping/release/mapping.txt "dist/r8-mapping-$version.txt" || true
+
+      - name: Artefakt hochladen
+        uses: actions/upload-artifact@v4
+        with:
+          name: neukoelln-android
+          path: dist/*
+          if-no-files-found: error
+          retention-days: 14

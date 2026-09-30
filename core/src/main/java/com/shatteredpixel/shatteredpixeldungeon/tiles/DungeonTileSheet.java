@@ -17,6 +17,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ * Modified for Neukölln Pixel Dungeon, 2026.
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.tiles;
@@ -267,6 +268,17 @@ public class DungeonTileSheet {
 		else                                                            return -1;
 
 		result = getVisualWithAlts(result, pos);
+
+		//Neukölln: on the Baustelle the plain ALT face is the BÄRG poster; show it on fewer
+		//middle faces so it does not repeat like a pattern (wall ends keep their motifs)
+		if (thinPlainWallAlt && result == RAISED_WALL_ALT
+				&& wallStitcheable(right) && wallStitcheable(left)
+				&& (tileVariance[pos] >= WallDeco.PLAIN_ALT_CHANCE_BAUSTELLE
+					|| (pos > 0 && tileVariance[pos-1] >= WallDeco.NOTICE_CHANCE
+						&& tileVariance[pos-1] < WallDeco.PLAIN_ALT_CHANCE_BAUSTELLE))){
+			//(never two posters side by side: the left neighbour would already show one)
+			result = RAISED_WALL;
+		}
 
 		if (!wallStitcheable(right))   result += 1;
 		if (!wallStitcheable(left))    result += 2;
@@ -526,7 +538,12 @@ public class DungeonTileSheet {
 		tileAltVisuals.put(FURROWED_OVERHANG,       new tileAlt(new float[]{50f}, FURROWED_OVERHANG_ALT));
 	}
 
+	private static boolean thinPlainWallAlt = false;
+
 	public static void updateAltVariants(){
+		//also on the boss arena (15), which uses the same tileset but no wall texts
+		thinPlainWallAlt = Dungeon.level != null && !(Dungeon.level instanceof MiningLevel)
+				&& WallDeco.region(Dungeon.level.tilesTex()) == WallDeco.BAUSTELLE;
 		//Neukölln: a small share of plain wall faces shows a notice or graffiti (cells 104-107 of the region tilesets)
 		if (Dungeon.level != null && WallDeco.enabled(Dungeon.level)){
 			tileAltVisuals.put(RAISED_WALL, new tileAlt(new float[]{50f, WallDeco.NOTICE_CHANCE}, RAISED_WALL_ALT, RAISED_WALL_NOTICE));

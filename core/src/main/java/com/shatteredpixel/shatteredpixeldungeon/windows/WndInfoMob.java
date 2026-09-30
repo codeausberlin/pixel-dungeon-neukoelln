@@ -68,10 +68,13 @@ public class WndInfoMob extends WndTitledMessage {
 		@Override
 		protected void layout() {
 			
+			float w = width - image.width() - GAP;
+
+			//NK: long German boss names wrap instead of running out of the window
+			name.maxWidth((int)w);
+
 			image.x = 0;
 			image.y = Math.max( 0, name.height() + health.height() - image.height() );
-
-			float w = width - image.width() - GAP;
 
 			name.setPos(x + image.width() + GAP,
 					image.height() > name.height() ? y +(image.height() - name.height()) / 2 : y);

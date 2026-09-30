@@ -9,14 +9,14 @@ Stand 2026-09-29, Gameplay-Agent (Runde 3, Brief Punkt 13). Parodienamen: "Ilse"
   (`Imp.Quest.spawn`, Raum `AmbitiousImpRoom`). Nach dem Gespräch ist die Kellertreppe
   (`BRANCH_EXIT` der `CityLevel`) aktiv.
 - **Betreten:** `CityLevel.activateTransition` fragt nach, heilt voll, packt **alle Gegenstände, Gold und
-  Energie** in das Notausgangs-Bändchen (`EscapeCrystal.storeHeroBelongings`) und gibt nur einen
+  Energie** in das Exit-Bändchen (`EscapeCrystal.storeHeroBelongings`) und gibt nur einen
   Hoodie (`ClothArmor`). Ziel ist `Dungeon.branch = 1`, dieselbe Tiefe (`Dungeon.newLevel` -> `VaultLevel`).
 - **Im Club:** Eingangsbereich mit zwei Wiedereinlass-Stempeln (`VaultBeacon`, Rückteleport zum Eingang),
   normale Räume mit Schleich-Gegnern und Beute, **7 gesicherte Nebenräume** (`VaultTreasureRoom`, je
   T1/T2/T3), die Garderobe (`VaultTokensRoom` mit `VaultTokenDoor`, dahinter `VaultMirror` mit dem
   Klassen-Gegenstand und T3-Beute) und der VIP-Bereich (`VaultFinalRoom`).
 - **Gegner:** geben keine Erfahrung. Jeder besiegte Gegner treibt nur die Ring-Identifikation voran.
-- **Ende:** Das Notausgangs-Bändchen funktioniert jederzeit. Die Wertung (0-4000) ergibt sich aus
+- **Ende:** Das Exit-Bändchen funktioniert überall außer im Eingangsbereich (Upstream-Mechanik). Die Wertung (0-4000) ergibt sich aus
   Erkundung (max. 1000), Garderobenmarken bzw. geöffneter Garderobe (max. 1250), Schaden an der Anlage
   (max. 750) oder 4000 mit der Statuette. Beim Verlassen kommt die gesamte alte Ausrüstung zurück.
 - **Belohnung:** je nach Wertung ein Verbrauchsgegenstand, ein Gegenstand bis +0 oder +1, oder mit Statuette
@@ -34,7 +34,7 @@ Stand 2026-09-29, Gameplay-Agent (Runde 3, Brief Punkt 13). Parodienamen: "Ilse"
 | Fortschritt sichtbar | Beim Aufheben im Club: "Garderobenmarken: x/7", bei 7: positive Meldung. Die Item-Beschreibung zeigt den Stand ebenfalls. Der Stand ist die Stapelgröße im Inventar, also Save/Load-fest. |
 | Wertung | `EscapeCrystal`: 1000 Punkte verteilt auf 7 Marken statt 100 je Marke. |
 | Vorgeschichte | `VaultLevel` zeigt beim ersten Betreten einmal ein `WndStory` (Flag `intro_shown` im Level-Bundle). |
-| Ausgang | Das Notausgangs-Bändchen bleibt jederzeit nutzbar (Fairness, kein Softlock). Ziel "7 Marken" steht im Einstiegsdialog, in der Vorgeschichte und in der Markenbeschreibung. |
+| Ausgang | Das Exit-Bändchen ist überall außer im Eingangsbereich nutzbar (Fairness, kein Softlock; Texte nennen die Ausnahme). Ziel "7 Marken" steht im Einstiegsdialog, in der Vorgeschichte und in der Markenbeschreibung. |
 
 Texte liegen als Overlay vor (nicht in `*_de.properties` geschrieben):
 `scratchpad/r3/J2_changed.properties` (bestehende Keys) und `scratchpad/r3/J2_new.properties` (neue Keys de/en).

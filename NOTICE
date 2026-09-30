@@ -1,0 +1,41 @@
+Neukölln Pixel Dungeon
+======================
+
+Diese Software ist eine modifizierte Fassung von Shattered Pixel Dungeon (Evan Debenham),
+das seinerseits auf Pixel Dungeon (Oleg Dolya) beruht.
+
+Geändert ab: 2026-09-05, Upstream-Commit 4256b22 von Shattered Pixel Dungeon.
+Danach eingemischt: Upstream-Commits bis 2bb34a4 (Shattered Pixel Dungeon v4.0.0, 2026-09-09).
+Eigene Änderungen seit 2026-09-29 durch das Neukölln-Team (codeausberlin).
+Quellcode: https://github.com/codeausberlin/shattered-neukoelln-dungeon
+
+Umfang der Änderungen gegenüber Shattered Pixel Dungeon v4.0.0 (Commit 2bb34a4):
+- Sprache: deutschsprachige Spieltexte (core/src/main/assets/messages/), Berlin-Neukölln-Setting
+  mit eigenen Figuren, Dialogen und Beschreibungen.
+- Spielmechanik (Java): vier umbenannte spielbare Rollen (Expat, Alteingesessene, Zugezogene,
+  Tourist), neue Gegner, Räume und Ebenen-Abschnitte (Kiez, Amt, Baustelle, Renditequartier u. a.),
+  Händler "Spätimann", Intro-Sequenz. 37 Upstream-Java-Dateien geändert (Dateikopf trägt die Zeile
+  "Modified for Neukölln Pixel Dungeon, 2026."), 24 Java-Dateien neu.
+- Grafik: geänderte und neue Sprites, Umgebungs-, Interface- und Splash-Grafiken, eigener
+  Titel-Schriftzug und Desktop-Icons (erzeugt mit den Skripten unter tools/, teils aus den
+  Original-Grafiken abgeleitet).
+- Musik: eigener Soundtrack (siehe docs/NEUKOELLN-AUDIO.md). Soundeffekte sind unverändert.
+- Dienste: Update-Prüfung und News-Feed von Shattered Pixel Dungeon auf Desktop und Android
+  abgeschaltet; Fehlermeldungen verweisen auf das Neukölln-Repository.
+- Build und Auslieferung: eigener App-Name, Paketname und Speicherort der Spielstände,
+  Release-Pipeline (tools/package-desktop.sh, .github/workflows/release-build.yml),
+  Lizenzhinweise (THIRD-PARTY-NOTICES.txt, licenses/).
+Die vollständige Änderungshistorie steht in der Git-Historie des Repositorys
+(git log 2bb34a4..HEAD, git diff 4256b22 HEAD).
+
+Lizenz: GNU General Public License Version 3 oder später (LICENSE.txt), ohne jede Gewährleistung.
+Mitgelieferte Drittkomponenten und ihre Lizenzen: THIRD-PARTY-NOTICES.txt und licenses/.
+
+Die Credits des Originals (Oleg Dolya, Evan Debenham und alle Mitwirkenden, freesound.org) sind
+im Spiel unter "Über" vollständig erhalten. Neukölln Pixel Dungeon ist ein inoffizieller Fan-Fork
+und wird nicht vom Original-Entwickler unterstützt.
+
+----------------------------------------------------------------------------------------------
+English summary: This program is a modified version of Shattered Pixel Dungeon by Evan Debenham
+(based on Pixel Dungeon by Oleg Dolya), modified since 2026-09-05 (upstream commit 4256b22) by the
+Neukölln Pixel Dungeon team. Licensed under GPLv3 or later, see LICENSE.txt.

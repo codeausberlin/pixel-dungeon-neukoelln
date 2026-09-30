@@ -11,7 +11,8 @@ buildscript {
 allprojects {
 
     ext {
-        appName = 'Neukoelln Pixel Dungeon'
+        appName = 'Neukoelln Pixel Dungeon'   // bestimmt auch den Desktop-Speicherpfad, nicht aendern
+        appDisplayName = 'Neukölln Pixel Dungeon' // Anzeigename (Android-Launcher)
         appPackageName = 'de.neukoellnpixeldungeon.game'
 
         //Full releases gets +2 on version code, needed for an F-Droid quirk

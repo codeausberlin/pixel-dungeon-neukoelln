@@ -1,0 +1,124 @@
+Neukölln Pixel Dungeon - Hinweise zu Drittkomponenten
+======================================================
+
+Neukölln Pixel Dungeon steht als Ganzes unter der GNU General Public License v3 oder später
+(LICENSE.txt). Es ist eine modifizierte Fassung von Shattered Pixel Dungeon (NOTICE).
+Die folgenden mitgelieferten Komponenten stehen unter eigenen Lizenzen. Die Lizenztexte
+liegen im Ordner licenses/ (Herkunft: licenses/QUELLEN.txt).
+
+Stand: 2026-09-30, ermittelt mit `./gradlew desktop:dependencies --configuration runtimeClasspath`,
+den Maven-POMs der Abhängigkeiten und `unzip -l` des Release-JARs.
+Plattform: D = Desktop-Paket (Linux/Windows/macOS), A = Android-APK.
+
+
+1. Bibliotheken (Java)
+----------------------
+
+Komponente                     Version     Plattf.  Lizenz                     Copyright                                        Datei
+-----------------------------  ----------  -------  -------------------------  -----------------------------------------------  ------------------------------
+libGDX (gdx, gdx-freetype,     1.14.0      D, A     Apache-2.0                 Copyright 2011 See AUTHORS file (libGDX-Autoren)  licenses/Apache-2.0.txt
+  gdx-backend-lwjgl3 [D],
+  gdx-backend-android [A],
+  gdx-platform, gdx-freetype-
+  platform)
+gdx-jnigen-loader              2.5.2       D, A     Apache-2.0                 libGDX-Autoren                                   licenses/Apache-2.0.txt
+gdx-controllers (core,         2.2.4       D, A     Apache-2.0                 libGDX-Autoren                                   licenses/Apache-2.0.txt
+  desktop [D], android [A])
+Jamepad                        2.26.5.0    D        Apache-2.0                 Jamepad-Autoren (William Hartman, libGDX)        licenses/Apache-2.0.txt
+LWJGL (lwjgl, -glfw,           3.3.3       D        BSD-3-Clause               Copyright (c) 2012-present Lightweight Java      licenses/BSD-3-Clause-LWJGL.txt
+  -jemalloc, -openal, -opengl,                                                 Game Library. All rights reserved.
+  -stb, -tinyfd)
+JLayer (jlayer, libGDX-Fork)   1.0.1-gdx   D        LGPL-2.1                   JavaZOOM (1999-2008) und Mitwirkende             licenses/LGPL-2.1.txt
+JOrbis                         0.0.17      D        LGPL-2.0 oder später       Copyright (C) 2000 ymnk, JCraft, Inc.            licenses/LGPL-2.1.txt
+                                                    (laut POM "LGPL")
+JSON-java (org.json:json)      20170516    D, A*    JSON License               Copyright (c) 2002 JSON.org                      licenses/JSON-License.txt
+
+* Android: Die Bibliothek wird mit ins APK kompiliert; zur Laufzeit gewinnen aber die
+  gleichnamigen Klassen des Android-Systems (org.json aus AOSP, Apache-2.0).
+
+
+2. Native Bibliotheken in den obigen JARs
+-----------------------------------------
+
+Komponente                     Version     Plattf.  Lizenz                     Copyright                                        Datei
+-----------------------------  ----------  -------  -------------------------  -----------------------------------------------  ------------------------------
+FreeType 2 (in gdx-freetype-   2.x (in     D, A     FreeType License (FTL),    The FreeType Project (David Turner, Robert      licenses/FreeType-FTL.txt,
+  platform eingebaut)          libGDX                gewählt statt GPLv2        Wilhelm, Werner Lemberg)                         licenses/FreeType-LICENSE.txt
+                               1.14.0)
+GLFW (in LWJGL)                3.4 (LWJGL  D        Zlib                       Copyright (c) 2002-2006 Marcus Geelnard,         licenses/Zlib-GLFW.txt
+                               3.3.3)                                          (c) 2006-2019 Camilla Löwy
+OpenAL Soft (in LWJGL)         1.23.1      D        LGPL-2.0 oder später       Chris Robinson und Mitwirkende                   licenses/LGPL-2.0-OpenAL-Soft.txt
+                               (LWJGL
+                               3.3.3)
+jemalloc (in LWJGL)            5.3.0       D        BSD-2-Clause               Copyright (C) 2002-present Jason Evans u. a.     licenses/BSD-2-Clause-jemalloc.txt
+stb (in LWJGL)                 LWJGL 3.3.3 D        MIT oder Public Domain     Copyright (c) 2017 Sean Barrett                  licenses/MIT-or-PublicDomain-stb.txt
+tinyfiledialogs (in LWJGL)     LWJGL 3.3.3 D        Zlib                       Copyright (c) 2014-2017 Guillaume Vareille       licenses/Zlib-tinyfiledialogs.txt
+SDL2 (in Jamepad)              2.26.5      D        Zlib                       Copyright (C) 1997-2023 Sam Lantinga             licenses/Zlib-SDL2.txt
+
+FreeType-Pflichthinweis (FTL, Abschnitt 3):
+Portions of this software are copyright (C) The FreeType Project (www.freetype.org).
+All rights reserved.
+(Die genaue FreeType-Version in libGDX 1.14.0 ist aus dem Binary nicht ablesbar; offen:
+Jahreszahl nach FTL-Vorschlag ergänzen, sobald die Version aus dem libGDX-Build belegt ist.)
+
+Die LGPL-Bibliotheken (JLayer, JOrbis, OpenAL Soft) liegen als eigene, austauschbare Dateien
+im Spiel-JAR bzw. als eigene native Bibliothek vor. Ihr Quellcode ist bei den genannten
+Projekten erhältlich: https://github.com/libgdx/jlayer-gdx, http://www.jcraft.com/jorbis/,
+https://github.com/kcat/openal-soft (Tag 1.23.1).
+
+
+3. Java-Laufzeit (nur Desktop-Pakete)
+-------------------------------------
+
+Komponente                     Version     Plattf.  Lizenz                     Copyright                                        Datei
+-----------------------------  ----------  -------  -------------------------  -----------------------------------------------  ------------------------------
+OpenJDK-Laufzeit (mit jlink    21 (siehe   D        GPL-2.0 mit Classpath      Copyright (c) Oracle and/or its affiliates und   licenses/OpenJDK-GPL-2.0-with-
+  verkleinert; Build: Eclipse  licenses/                Exception                  weitere (siehe legal/)                          Classpath-Exception.txt,
+  Temurin auf den GitHub-      java-                                                                                                licenses/OpenJDK-ASSEMBLY_
+  Runnern)                     runtime/)                                                                                            EXCEPTION.txt, licenses/
+                                                                                                                                    java-runtime/ (im Paket)
+
+Im Paket liegt unter licenses/java-runtime/ die Datei release (genaue Version und Hersteller)
+und der Ordner legal/ mit den Hinweisen aller enthaltenen Java-Module, so wie sie jlink erzeugt.
+Der Quellcode der Laufzeit: https://github.com/adoptium/jdk21u bzw. https://github.com/openjdk/jdk21u.
+
+
+4. Schriften
+------------
+
+Datei                                          Lizenz       Copyright                                         Lizenztext
+---------------------------------------------  -----------  ------------------------------------------------  ------------------------
+core/src/main/assets/fonts/pixel_font.ttf      Apache-2.0   Roboto-Schriftdaten Copyright Google 2014;        licenses/Apache-2.0.txt
+  (und pixel_font.png)                                      TTF-Konvertierung Evan Debenham (Shattered Pixel)
+desktop/src/main/assets/fonts/droid_sans.ttf   Apache-2.0   Digitized data copyright Google Corporation.      licenses/Apache-2.0.txt
+                                                            "Droid" ist eine Marke von Google.
+
+
+5. Soundeffekte (freesound.org)
+-------------------------------
+
+Die unverändert aus Shattered Pixel Dungeon übernommenen Soundeffekte enthalten Samples von
+freesound.org. Die vollständige Namensnennung steht im Spiel unter "Über" (Credits von Shattered
+Pixel Dungeon, Block freesound.org).
+
+Creative Commons Attribution (CC BY, https://creativecommons.org/licenses/by/4.0/ bzw. die auf
+der jeweiligen freesound-Seite genannte Version):
+  "SFX ATTACK SWORD 001.wav" von JoelAudio; "Pack: Slingshots and Longbows" von saturdaysoundguy;
+  "Cracking/Crunching, A.wav" von InspectorJ; "Extracting a sword.mp3" von Taira Komori;
+  "Pack: Uni Sound Library" von timmy h123.
+
+Creative Commons Zero (CC0, https://creativecommons.org/publicdomain/zero/1.0/):
+  "Pack: Movie Foley: Swords" von Black Snow; "machine gun shot 2.flac" und
+  "m240h machine gun burst 4.flac" von qubodup; "Pack: Onomatopoeia" von Adam N;
+  "Pack: Watermelon" von lolamadeus; "metal chain" von Mediapaja2009;
+  "Pack: Sword Clashes Pack" von JohnBuhr; "Pack: Metal Clangs and Pings" von wilhellboy;
+  "Pack: Stabbing Stomachs & Crushing Skulls" von TheFilmLook; "Sheep bleating" von zachrau;
+  "Lemon,Juicy,Squeeze,Fruit.wav" und "Lemon,Squeeze,Squishy,Fruit.wav" von Filipe Chagas.
+
+
+6. Grafik, Musik und Code des Originals
+---------------------------------------
+
+Code, Grafik, Musik und Texte von Pixel Dungeon (Copyright (C) 2012-2015 Oleg Dolya) und
+Shattered Pixel Dungeon (Copyright (C) 2014-2026 Evan Debenham und Mitwirkende, siehe Credits
+im Spiel) werden unter der GPLv3 weitergegeben. Siehe LICENSE.txt und NOTICE.

@@ -93,3 +93,11 @@ Offen: nicht im laufenden Spiel angesehen (nur Vorschau-PNGs und Smoke-Test). Di
 Tabelle "Wandplakate und Graffiti" in `NEUKOELLN-DESIGN.md` nennt noch "RAUS" und das
 durchgestrichene M. In der flachen Ansicht (Info-Fenster-Icon) erscheinen die neuen
 Motive nicht. Bossarenen zeigen die ALT-Plakate weiter ohne eigenen Text.
+
+## BÄRG-Plakat seltener (QA M11, 2026-09-30)
+
+Auf der Baustelle ist RAISED_WALL_ALT +0 das BÄRG-Plakat und stand auf ~45 % der glatten Wandmitten.
+`DungeonTileSheet.getRaisedWallTile` setzt dort jetzt nur noch bei `tileVariance` 5-14
+(`WallDeco.PLAIN_ALT_CHANCE_BAUSTELLE`) das Plakat, sonst die glatte Wand, und nie, wenn der linke
+Nachbar schon in diesem Bereich liegt. Wandenden (+1..+3) und andere Regionen unverändert.
+Das Untersuchen-Fenster zeigt seit derselben Runde die Wandfront mit Motiv statt der flachen Wand.

@@ -193,12 +193,19 @@ public class StartScene extends PixelScene {
 			add(lastPlayed);
 		}
 		
+		private void fitName( String text, int size ){
+			remove(name);
+			name.destroy();
+			name = PixelScene.renderTextBlock(text, size);
+			add(name);
+		}
+
 		public void set( int slot ){
 			this.slot = slot;
 			GamesInProgress.Info info = GamesInProgress.check(slot);
 			newGame = info == null;
 			if (newGame){
-				name.text( Messages.get(StartScene.class, "new"));
+				fitName( Messages.get(StartScene.class, "new"), 9);
 				
 				if (hero != null){
 					remove(hero);
@@ -214,10 +221,15 @@ public class StartScene extends PixelScene {
 				}
 			} else {
 				
-				if (info.subClass != HeroSubClass.NONE){
-					name.text(Messages.titleCase(info.subClass.title()));
-				} else {
-					name.text(Messages.titleCase(info.heroClass.title()));
+				String heroName = info.subClass != HeroSubClass.NONE
+						? Messages.titleCase(info.subClass.title())
+						: Messages.titleCase(info.heroClass.title());
+				//NK: German class names are long, shrink the font until the name fits before the stairs icon
+				int nameSize = 9;
+				fitName(heroName, nameSize);
+				while (name.width() > SLOT_WIDTH - 68 && nameSize > 6){
+					nameSize--;
+					fitName(heroName, nameSize);
 				}
 				
 				if (hero == null){
@@ -242,7 +254,7 @@ public class StartScene extends PixelScene {
 				long diff = Game.realTime - info.lastPlayed;
 				if (diff > 99L * 30 * 24 * 60 * 60_000){
 					lastPlayed.text(" "); //show no text for >99 months ago
-				} else if (diff < 60_000){
+				} else if (diff < 2 * 60_000){ //NK: also 60-119s, avoids "vor 1 Minuten"
 					lastPlayed.text(Messages.get(StartScene.class, "one_minute_ago"));
 				} else if (diff < 2 * 60 * 60_000){
 					lastPlayed.text(Messages.get(StartScene.class, "minutes_ago", diff / 60_000));

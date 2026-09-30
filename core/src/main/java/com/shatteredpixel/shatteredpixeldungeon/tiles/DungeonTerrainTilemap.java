@@ -122,6 +122,13 @@ public class DungeonTerrainTilemap extends DungeonTilemap {
 		return img;
 	}
 
+	//Neukölln: image of a specific tileset visual (e.g. the raised wall face with a poster)
+	public static Image visualImage( int visual ) {
+		Image img = new Image( instance.texture );
+		img.frame( instance.tileset.get( visual ) );
+		return img;
+	}
+
 	@Override
 	protected boolean needsRender(int pos) {
 		return super.needsRender(pos) && data[pos] != DungeonTileSheet.WATER;

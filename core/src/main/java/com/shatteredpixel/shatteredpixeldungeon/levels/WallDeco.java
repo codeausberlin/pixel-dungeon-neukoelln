@@ -17,6 +17,13 @@ public class WallDeco {
 	/** Percent of plain raised wall faces that show the RAISED_WALL_NOTICE variant. */
 	public static final float NOTICE_CHANCE = 5f;
 
+	/**
+	 * Baustelle: plain middle wall faces show the BÄRG poster (RAISED_WALL_ALT +0) only when the
+	 * tile variance is below this value (notice cells take the lowest 5), i.e. on about 10 % of
+	 * the faces instead of 45 %. Keeps the poster from forming "BÄRGBÄRGBÄRG" rows.
+	 */
+	public static final int PLAIN_ALT_CHANCE_BAUSTELLE = 15;
+
 	private static final String[] SHEETS = {
 			Assets.Environment.TILES_SEWERS, Assets.Environment.TILES_PRISON, Assets.Environment.TILES_CAVES,
 			Assets.Environment.TILES_CITY, Assets.Environment.TILES_HALLS

@@ -44,6 +44,10 @@ public class IconTitle extends Component {
 
 	private float healthLvl = Float.NaN;
 
+	//Neukölln: long single-word German names shrink instead of running under the journal button
+	private int labelSize = (int)FONT_SIZE;
+	private int labelColor = Window.TITLE_COLOR;
+
 	public IconTitle() {
 		super();
 	}
@@ -96,7 +100,19 @@ public class IconTitle extends Component {
 		int imWidth = (int)Math.max(imIcon.width(), 16);
 		int imHeight = (int)Math.max(imIcon.height(), 16);
 
-		tfLabel.maxWidth((int)(width - (imWidth + GAP)));
+		int maxLabelWidth = (int)(width - (imWidth + GAP));
+		tfLabel.maxWidth(maxLabelWidth);
+		while (maxLabelWidth > 0 && tfLabel.width() > maxLabelWidth && labelSize > 6){
+			labelSize--;
+			String text = tfLabel.text();
+			remove(tfLabel);
+			tfLabel.destroy();
+			tfLabel = PixelScene.renderTextBlock( text, labelSize );
+			tfLabel.hardlight( labelColor );
+			tfLabel.setHightlighting(false);
+			tfLabel.maxWidth(maxLabelWidth);
+			add( tfLabel );
+		}
 		tfLabel.setPos(x + imWidth + GAP,
 						imHeight > tfLabel.height() ? y +(imHeight - tfLabel.height()) / 2 : y);
 		PixelScene.align(tfLabel);
@@ -126,11 +142,11 @@ public class IconTitle extends Component {
 
 	public void label( String label, int color ) {
 		tfLabel.text( label );
-		tfLabel.hardlight( color );
+		tfLabel.hardlight( labelColor = color );
 	}
 
 	public void color( int color ) {
-		tfLabel.hardlight( color );
+		tfLabel.hardlight( labelColor = color );
 	}
 
 	public float alpha(){

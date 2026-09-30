@@ -1,0 +1,13 @@
+NICHT VERWENDEN - Store-Metadaten von Shattered Pixel Dungeon
+=============================================================
+
+Dieser Ordner (metadata/en-US/, Fastlane/F-Droid-Format) stammt unverändert aus Shattered
+Pixel Dungeon: Beschreibung, Kurzbeschreibung, Changelogs, Icon, Feature-Grafik und
+Screenshots zeigen das Original, nicht Neukölln Pixel Dungeon.
+
+Neukölln Pixel Dungeon nutzt diese Daten nicht. Kein Build und kein Workflow liest sie.
+Wer sie in einen Store (Google Play, F-Droid o. ä.) hochlädt, gibt sich als Shattered Pixel
+Dungeon aus. Vor einem Store-Release müssen Texte (de-DE), Icon, Feature-Grafik und Screenshots
+durch eigene ersetzt werden (Lore- und Art-Agent), siehe docs/NEUKOELLN-LIZENZ.md §5.
+Vor einem Google-Play-Release zusätzlich den Upstream-Entwickler kontaktieren
+(docs/getting-started-android.md).

@@ -17,6 +17,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ * Modified for Neukölln Pixel Dungeon, 2026.
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.windows;
@@ -24,6 +25,7 @@ package com.shatteredpixel.shatteredpixeldungeon.windows;
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Blob;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Terrain;
+import com.shatteredpixel.shatteredpixeldungeon.levels.WallDeco;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.PixelScene;
 import com.shatteredpixel.shatteredpixeldungeon.tiles.CustomTilemap;
@@ -77,6 +79,9 @@ public class WndInfoCell extends Window {
 				Image water = new Image(Dungeon.level.waterTex());
 				water.frame(0, 0, DungeonTilemap.SIZE, DungeonTilemap.SIZE);
 				return water;
+			} else if (WallDeco.motif(Dungeon.level, cell) != null) {
+				//Neukölln: show the wall face with the poster/graffiti, not the flat wall top
+				return DungeonTerrainTilemap.visualImage(WallDeco.visual(Dungeon.level, cell));
 			} else {
 				return DungeonTerrainTilemap.tile(cell, tile);
 			}

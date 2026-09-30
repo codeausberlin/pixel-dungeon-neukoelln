@@ -43,3 +43,8 @@ Anschauen von Regionen und Gegnern gedacht, nicht zum fairen Durchspielen.
 Getrennt von Shattered Pixel Dungeon, auf dem Mac unter
 `~/Library/Application Support/Neukoelln Pixel Dungeon/`. Zum kompletten Neustart den
 Ordner umbenennen.
+
+## Pakete ohne Java-Installation
+
+Spielfertige Pakete für Windows, macOS, Linux und Android baut der Workflow
+`Release-Build`; Anleitung in [NEUKOELLN-RELEASE.md](NEUKOELLN-RELEASE.md).
