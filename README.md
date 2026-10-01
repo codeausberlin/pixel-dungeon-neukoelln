@@ -355,21 +355,10 @@ Quellcode unter derselben Lizenz offen bleibt.
 
 ### Das Original
 
-Wenn dir das hier gefällt, spiel das Original. Es hat mehr Inhalt und keine Hundehaufen.
-Shattered Pixel Dungeon ist ein Open-Source-Roguelike mit zufälligen Ebenen, Gegnern und Hunderten
-Gegenständen und läuft auf Android, iOS und Desktop. Offizielle Versionen gibt es bei
-[Google Play](https://play.google.com/store/apps/details?id=com.shatteredpixel.shatteredpixeldungeon),
-im [App Store](https://apps.apple.com/app/shattered-pixel-dungeon/id1563121109),
-auf [Steam](https://store.steampowered.com/app/1769170/Shattered_Pixel_Dungeon/),
-[GOG.com](https://www.gog.com/game/shattered_pixel_dungeon),
-[itch.io](https://shattered-pixel.itch.io/shattered-pixel-dungeon) und über die
-[GitHub-Releases](https://github.com/00-Evan/shattered-pixel-dungeon/releases).
-Der Blog des Entwicklers
-liegt auf [ShatteredPixel.com](https://www.shatteredpixel.com/blog/), die Übersetzungen des Originals
-laufen über [Transifex](https://explore.transifex.com/shattered-pixel/shattered-pixel-dungeon/).
-
-Das Original-Repository nimmt keine Pull Requests an; Fehlerberichte zum Original gehören dorthin,
-Fehlerberichte zu Neukölln hierher.
+Pixel Dungeon Neukölln ist ein inoffizieller Fork und steht in keiner Verbindung zu Evan Debenham
+oder Shattered Pixel. Der Quellcode des Originals liegt unter
+[00-Evan/shattered-pixel-dungeon](https://github.com/00-Evan/shattered-pixel-dungeon).
+Fehlerberichte zu Neukölln gehören hierher, nicht ins Original-Repository.
 
 Anleitungen aus dem Original zum Bauen und Anpassen liegen in `/docs` (englisch):
 - [Compiling for Android](docs/getting-started-android.md)
