@@ -364,7 +364,7 @@ auf [Steam](https://store.steampowered.com/app/1769170/Shattered_Pixel_Dungeon/)
 [GOG.com](https://www.gog.com/game/shattered_pixel_dungeon),
 [itch.io](https://shattered-pixel.itch.io/shattered-pixel-dungeon) und über die
 [GitHub-Releases](https://github.com/00-Evan/shattered-pixel-dungeon/releases).
-Den Entwickler kannst du auf [Patreon](https://www.patreon.com/ShatteredPixel) unterstützen, sein Blog
+Der Blog des Entwicklers
 liegt auf [ShatteredPixel.com](https://www.shatteredpixel.com/blog/), die Übersetzungen des Originals
 laufen über [Transifex](https://explore.transifex.com/shattered-pixel/shattered-pixel-dungeon/).
 

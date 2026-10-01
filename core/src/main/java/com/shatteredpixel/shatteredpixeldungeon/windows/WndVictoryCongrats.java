@@ -21,10 +21,8 @@
 
 package com.shatteredpixel.shatteredpixeldungeon.windows;
 
-import com.shatteredpixel.shatteredpixeldungeon.ShatteredPixelDungeon;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.PixelScene;
-import com.shatteredpixel.shatteredpixeldungeon.scenes.SupporterScene;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSprite;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
 import com.shatteredpixel.shatteredpixeldungeon.ui.Icons;
@@ -105,22 +103,12 @@ public class WndVictoryCongrats extends Window {
 
 		height += Math.max(dailyImg.height(), dailyTxt.height()) + 6;
 
-		RenderedTextBlock finalTxt = PixelScene.renderTextBlock(Messages.get(this, "thank_you") + " "  + Messages.get(this, "support_prompt"), 6);
+		RenderedTextBlock finalTxt = PixelScene.renderTextBlock(Messages.get(this, "thank_you"), 6);
 		finalTxt.maxWidth(width);
 		finalTxt.setPos(0, height);
 		add(finalTxt);
 
 		height = (int) finalTxt.bottom() + 4;
-
-		RedButton btnSupport = new RedButton(Messages.get(this, "support")) {
-			@Override
-			protected void onClick() {
-				ShatteredPixelDungeon.switchScene(SupporterScene.class);
-			}
-		};
-		btnSupport.icon(Icons.GOLD.get());
-		btnSupport.setRect(0, height, width / 2, 18);
-		add(btnSupport);
 
 		RedButton btnClose = new RedButton(Messages.get(this, "close")) {
 			@Override
@@ -129,7 +117,7 @@ public class WndVictoryCongrats extends Window {
 			}
 		};
 		btnClose.icon(Icons.EXIT.get());
-		btnClose.setRect(btnSupport.right() + 1, height, width / 2 - 1, 18);
+		btnClose.setRect(0, height, width, 18);
 		add(btnClose);
 
 		resize(width, (int)btnClose.bottom());
