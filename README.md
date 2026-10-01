@@ -286,7 +286,7 @@ Mehr Details: [docs/NEUKOELLN-START.md](docs/NEUKOELLN-START.md), zum Bauen der 
 
 ## Baufortschritt
 
-Version 0.1.0. **In Entwicklung.** Fertigstellung voraussichtlich im Herbst. Welcher Herbst, steht
+Version 0.1.1. **In Entwicklung.** Fertigstellung voraussichtlich im Herbst. Welcher Herbst, steht
 nicht da.
 
 **Steht (eingebaut, Build und Smoke-Test laufen):**
