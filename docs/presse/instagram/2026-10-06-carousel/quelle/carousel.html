@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Instagram-Carousel Pixel Dungeon Neukölln</title>
+<!-- Zehn Folien à 1080x1350 (Instagram 4:5). Gerendert mit render.cjs, Bilder aus assets-vorbereiten.py. -->
+<style>
+  @font-face { font-family: "PDN"; src: url("../../../../../core/src/main/assets/fonts/pixel_font.ttf"); }
+  :root {
+    --bg: #1d1b24; --bg-2: #262431; --bg-3: #302d3d; --line: #45405a; --schatten: #121019;
+    --text: #ece8f4; --muted: #b3adc4; --gelb: #f2cf6b; --mint: #a8dcc0; --pink: #f06292;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #000; }
+  img { display: block; image-rendering: pixelated; }
+  .slide {
+    width: 1080px; height: 1350px; position: relative; overflow: hidden; margin-bottom: 40px;
+    background: var(--bg); color: var(--text); font-family: "Inter", sans-serif;
+  }
+  .px, h1, h2, .kicker, .kopf, .weiter, .name, .ebene, .pille, .pointe, .blase, .knopf { font-family: "PDN"; font-weight: normal; }
+  h1, h2 { color: var(--gelb); text-shadow: 4px 4px 0 #000; line-height: 1.12; text-wrap: balance; }
+  p { text-wrap: pretty; }
+  .gelb { color: var(--gelb); }
+  .pink { color: var(--pink); }
+  .kopf {
+    position: absolute; top: 48px; left: 72px; right: 72px;
+    display: flex; justify-content: space-between; font-size: 26px; color: var(--muted); letter-spacing: .04em;
+  }
+  .weiter { position: absolute; right: 72px; bottom: 50px; font-size: 32px; color: var(--mint); }
+  .kicker { font-size: 30px; color: var(--mint); letter-spacing: .06em; text-transform: uppercase; }
+  .block { position: absolute; left: 72px; right: 72px; }
+  .text { font-size: 36px; line-height: 1.38; }
+  .klein { font-size: 29px; line-height: 1.32; color: var(--text); }
+  .rahmen { box-shadow: 0 0 0 6px var(--line), 12px 12px 0 6px var(--schatten); }
+  .pille {
+    display: inline-block; font-size: 26px; letter-spacing: .06em; text-transform: uppercase;
+    color: var(--pink); border: 3px solid var(--pink); padding: 8px 12px 6px;
+  }
+  .pointe { font-size: 44px; line-height: 1.2; color: var(--mint); margin-top: 24px; }
+  .rolle .text { font-size: 35px; }
+  .name { font-size: 36px; color: var(--gelb); }
+  .ebene { font-size: 24px; color: var(--mint); letter-spacing: .05em; text-transform: uppercase; }
+
+  /* Gegnerliste */
+  .gegner { display: grid; grid-template-columns: 128px 1fr; column-gap: 30px; align-items: center; height: 134px; }
+  .gegner .sprite { width: 128px; height: 120px; display: flex; align-items: flex-end; justify-content: center; }
+  .gegner .name .ebene { margin-left: 14px; }
+  .gegner .klein { margin-top: 6px; }
+  .kasten {
+    background: var(--bg-2); border: 4px solid var(--mint); padding: 20px 26px;
+    font-size: 31px; line-height: 1.32;
+  }
+
+  /* Regionen */
+  .region { display: grid; grid-template-columns: 320px 1fr; column-gap: 30px; align-items: center; height: 180px; margin-bottom: 16px; }
+  .region .rahmen { box-shadow: 0 0 0 4px var(--line), 8px 8px 0 4px var(--schatten); }
+  .region .name { margin-top: 4px; }
+  .region .klein { margin-top: 8px; }
+  .region.ende .rahmen { box-shadow: 0 0 0 4px var(--pink), 8px 8px 0 4px var(--schatten); }
+
+  /* Spielen */
+  .punkt { display: grid; grid-template-columns: 34px 1fr; column-gap: 12px; margin-bottom: 24px; font-size: 33px; line-height: 1.36; }
+  .punkt::before { content: ""; width: 14px; height: 14px; background: var(--mint); margin-top: 15px; }
+
+  /* Einziehen */
+  .blase {
+    position: relative; background: #f4f0e6; color: #1d1b24; border: 5px solid #000;
+    font-size: 36px; line-height: 1.25; padding: 22px 26px 18px;
+  }
+  .blase::before {
+    content: ""; position: absolute; left: -29px; top: 52px; width: 24px; height: 24px;
+    background: #f4f0e6; border-left: 5px solid #000; border-bottom: 5px solid #000; transform: skewY(-35deg);
+  }
+  .knopf {
+    display: inline-block; background: var(--gelb); color: #1d1b24; font-size: 38px; letter-spacing: .03em;
+    padding: 20px 30px 16px; border: 5px solid #000; box-shadow: 10px 10px 0 #000;
+  }
+  .fein { font-size: 24px; line-height: 1.38; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<!-- 01 Hook -->
+<section class="slide" id="01-hook">
+  <img src="bilder/titel.png" width="1080" height="675" style="position:absolute;top:0;left:0" alt="">
+  <div class="block" style="top:740px">
+    <div class="kicker">Kostenloses Roguelike auf Deutsch</div>
+    <h1 style="font-size:72px;margin-top:28px;color:var(--text)">Irgendwo unter Neukölln liegt der <span class="gelb">letzte unbefristete Mietvertrag</span> Berlins.</h1>
+    <p class="text" style="margin-top:30px;color:var(--muted)">Altbau, Kaltmiete von 1987. Kein Index, kein Eigenbedarf.</p>
+  </div>
+  <div class="weiter">Zur Besichtigung →</div>
+</section>
+
+<!-- 02 Story -->
+<section class="slide" id="02-anfang">
+  <div class="kopf"><span>Pixel Dungeon Neukölln</span><span>02/10</span></div>
+  <div class="block" style="top:132px">
+    <div class="kicker">Wie alles anfängt</div>
+    <p class="text" style="margin-top:22px">Montagmorgen, Hermannplatz. Du musst zum Mieterverein, und die M41 fährt dir vor der Nase weg.</p>
+    <h2 style="font-size:56px;margin-top:22px">Also nur kurz das Fahrrad aus dem Keller holen.</h2>
+  </div>
+  <img class="rahmen" src="bilder/intro-rums.png" width="960" height="540" style="position:absolute;top:500px;left:60px" alt="">
+  <div class="block" style="top:1086px">
+    <p class="text">Hinter dir fällt die Brandschutztür ins Schloss. Der Schlüssel liegt irgendwo weiter unten. <span class="gelb">Das Fahrrad hoffentlich auch.</span></p>
+  </div>
+  <div class="weiter">→</div>
+</section>
+
+<!-- 03-06 Rollen -->
+<section class="slide rolle" id="03-alteingesessene">
+  <div class="kopf"><span>Pixel Dungeon Neukölln</span><span>03/10</span></div>
+  <div class="block" style="top:132px">
+    <div style="display:flex;justify-content:space-between;align-items:center"><div class="kicker">Wer bist du im Kiez? 1/4</div><span class="pille">Tank</span></div>
+    <h2 style="font-size:76px;margin-top:22px">Die Alteingesessene</h2>
+  </div>
+  <img src="bilder/rolle-alteingesessene.png" width="1080" height="630" style="position:absolute;top:304px;left:0" alt="">
+  <div class="block" style="top:970px">
+    <p class="text">Hat drei Sanierungen, vier Quartierskonzepte und eine Mietpreisbremse überlebt. Wird es eng, schirmt ihr Kiez-Aufnäher sie ab.</p>
+    <p class="pointe">Stampft auf wie auf die Decke der Nachbarn:<br>„Ruhe da unten!“</p>
+  </div>
+  <div class="weiter">→</div>
+</section>
+
+<section class="slide rolle" id="04-expat">
+  <div class="kopf"><span>Pixel Dungeon Neukölln</span><span>04/10</span></div>
+  <div class="block" style="top:132px">
+    <div style="display:flex;justify-content:space-between;align-items:center"><div class="kicker">Wer bist du im Kiez? 2/4</div><span class="pille">Magier</span></div>
+    <h2 style="font-size:76px;margin-top:22px">Der Expat</h2>
+  </div>
+  <img src="bilder/rolle-expat.png" width="1080" height="630" style="position:absolute;top:304px;left:0" alt="">
+  <div class="block" style="top:970px">
+    <p class="text">Zaubert mit magischem Selfie-Stick und Formeln wie „Let’s circle back!“. Er nennt das disruptiv. Die kaputten Wände geben ihm recht.</p>
+    <p class="pointe">Niemand versteht den Pitch. Die Geschosse schon.</p>
+  </div>
+  <div class="weiter">→</div>
+</section>
+
+<section class="slide rolle" id="05-zugezogene">
+  <div class="kopf"><span>Pixel Dungeon Neukölln</span><span>05/10</span></div>
+  <div class="block" style="top:132px">
+    <div style="display:flex;justify-content:space-between;align-items:center"><div class="kicker">Wer bist du im Kiez? 3/4</div><span class="pille">Fernkampf</span></div>
+    <h2 style="font-size:76px;margin-top:22px">Die Zugezogene</h2>
+  </div>
+  <img src="bilder/rolle-zugezogene.png" width="1080" height="630" style="position:absolute;top:304px;left:0" alt="">
+  <div class="block" style="top:970px">
+    <p class="text">Hält Probleme mit Upcycling-Bogen und unendlich vielen Pfeilen auf Abstand. Gekommen ist sie wegen der guten Anbindung.</p>
+    <p class="pointe">Plan: erst mal ankommen. Seit sechs Jahren.</p>
+  </div>
+  <div class="weiter">→</div>
+</section>
+
+<section class="slide rolle" id="06-tourist">
+  <div class="kopf"><span>Pixel Dungeon Neukölln</span><span>06/10</span></div>
+  <div class="block" style="top:132px">
+    <div style="display:flex;justify-content:space-between;align-items:center"><div class="kicker">Wer bist du im Kiez? 4/4</div><span class="pille">Schleicher</span></div>
+    <h2 style="font-size:76px;margin-top:22px">Der Tourist</h2>
+  </div>
+  <img src="bilder/rolle-tourist.png" width="1080" height="630" style="position:absolute;top:304px;left:0" alt="">
+  <div class="block" style="top:970px">
+    <p class="text">Wird im Poncho der Schatten unsichtbar und schlägt aus dem Nichts zu. Nur übers Wochenende hier, seit zwölf Wochenenden.</p>
+    <p class="pointe">Er sucht das authentische Neukölln. Es sucht inzwischen zurück.</p>
+  </div>
+  <div class="weiter">→</div>
+</section>
+
+<!-- 07 Gegner -->
+<section class="slide" id="07-gegner">
+  <div class="kopf"><span>Pixel Dungeon Neukölln</span><span>07/10</span></div>
+  <div class="block" style="top:132px">
+    <div class="kicker">Der Kiez schlägt zurück</div>
+    <h2 style="font-size:56px;margin-top:20px">Gegner aus dem Hausflur.</h2>
+    <div style="margin-top:30px">
+      <div class="gegner"><div class="sprite"><img src="bilder/gegner-leihscooter.png" alt=""></div>
+        <div><div class="name">Leihscooter<span class="ebene">Ebene 2–5</span></div>
+        <p class="klein">Klingelt einen Zug lang, dann rast er geradeaus. Weich aus, und er kracht in die Wand.</p></div></div>
+      <div class="gegner"><div class="sprite"><img src="bilder/gegner-pfandgolem.png" alt=""></div>
+        <div><div class="name">Pfandgolem<span class="ebene">Ebene 3–5</span></div>
+        <p class="klein">Langsam, aber er schlägt kräftig zu. Zerspringt in Scherben. Keine ist rückgabefähig.</p></div></div>
+      <div class="gegner"><div class="sprite"><img src="bilder/gegner-terminhaendler.png" alt=""></div>
+        <div><div class="name">Makler<span class="ebene">Ebene 6–10</span></div>
+        <p class="klein">Jeder Treffer schickt dich in die Warteschleife. Provision: zwei Nettokaltmieten.</p></div></div>
+      <div class="gegner"><div class="sprite"><img src="bilder/gegner-presslufter.png" alt=""></div>
+        <div><div class="name">Presslufter<span class="ebene">Ebene 11–15</span></div>
+        <p class="klein">Läuft einen Zug warm und trifft dann alles um ihn herum. Ein Schritt weg reicht.</p></div></div>
+      <div class="gegner"><div class="sprite"><img src="bilder/gegner-luxussanierer.png" alt=""></div>
+        <div><div class="name">Luxussanierer<span class="ebene">Ebene 16–20</span></div>
+        <p class="klein">Stellt Bauzäune hinter dir auf. Über deinem Fluchtweg plant er eine Dachterrasse.</p></div></div>
+      <div class="gegner"><div class="sprite"><img src="bilder/gegner-hausordnungs-hydra.png" alt=""></div>
+        <div><div class="name">Hausordnungs-Hydra<span class="ebene">ab Ebene 21</span></div>
+        <p class="klein">Ruft Ruhezeit oder Kehrwoche aus. Mal kostet Bewegen Leben, mal Stehenbleiben.</p></div></div>
+    </div>
+  </div>
+  <div class="block kasten" style="top:1112px"><span class="gelb">Absurd, aber fair:</span> Wer eine Sonderattacke plant, kündigt sie an. Die Felder sind markiert.</div>
+  <div class="weiter">→</div>
+</section>
+
+<!-- 08 Regionen -->
+<section class="slide" id="08-regionen">
+  <div class="kopf"><span>Pixel Dungeon Neukölln</span><span>08/10</span></div>
+  <div class="block" style="top:132px">
+    <div class="kicker">25 Ebenen abwärts</div>
+    <h2 style="font-size:56px;margin-top:20px">Fünf Regionen. Fünf Bosse.</h2>
+    <div style="margin-top:34px">
+      <div class="region"><img class="rahmen" src="bilder/region-hinterhof.png" width="320" height="180" alt="">
+        <div><div class="ebene">Ebene 1–5</div><div class="name">Neuköllner Hinterhöfe</div>
+        <p class="klein">Boss: der Mietschimmel.<br>Sagt, du hättest falsch gelüftet.</p></div></div>
+      <div class="region"><img class="rahmen" src="bilder/region-amt.png" width="320" height="180" alt="">
+        <div><div class="ebene">Ebene 6–10</div><div class="name">Das Amt ohne Termin</div>
+        <p class="klein">Boss: der Kurzparker.<br>Ein SUV, der nur kurz hier steht.</p></div></div>
+      <div class="region"><img class="rahmen" src="bilder/region-baustelle.png" width="320" height="180" alt="">
+        <div><div class="ebene">Ebene 11–15</div><div class="name">Die ewige Baustelle</div>
+        <p class="klein">Boss: die Bohrlinde.<br>Eröffnungstermin: unbekannt.</p></div></div>
+      <div class="region"><img class="rahmen" src="bilder/region-renditequartier.png" width="320" height="180" alt="">
+        <div><div class="ebene">Ebene 16–20</div><div class="name">Das Renditequartier</div>
+        <p class="klein">Boss: König der Eigentumswohnungen.<br>Ab morgen gehört ihm dein Flur.</p></div></div>
+      <div class="region ende"><img class="rahmen" src="bilder/region-rathaus.png" width="320" height="180" alt="">
+        <div><div class="ebene pink">Ebene 21–25</div><div class="name">Unter dem Rathaus</div>
+        <p class="klein"><span class="pink">Endgegner: Ewiger Mietspiegel.</span><br>Wächst alle zwei Jahre.</p></div></div>
+    </div>
+  </div>
+  <div class="weiter">→</div>
+</section>
+
+<!-- 09 Spielen -->
+<section class="slide" id="09-spielen">
+  <div class="kopf"><span>Pixel Dungeon Neukölln</span><span>09/10</span></div>
+  <div class="block" style="top:132px">
+    <div class="kicker">So spielt sich’s</div>
+    <h2 style="font-size:56px;margin-top:20px">Du ziehst, dann der Kiez.</h2>
+  </div>
+  <img class="rahmen" src="bilder/spielszene.png" width="960" height="480" style="position:absolute;top:300px;left:60px" alt="">
+  <div class="block" style="top:842px">
+    <div class="punkt"><span>Rundenbasiert und taktisch. Jede Partie baut die Ebenen neu, wer stirbt, fängt oben wieder an. <span class="gelb">Wie bei der Wohnungssuche, nur fairer.</span></span></div>
+    <div class="punkt"><span>Der Spätimann hat auf Ebene 6, 11 und 16 offen. Er ist hier unten der Einzige, der zuständig ist.</span></div>
+    <div class="punkt"><span>Dazu 31 Tracks Techno, eigens fürs Spiel geschrieben. Kein Türsteher, keine Gästeliste.</span></div>
+  </div>
+  <div class="weiter">→</div>
+</section>
+
+<!-- 10 Einziehen -->
+<section class="slide" id="10-einziehen">
+  <div class="kopf"><span>Pixel Dungeon Neukölln</span><span>10/10</span></div>
+  <img src="bilder/logo-quer.png" width="960" height="228" style="position:absolute;top:126px;left:60px" alt="">
+  <div class="block" style="top:420px;display:flex;align-items:center;gap:52px">
+    <img src="bilder/spaetimann.png" width="196" height="196" alt="">
+    <div class="blase">Kostet nüscht, Kollege. Nich ma Pfand.</div>
+  </div>
+  <div class="block" style="top:680px">
+    <h1 style="font-size:88px">Einziehen.</h1>
+    <p class="text" style="margin-top:26px">Kostenlos für Android, Windows, macOS und Linux. Keine Werbung, keine Käufe im Spiel.</p>
+    <div style="margin-top:40px"><span class="knopf">Download: Link in Bio</span></div>
+    <p class="text" style="margin-top:44px;font-size:30px;color:var(--muted)">Version 0.1.1, noch in Sanierung. iPhone kommt später.</p>
+    <p class="fein" style="margin-top:22px">Inoffizieller Fan-Fork von Shattered Pixel Dungeon (Evan Debenham), basierend auf Pixel Dungeon von Watabou, nicht vom Original-Entwickler unterstützt. Open Source unter GPLv3. Alle Figuren frei erfunden.</p>
+  </div>
+</section>
+
+</body>
+</html>
